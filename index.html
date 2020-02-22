@@ -31,19 +31,144 @@
 		user-select: none;
 	}
 	
+	.pixel_editor{
+		width: 250px; 
+		height: 400px;
+		border-radius: 10px;
+		background-color: #89cff0;
+	}
+	
+	.editor_options {
+		text-align: center;
+	}
+	
+	.char_name_input {
+		border-radius: 4px;
+		border: none;
+		margin-top: 10px;
+		margin-bottom: 5px;
+	}
+	
+	.button {
+		background-color: transparent;
+		margin-bottom: 5px;
+		border: black 1px solid;
+		border-radius: 4px;
+	}
+	
+	.pixel_box{
+		width: 205px; 
+		height: 326px;
+		margin: auto;
+		user-select: none;
+	}
+	
+	.pixel_on {
+		width: 32px;
+		height: 32px;
+		margin: 2px;
+		background-color: white;
+		border: white 1px solid;
+		display: inline-block;
+	}
+	
+	.pixel_off {
+		width: 32px;
+		height: 32px;
+		margin: 2px;
+		border: #000 1px solid;
+		background-color: transparent;
+		display: inline-block;
+	}
 	</style>
-	
-
-	
 </head>
 
-<body bgcolor="white">
+<body>
 	<div class="header">
 		<h1 class="header_title">LCD Custom Character Generator</h1>
 	</div>
-	<br>
+	<div class="pixel_editor">
+			<form class="editor_options">
+				<input type="text-box" class="char_name_input" placeholder="characterName" /> <br>
+				<input type="button" class="button" value="Clear" onclick="clear_pixels();" />
+				<input type="button" class="button" value="Invert" onclick="invert_pixels();"/>
+			</form>
+		<div class="pixel_box">
+				<div type="button" id="pixel-0x0" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+				<div type="button" id="pixel-0x1" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+				<div type="button" id="pixel-0x2" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+				<div type="button" id="pixel-0x3" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+				<div type="button" id="pixel-0x4" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+			<br>
+				<div type="button" id="pixel-1x0" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+				<div type="button" id="pixel-1x1" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+				<div type="button" id="pixel-1x2" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+				<div type="button" id="pixel-1x3" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+				<div type="button" id="pixel-1x4" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+			<br>
+				<div type="button" id="pixel-2x0" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+				<div type="button" id="pixel-2x1" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+				<div type="button" id="pixel-2x2" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+				<div type="button" id="pixel-2x3" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+				<div type="button" id="pixel-2x4" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+			<br>
+				<div type="button" id="pixel-3x0" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+				<div type="button" id="pixel-3x1" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+				<div type="button" id="pixel-3x2" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+				<div type="button" id="pixel-3x3" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+				<div type="button" id="pixel-3x4" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+			<br>
+				<div type="button" id="pixel-4x0" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+				<div type="button" id="pixel-4x1" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+				<div type="button" id="pixel-4x2" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+				<div type="button" id="pixel-4x3" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+				<div type="button" id="pixel-4x4" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+			<br>
+				<div type="button" id="pixel-5x0" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+				<div type="button" id="pixel-5x1" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+				<div type="button" id="pixel-5x2" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+				<div type="button" id="pixel-5x3" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+				<div type="button" id="pixel-5x4" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+			<br>
+				<div type="button" id="pixel-6x0" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+				<div type="button" id="pixel-6x1" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+				<div type="button" id="pixel-6x2" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+				<div type="button" id="pixel-6x3" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+				<div type="button" id="pixel-6x4" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+			<br>
+				<div type="button" id="pixel-7x0" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+				<div type="button" id="pixel-7x1" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+				<div type="button" id="pixel-7x2" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+				<div type="button" id="pixel-7x3" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+				<div type="button" id="pixel-7x4" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+			<br>
+		</div>
+	</div>
 	
-
 	<script type="text/javascript">
+	function toggle_pixel(pixelID){
+		var pixel = document.getElementById(pixelID);
+		if (pixel.className == "pixel_off") pixel.className = "pixel_on";
+		else pixel.className = "pixel_off";
+	}
+	
+	function clear_pixels(){
+		for (var row=0; row<8; row++){
+			for (var col=0; col<5; col++) {
+				var pixelID = "pixel-" + row + "x" + col;
+				var pixel = document.getElementById(pixelID);
+				pixel.className = "pixel_off";
+			}
+		}
+	}
+	
+	function invert_pixels(){
+		for (var row=0; row<8; row++){
+			for (var col=0; col<5; col++) {
+				var pixelID = "pixel-" + row + "x" + col;
+				toggle_pixel(pixelID);
+			}
+		}
+	}
 	</script>
 </body>
