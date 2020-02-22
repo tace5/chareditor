@@ -136,9 +136,7 @@
 		float: left;
 	}
 	
-
-	
-	.lcd_pixel_on {
+	.lcd_pixel_on{
 		background-color: black;
 	}
 	</style>
@@ -608,7 +606,7 @@
 				var lcdpixel = document.getElementById(lcdpixelID);
 				var pixel_state = document.getElementById(pixelID).className;
 				
-				if (pixel_state == "pixel_off") lcdpixel.className = "";
+				if (pixel_state == "pixel_off") lcdpixel.className = null;
 				else lcdpixel.className = "lcd_pixel_on";
 			}
 		}
@@ -619,14 +617,31 @@
 		var lcdpixel = document.getElementById(lcdID);
 		lcdpixel.className = "lcd_pixel_selected";
 		sel_lcd_id = lcdID;
+		load_lcd_to_editor(lcdID);
 	}
 	
 	function unselect_all(){
-			for (var row=0; row<2; row++){
+		for (var row=0; row<2; row++){
 			for (var col=0; col<16; col++) {
 				var lcdID = "lcd-" + row + "x" + col;
 				var lcdpixel = document.getElementById(lcdID);
 				lcdpixel.className = "lcd_pixel";
+			}
+		}
+	}
+	
+	function load_lcd_to_editor(lcdID){
+		for (var row=0; row<8; row++){
+			for (var col=0; col<5; col++) {
+				var lcdpixelID = lcdID + "-" + row + "x" + col;
+				var lcdpixel = document.getElementById(lcdpixelID);
+				var lcdpixel_state = lcdpixel.className;
+				
+				var pixelID = "pixel-" + row + "x" + col;
+				var pixel = document.getElementById(pixelID);
+				
+				if (lcdpixel_state == "lcd_pixel_on") pixel.className = "pixel_on";
+				else pixel.className = "pixel_off";
 			}
 		}
 	}
