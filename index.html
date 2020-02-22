@@ -9,7 +9,7 @@
 	<style type="text/css">
 	body {
     padding: 0px;
-    margin: 0px
+    margin: 0px;
 	}
 	
 	.header {
@@ -34,8 +34,10 @@
 	.pixel_editor{
 		width: 250px; 
 		height: 400px;
+		margin: 8px;
+		float: left;
 		border-radius: 10px;
-		background-color: #89cff0;
+		background-color: #4db7bb;
 	}
 	
 	.editor_options {
@@ -67,8 +69,8 @@
 		width: 32px;
 		height: 32px;
 		margin: 2px;
-		background-color: white;
-		border: white 1px solid;
+		background-color: #006468;
+		border: #006468 1px solid;
 		display: inline-block;
 	}
 	
@@ -80,6 +82,18 @@
 		background-color: transparent;
 		display: inline-block;
 	}
+	
+	.code_box {
+		width: 250px;
+		height: 170px;
+		float: middle;
+		margin: 8px;
+		padding: 8px;
+		resize: none;
+		background-color: #f5f2f0;
+		border: none;
+		border-radius: 10px;
+	}
 	</style>
 </head>
 
@@ -89,8 +103,8 @@
 	</div>
 	<div class="pixel_editor">
 			<form class="editor_options">
-				<input type="text-box" class="char_name_input" placeholder="characterName" /> <br>
-				<input type="button" class="button" value="Clear" onclick="clear_pixels();" />
+				<input type="text-area" id="charname" class="char_name_input" value="charName" oninput="update_code();" onkeydown="return checkEnter(event);"/> <br>
+				<input type="button" class="button" value="Clear" onclick="clear_pixels();"/>
 				<input type="button" class="button" value="Invert" onclick="invert_pixels();"/>
 			</form>
 		<div class="pixel_box">
@@ -141,15 +155,41 @@
 				<div type="button" id="pixel-7x2" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
 				<div type="button" id="pixel-7x3" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
 				<div type="button" id="pixel-7x4" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
-			<br>
 		</div>
 	</div>
 	
+		<textarea id="code" class="code_box" readonly>
+		</textarea>
+		
 	<script type="text/javascript">
+	function update_code(){
+		var charname = document.getElementById("charname").value;
+		var code_header = "byte " + charname + "[] = {"
+		var code_body = "";
+		var code_footer = "};"
+		
+		for (var row=0; row<8; row++){
+			code_body += "    B";
+			for (var col=0; col<5; col++) {
+				var pixelID = "pixel-" + row + "x" + col;
+				var pixel_state = document.getElementById(pixelID).className
+				
+				if (pixel_state == "pixel_off") code_body += "0";
+				else code_body += "1";
+			}
+			code_body += ",\r\n";
+		}
+		
+		code_body = code_body.substring(0, code_body.length - 3)
+		var full_code = code_header + "\r\n" + code_body + "\r\n" + code_footer;
+		document.getElementById("code").value = full_code;
+	}
+	
 	function toggle_pixel(pixelID){
 		var pixel = document.getElementById(pixelID);
 		if (pixel.className == "pixel_off") pixel.className = "pixel_on";
 		else pixel.className = "pixel_off";
+		update_code();
 	}
 	
 	function clear_pixels(){
@@ -160,6 +200,7 @@
 				pixel.className = "pixel_off";
 			}
 		}
+		update_code();
 	}
 	
 	function invert_pixels(){
@@ -169,6 +210,11 @@
 				toggle_pixel(pixelID);
 			}
 		}
+		update_code();
+	}
+	
+	function checkEnter(event) {
+		if (event.keyCode == 13) return false;
 	}
 	</script>
 </body>
