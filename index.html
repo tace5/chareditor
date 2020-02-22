@@ -8,8 +8,8 @@
 	
 	<style type="text/css">
 	body {
-    padding: 0px;
-    margin: 0px;
+		padding: 0px;
+		margin: 0px;
 	}
 	
 	.header {
@@ -86,13 +86,60 @@
 	.code_box {
 		width: 250px;
 		height: 170px;
-		float: middle;
+		float: left;
 		margin: 8px;
 		padding: 8px;
 		resize: none;
 		background-color: #f5f2f0;
 		border: none;
 		border-radius: 10px;
+	}
+	
+	.preview_box {
+		width: 470px;
+		height: 86px;
+		float: left;
+		margin: 8px;
+		padding: 8px;
+		background-color: #f5f2f0;
+		border: none;
+		border-radius: 10px;
+	}
+	
+	.lcd_pixel {
+		width: 25px;
+		height: 40px;
+		box-sizing: border-box;
+		border: 1px solid black;
+		border-collapse: collapse;
+		table-layout: fixed;
+		margin: 2px;
+		float: left;
+	}
+	
+	td {
+		width: 4px;
+		height: 4px;
+		box-sizing: border-box;
+		border: 1px solid black;
+		border-collapse: collapse;
+	}
+	
+	.lcd_pixel_selected {
+		width: 25px;
+		height: 40px;
+		box-sizing: border-box;
+		border: 2px solid red;
+		border-collapse: collapse;
+		table-layout: fixed;
+		margin: 2px;
+		float: left;
+	}
+	
+
+	
+	.lcd_pixel_on {
+		background-color: black;
 	}
 	</style>
 </head>
@@ -101,67 +148,396 @@
 	<div class="header">
 		<h1 class="header_title">LCD Custom Character Generator</h1>
 	</div>
-	<div class="pixel_editor">
-			<form class="editor_options">
-				<input type="text-area" id="charname" class="char_name_input" value="charName" oninput="update_code();" onkeydown="return checkEnter(event);"/> <br>
-				<input type="button" class="button" value="Clear" onclick="clear_pixels();"/>
-				<input type="button" class="button" value="Invert" onclick="invert_pixels();"/>
-			</form>
-		<div class="pixel_box">
-				<div type="button" id="pixel-0x0" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
-				<div type="button" id="pixel-0x1" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
-				<div type="button" id="pixel-0x2" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
-				<div type="button" id="pixel-0x3" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
-				<div type="button" id="pixel-0x4" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
-			<br>
-				<div type="button" id="pixel-1x0" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
-				<div type="button" id="pixel-1x1" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
-				<div type="button" id="pixel-1x2" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
-				<div type="button" id="pixel-1x3" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
-				<div type="button" id="pixel-1x4" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
-			<br>
-				<div type="button" id="pixel-2x0" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
-				<div type="button" id="pixel-2x1" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
-				<div type="button" id="pixel-2x2" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
-				<div type="button" id="pixel-2x3" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
-				<div type="button" id="pixel-2x4" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
-			<br>
-				<div type="button" id="pixel-3x0" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
-				<div type="button" id="pixel-3x1" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
-				<div type="button" id="pixel-3x2" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
-				<div type="button" id="pixel-3x3" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
-				<div type="button" id="pixel-3x4" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
-			<br>
-				<div type="button" id="pixel-4x0" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
-				<div type="button" id="pixel-4x1" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
-				<div type="button" id="pixel-4x2" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
-				<div type="button" id="pixel-4x3" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
-				<div type="button" id="pixel-4x4" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
-			<br>
-				<div type="button" id="pixel-5x0" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
-				<div type="button" id="pixel-5x1" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
-				<div type="button" id="pixel-5x2" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
-				<div type="button" id="pixel-5x3" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
-				<div type="button" id="pixel-5x4" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
-			<br>
-				<div type="button" id="pixel-6x0" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
-				<div type="button" id="pixel-6x1" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
-				<div type="button" id="pixel-6x2" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
-				<div type="button" id="pixel-6x3" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
-				<div type="button" id="pixel-6x4" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
-			<br>
-				<div type="button" id="pixel-7x0" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
-				<div type="button" id="pixel-7x1" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
-				<div type="button" id="pixel-7x2" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
-				<div type="button" id="pixel-7x3" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
-				<div type="button" id="pixel-7x4" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
-		</div>
-	</div>
 	
+	<div class="page_content">
+		<div class="pixel_editor">
+				<form class="editor_options">
+					<input type="text-area" id="charname" class="char_name_input" value="charName" oninput="update_code();" onkeydown="return checkEnter(event);"/> <br>
+					<input type="button" class="button" value="Clear" onclick="clear_pixels();"/>
+					<input type="button" class="button" value="Invert" onclick="invert_pixels();"/>
+				</form>
+				
+			<div class="pixel_box">
+					<div id="pixel-0x0" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+					<div id="pixel-0x1" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+					<div id="pixel-0x2" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+					<div id="pixel-0x3" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+					<div id="pixel-0x4" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+				<br>
+					<div id="pixel-1x0" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+					<div id="pixel-1x1" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+					<div id="pixel-1x2" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+					<div id="pixel-1x3" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+					<div id="pixel-1x4" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+				<br>
+					<div id="pixel-2x0" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+					<div id="pixel-2x1" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+					<div id="pixel-2x2" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+					<div id="pixel-2x3" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+					<div id="pixel-2x4" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+				<br>
+					<div id="pixel-3x0" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+					<div id="pixel-3x1" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+					<div id="pixel-3x2" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+					<div id="pixel-3x3" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+					<div id="pixel-3x4" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+				<br>
+					<div id="pixel-4x0" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+					<div id="pixel-4x1" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+					<div id="pixel-4x2" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+					<div id="pixel-4x3" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+					<div id="pixel-4x4" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+				<br>
+					<div id="pixel-5x0" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+					<div id="pixel-5x1" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+					<div id="pixel-5x2" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+					<div id="pixel-5x3" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+					<div id="pixel-5x4" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+				<br>
+					<div id="pixel-6x0" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+					<div id="pixel-6x1" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+					<div id="pixel-6x2" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+					<div id="pixel-6x3" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+					<div id="pixel-6x4" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+				<br>
+					<div id="pixel-7x0" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+					<div id="pixel-7x1" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+					<div id="pixel-7x2" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+					<div id="pixel-7x3" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+					<div id="pixel-7x4" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+			</div>
+		</div>
+			
 		<textarea id="code" class="code_box" readonly>
 		</textarea>
 		
+		<div class="preview_box">
+			<table id="lcd-0x0" class="lcd_pixel_selected" onclick="select_lcd(this.id);">
+				<tr> <td id="lcd-0x0-0x0"></td><td id="lcd-0x0-0x1"></td><td id="lcd-0x0-0x2"></td><td id="lcd-0x0-0x3"></td><td id="lcd-0x0-0x4"></td> </tr>
+				<tr> <td id="lcd-0x0-1x0"></td><td id="lcd-0x0-1x1"></td><td id="lcd-0x0-1x2"></td><td id="lcd-0x0-1x3"></td><td id="lcd-0x0-1x4"></td> </tr>
+				<tr> <td id="lcd-0x0-2x0"></td><td id="lcd-0x0-2x1"></td><td id="lcd-0x0-2x2"></td><td id="lcd-0x0-2x3"></td><td id="lcd-0x0-2x4"></td> </tr>
+				<tr> <td id="lcd-0x0-3x0"></td><td id="lcd-0x0-3x1"></td><td id="lcd-0x0-3x2"></td><td id="lcd-0x0-3x3"></td><td id="lcd-0x0-3x4"></td> </tr>
+				<tr> <td id="lcd-0x0-4x0"></td><td id="lcd-0x0-4x1"></td><td id="lcd-0x0-4x2"></td><td id="lcd-0x0-4x3"></td><td id="lcd-0x0-4x4"></td> </tr>
+				<tr> <td id="lcd-0x0-5x0"></td><td id="lcd-0x0-5x1"></td><td id="lcd-0x0-5x2"></td><td id="lcd-0x0-5x3"></td><td id="lcd-0x0-5x4"></td> </tr>
+				<tr> <td id="lcd-0x0-6x0"></td><td id="lcd-0x0-6x1"></td><td id="lcd-0x0-6x2"></td><td id="lcd-0x0-6x3"></td><td id="lcd-0x0-6x4"></td> </tr>
+				<tr> <td id="lcd-0x0-7x0"></td><td id="lcd-0x0-7x1"></td><td id="lcd-0x0-7x2"></td><td id="lcd-0x0-7x3"></td><td id="lcd-0x0-7x4"></td> </tr>
+			</table>
+			<table id="lcd-0x1" class="lcd_pixel" onclick="select_lcd(this.id);">
+				<tr> <td id="lcd-0x1-0x0"></td><td id="lcd-0x1-0x1"></td><td id="lcd-0x1-0x2"></td><td id="lcd-0x1-0x3"></td><td id="lcd-0x1-0x4"></td> </tr>
+				<tr> <td id="lcd-0x1-1x0"></td><td id="lcd-0x1-1x1"></td><td id="lcd-0x1-1x2"></td><td id="lcd-0x1-1x3"></td><td id="lcd-0x1-1x4"></td> </tr>
+				<tr> <td id="lcd-0x1-2x0"></td><td id="lcd-0x1-2x1"></td><td id="lcd-0x1-2x2"></td><td id="lcd-0x1-2x3"></td><td id="lcd-0x1-2x4"></td> </tr>
+				<tr> <td id="lcd-0x1-3x0"></td><td id="lcd-0x1-3x1"></td><td id="lcd-0x1-3x2"></td><td id="lcd-0x1-3x3"></td><td id="lcd-0x1-3x4"></td> </tr>
+				<tr> <td id="lcd-0x1-4x0"></td><td id="lcd-0x1-4x1"></td><td id="lcd-0x1-4x2"></td><td id="lcd-0x1-4x3"></td><td id="lcd-0x1-4x4"></td> </tr>
+				<tr> <td id="lcd-0x1-5x0"></td><td id="lcd-0x1-5x1"></td><td id="lcd-0x1-5x2"></td><td id="lcd-0x1-5x3"></td><td id="lcd-0x1-5x4"></td> </tr>
+				<tr> <td id="lcd-0x1-6x0"></td><td id="lcd-0x1-6x1"></td><td id="lcd-0x1-6x2"></td><td id="lcd-0x1-6x3"></td><td id="lcd-0x1-6x4"></td> </tr>
+				<tr> <td id="lcd-0x1-7x0"></td><td id="lcd-0x1-7x1"></td><td id="lcd-0x1-7x2"></td><td id="lcd-0x1-7x3"></td><td id="lcd-0x1-7x4"></td> </tr>
+			</table>
+		    <table id="lcd-0x2" class="lcd_pixel" onclick="select_lcd(this.id);">
+				<tr> <td id="lcd-0x2-0x0"></td><td id="lcd-0x2-0x1"></td><td id="lcd-0x2-0x2"></td><td id="lcd-0x2-0x3"></td><td id="lcd-0x2-0x4"></td> </tr>
+				<tr> <td id="lcd-0x2-1x0"></td><td id="lcd-0x2-1x1"></td><td id="lcd-0x2-1x2"></td><td id="lcd-0x2-1x3"></td><td id="lcd-0x2-1x4"></td> </tr>
+				<tr> <td id="lcd-0x2-2x0"></td><td id="lcd-0x2-2x1"></td><td id="lcd-0x2-2x2"></td><td id="lcd-0x2-2x3"></td><td id="lcd-0x2-2x4"></td> </tr>
+				<tr> <td id="lcd-0x2-3x0"></td><td id="lcd-0x2-3x1"></td><td id="lcd-0x2-3x2"></td><td id="lcd-0x2-3x3"></td><td id="lcd-0x2-3x4"></td> </tr>
+				<tr> <td id="lcd-0x2-4x0"></td><td id="lcd-0x2-4x1"></td><td id="lcd-0x2-4x2"></td><td id="lcd-0x2-4x3"></td><td id="lcd-0x2-4x4"></td> </tr>
+				<tr> <td id="lcd-0x2-5x0"></td><td id="lcd-0x2-5x1"></td><td id="lcd-0x2-5x2"></td><td id="lcd-0x2-5x3"></td><td id="lcd-0x2-5x4"></td> </tr>
+				<tr> <td id="lcd-0x2-6x0"></td><td id="lcd-0x2-6x1"></td><td id="lcd-0x2-6x2"></td><td id="lcd-0x2-6x3"></td><td id="lcd-0x2-6x4"></td> </tr>
+				<tr> <td id="lcd-0x2-7x0"></td><td id="lcd-0x2-7x1"></td><td id="lcd-0x2-7x2"></td><td id="lcd-0x2-7x3"></td><td id="lcd-0x2-7x4"></td> </tr>
+			</table>
+		    <table id="lcd-0x3" class="lcd_pixel" onclick="select_lcd(this.id);">
+				<tr> <td id="lcd-0x3-0x0"></td><td id="lcd-0x3-0x1"></td><td id="lcd-0x3-0x2"></td><td id="lcd-0x3-0x3"></td><td id="lcd-0x3-0x4"></td> </tr>
+				<tr> <td id="lcd-0x3-1x0"></td><td id="lcd-0x3-1x1"></td><td id="lcd-0x3-1x2"></td><td id="lcd-0x3-1x3"></td><td id="lcd-0x3-1x4"></td> </tr>
+				<tr> <td id="lcd-0x3-2x0"></td><td id="lcd-0x3-2x1"></td><td id="lcd-0x3-2x2"></td><td id="lcd-0x3-2x3"></td><td id="lcd-0x3-2x4"></td> </tr>
+				<tr> <td id="lcd-0x3-3x0"></td><td id="lcd-0x3-3x1"></td><td id="lcd-0x3-3x2"></td><td id="lcd-0x3-3x3"></td><td id="lcd-0x3-3x4"></td> </tr>
+				<tr> <td id="lcd-0x3-4x0"></td><td id="lcd-0x3-4x1"></td><td id="lcd-0x3-4x2"></td><td id="lcd-0x3-4x3"></td><td id="lcd-0x3-4x4"></td> </tr>
+				<tr> <td id="lcd-0x3-5x0"></td><td id="lcd-0x3-5x1"></td><td id="lcd-0x3-5x2"></td><td id="lcd-0x3-5x3"></td><td id="lcd-0x3-5x4"></td> </tr>
+				<tr> <td id="lcd-0x3-6x0"></td><td id="lcd-0x3-6x1"></td><td id="lcd-0x3-6x2"></td><td id="lcd-0x3-6x3"></td><td id="lcd-0x3-6x4"></td> </tr>
+				<tr> <td id="lcd-0x3-7x0"></td><td id="lcd-0x3-7x1"></td><td id="lcd-0x3-7x2"></td><td id="lcd-0x3-7x3"></td><td id="lcd-0x3-7x4"></td> </tr>
+			</table>
+		    <table id="lcd-0x4" class="lcd_pixel" onclick="select_lcd(this.id);">
+				<tr> <td id="lcd-0x4-0x0"></td><td id="lcd-0x4-0x1"></td><td id="lcd-0x4-0x2"></td><td id="lcd-0x4-0x3"></td><td id="lcd-0x4-0x4"></td> </tr>
+				<tr> <td id="lcd-0x4-1x0"></td><td id="lcd-0x4-1x1"></td><td id="lcd-0x4-1x2"></td><td id="lcd-0x4-1x3"></td><td id="lcd-0x4-1x4"></td> </tr>
+				<tr> <td id="lcd-0x4-2x0"></td><td id="lcd-0x4-2x1"></td><td id="lcd-0x4-2x2"></td><td id="lcd-0x4-2x3"></td><td id="lcd-0x4-2x4"></td> </tr>
+				<tr> <td id="lcd-0x4-3x0"></td><td id="lcd-0x4-3x1"></td><td id="lcd-0x4-3x2"></td><td id="lcd-0x4-3x3"></td><td id="lcd-0x4-3x4"></td> </tr>
+				<tr> <td id="lcd-0x4-4x0"></td><td id="lcd-0x4-4x1"></td><td id="lcd-0x4-4x2"></td><td id="lcd-0x4-4x3"></td><td id="lcd-0x4-4x4"></td> </tr>
+				<tr> <td id="lcd-0x4-5x0"></td><td id="lcd-0x4-5x1"></td><td id="lcd-0x4-5x2"></td><td id="lcd-0x4-5x3"></td><td id="lcd-0x4-5x4"></td> </tr>
+				<tr> <td id="lcd-0x4-6x0"></td><td id="lcd-0x4-6x1"></td><td id="lcd-0x4-6x2"></td><td id="lcd-0x4-6x3"></td><td id="lcd-0x4-6x4"></td> </tr>
+				<tr> <td id="lcd-0x4-7x0"></td><td id="lcd-0x4-7x1"></td><td id="lcd-0x4-7x2"></td><td id="lcd-0x4-7x3"></td><td id="lcd-0x4-7x4"></td> </tr>
+			</table>
+		    <table id="lcd-0x5" class="lcd_pixel" onclick="select_lcd(this.id);">
+				<tr> <td id="lcd-0x5-0x0"></td><td id="lcd-0x5-0x1"></td><td id="lcd-0x5-0x2"></td><td id="lcd-0x5-0x3"></td><td id="lcd-0x5-0x4"></td> </tr>
+				<tr> <td id="lcd-0x5-1x0"></td><td id="lcd-0x5-1x1"></td><td id="lcd-0x5-1x2"></td><td id="lcd-0x5-1x3"></td><td id="lcd-0x5-1x4"></td> </tr>
+				<tr> <td id="lcd-0x5-2x0"></td><td id="lcd-0x5-2x1"></td><td id="lcd-0x5-2x2"></td><td id="lcd-0x5-2x3"></td><td id="lcd-0x5-2x4"></td> </tr>
+				<tr> <td id="lcd-0x5-3x0"></td><td id="lcd-0x5-3x1"></td><td id="lcd-0x5-3x2"></td><td id="lcd-0x5-3x3"></td><td id="lcd-0x5-3x4"></td> </tr>
+				<tr> <td id="lcd-0x5-4x0"></td><td id="lcd-0x5-4x1"></td><td id="lcd-0x5-4x2"></td><td id="lcd-0x5-4x3"></td><td id="lcd-0x5-4x4"></td> </tr>
+				<tr> <td id="lcd-0x5-5x0"></td><td id="lcd-0x5-5x1"></td><td id="lcd-0x5-5x2"></td><td id="lcd-0x5-5x3"></td><td id="lcd-0x5-5x4"></td> </tr>
+				<tr> <td id="lcd-0x5-6x0"></td><td id="lcd-0x5-6x1"></td><td id="lcd-0x5-6x2"></td><td id="lcd-0x5-6x3"></td><td id="lcd-0x5-6x4"></td> </tr>
+				<tr> <td id="lcd-0x5-7x0"></td><td id="lcd-0x5-7x1"></td><td id="lcd-0x5-7x2"></td><td id="lcd-0x5-7x3"></td><td id="lcd-0x5-7x4"></td> </tr>
+			</table>
+		    <table id="lcd-0x6" class="lcd_pixel" onclick="select_lcd(this.id);">
+				<tr> <td id="lcd-0x6-0x0"></td><td id="lcd-0x6-0x1"></td><td id="lcd-0x6-0x2"></td><td id="lcd-0x6-0x3"></td><td id="lcd-0x6-0x4"></td> </tr>
+				<tr> <td id="lcd-0x6-1x0"></td><td id="lcd-0x6-1x1"></td><td id="lcd-0x6-1x2"></td><td id="lcd-0x6-1x3"></td><td id="lcd-0x6-1x4"></td> </tr>
+				<tr> <td id="lcd-0x6-2x0"></td><td id="lcd-0x6-2x1"></td><td id="lcd-0x6-2x2"></td><td id="lcd-0x6-2x3"></td><td id="lcd-0x6-2x4"></td> </tr>
+				<tr> <td id="lcd-0x6-3x0"></td><td id="lcd-0x6-3x1"></td><td id="lcd-0x6-3x2"></td><td id="lcd-0x6-3x3"></td><td id="lcd-0x6-3x4"></td> </tr>
+				<tr> <td id="lcd-0x6-4x0"></td><td id="lcd-0x6-4x1"></td><td id="lcd-0x6-4x2"></td><td id="lcd-0x6-4x3"></td><td id="lcd-0x6-4x4"></td> </tr>
+				<tr> <td id="lcd-0x6-5x0"></td><td id="lcd-0x6-5x1"></td><td id="lcd-0x6-5x2"></td><td id="lcd-0x6-5x3"></td><td id="lcd-0x6-5x4"></td> </tr>
+				<tr> <td id="lcd-0x6-6x0"></td><td id="lcd-0x6-6x1"></td><td id="lcd-0x6-6x2"></td><td id="lcd-0x6-6x3"></td><td id="lcd-0x6-6x4"></td> </tr>
+				<tr> <td id="lcd-0x6-7x0"></td><td id="lcd-0x6-7x1"></td><td id="lcd-0x6-7x2"></td><td id="lcd-0x6-7x3"></td><td id="lcd-0x6-7x4"></td> </tr>
+			</table>
+		    <table id="lcd-0x7" class="lcd_pixel" onclick="select_lcd(this.id);">
+				<tr> <td id="lcd-0x7-0x0"></td><td id="lcd-0x7-0x1"></td><td id="lcd-0x7-0x2"></td><td id="lcd-0x7-0x3"></td><td id="lcd-0x7-0x4"></td> </tr>
+				<tr> <td id="lcd-0x7-1x0"></td><td id="lcd-0x7-1x1"></td><td id="lcd-0x7-1x2"></td><td id="lcd-0x7-1x3"></td><td id="lcd-0x7-1x4"></td> </tr>
+				<tr> <td id="lcd-0x7-2x0"></td><td id="lcd-0x7-2x1"></td><td id="lcd-0x7-2x2"></td><td id="lcd-0x7-2x3"></td><td id="lcd-0x7-2x4"></td> </tr>
+				<tr> <td id="lcd-0x7-3x0"></td><td id="lcd-0x7-3x1"></td><td id="lcd-0x7-3x2"></td><td id="lcd-0x7-3x3"></td><td id="lcd-0x7-3x4"></td> </tr>
+				<tr> <td id="lcd-0x7-4x0"></td><td id="lcd-0x7-4x1"></td><td id="lcd-0x7-4x2"></td><td id="lcd-0x7-4x3"></td><td id="lcd-0x7-4x4"></td> </tr>
+				<tr> <td id="lcd-0x7-5x0"></td><td id="lcd-0x7-5x1"></td><td id="lcd-0x7-5x2"></td><td id="lcd-0x7-5x3"></td><td id="lcd-0x7-5x4"></td> </tr>
+				<tr> <td id="lcd-0x7-6x0"></td><td id="lcd-0x7-6x1"></td><td id="lcd-0x7-6x2"></td><td id="lcd-0x7-6x3"></td><td id="lcd-0x7-6x4"></td> </tr>
+				<tr> <td id="lcd-0x7-7x0"></td><td id="lcd-0x7-7x1"></td><td id="lcd-0x7-7x2"></td><td id="lcd-0x7-7x3"></td><td id="lcd-0x7-7x4"></td> </tr>
+			</table>
+		    <table id="lcd-0x8" class="lcd_pixel" onclick="select_lcd(this.id);">
+				<tr> <td id="lcd-0x8-0x0"></td><td id="lcd-0x8-0x1"></td><td id="lcd-0x8-0x2"></td><td id="lcd-0x8-0x3"></td><td id="lcd-0x8-0x4"></td> </tr>
+				<tr> <td id="lcd-0x8-1x0"></td><td id="lcd-0x8-1x1"></td><td id="lcd-0x8-1x2"></td><td id="lcd-0x8-1x3"></td><td id="lcd-0x8-1x4"></td> </tr>
+				<tr> <td id="lcd-0x8-2x0"></td><td id="lcd-0x8-2x1"></td><td id="lcd-0x8-2x2"></td><td id="lcd-0x8-2x3"></td><td id="lcd-0x8-2x4"></td> </tr>
+				<tr> <td id="lcd-0x8-3x0"></td><td id="lcd-0x8-3x1"></td><td id="lcd-0x8-3x2"></td><td id="lcd-0x8-3x3"></td><td id="lcd-0x8-3x4"></td> </tr>
+				<tr> <td id="lcd-0x8-4x0"></td><td id="lcd-0x8-4x1"></td><td id="lcd-0x8-4x2"></td><td id="lcd-0x8-4x3"></td><td id="lcd-0x8-4x4"></td> </tr>
+				<tr> <td id="lcd-0x8-5x0"></td><td id="lcd-0x8-5x1"></td><td id="lcd-0x8-5x2"></td><td id="lcd-0x8-5x3"></td><td id="lcd-0x8-5x4"></td> </tr>
+				<tr> <td id="lcd-0x8-6x0"></td><td id="lcd-0x8-6x1"></td><td id="lcd-0x8-6x2"></td><td id="lcd-0x8-6x3"></td><td id="lcd-0x8-6x4"></td> </tr>
+				<tr> <td id="lcd-0x8-7x0"></td><td id="lcd-0x8-7x1"></td><td id="lcd-0x8-7x2"></td><td id="lcd-0x8-7x3"></td><td id="lcd-0x8-7x4"></td> </tr>
+			</table>
+		    <table id="lcd-0x9" class="lcd_pixel" onclick="select_lcd(this.id);">
+				<tr> <td id="lcd-0x9-0x0"></td><td id="lcd-0x9-0x1"></td><td id="lcd-0x9-0x2"></td><td id="lcd-0x9-0x3"></td><td id="lcd-0x9-0x4"></td> </tr>
+				<tr> <td id="lcd-0x9-1x0"></td><td id="lcd-0x9-1x1"></td><td id="lcd-0x9-1x2"></td><td id="lcd-0x9-1x3"></td><td id="lcd-0x9-1x4"></td> </tr>
+				<tr> <td id="lcd-0x9-2x0"></td><td id="lcd-0x9-2x1"></td><td id="lcd-0x9-2x2"></td><td id="lcd-0x9-2x3"></td><td id="lcd-0x9-2x4"></td> </tr>
+				<tr> <td id="lcd-0x9-3x0"></td><td id="lcd-0x9-3x1"></td><td id="lcd-0x9-3x2"></td><td id="lcd-0x9-3x3"></td><td id="lcd-0x9-3x4"></td> </tr>
+				<tr> <td id="lcd-0x9-4x0"></td><td id="lcd-0x9-4x1"></td><td id="lcd-0x9-4x2"></td><td id="lcd-0x9-4x3"></td><td id="lcd-0x9-4x4"></td> </tr>
+				<tr> <td id="lcd-0x9-5x0"></td><td id="lcd-0x9-5x1"></td><td id="lcd-0x9-5x2"></td><td id="lcd-0x9-5x3"></td><td id="lcd-0x9-5x4"></td> </tr>
+				<tr> <td id="lcd-0x9-6x0"></td><td id="lcd-0x9-6x1"></td><td id="lcd-0x9-6x2"></td><td id="lcd-0x9-6x3"></td><td id="lcd-0x9-6x4"></td> </tr>
+				<tr> <td id="lcd-0x9-7x0"></td><td id="lcd-0x9-7x1"></td><td id="lcd-0x9-7x2"></td><td id="lcd-0x9-7x3"></td><td id="lcd-0x9-7x4"></td> </tr>
+			</table>
+		    <table id="lcd-0x10" class="lcd_pixel" onclick="select_lcd(this.id);">
+				<tr> <td id="lcd-0x10-0x0"></td><td id="lcd-0x10-0x1"></td><td id="lcd-0x10-0x2"></td><td id="lcd-0x10-0x3"></td><td id="lcd-0x10-0x4"></td> </tr>
+				<tr> <td id="lcd-0x10-1x0"></td><td id="lcd-0x10-1x1"></td><td id="lcd-0x10-1x2"></td><td id="lcd-0x10-1x3"></td><td id="lcd-0x10-1x4"></td> </tr>
+				<tr> <td id="lcd-0x10-2x0"></td><td id="lcd-0x10-2x1"></td><td id="lcd-0x10-2x2"></td><td id="lcd-0x10-2x3"></td><td id="lcd-0x10-2x4"></td> </tr>
+				<tr> <td id="lcd-0x10-3x0"></td><td id="lcd-0x10-3x1"></td><td id="lcd-0x10-3x2"></td><td id="lcd-0x10-3x3"></td><td id="lcd-0x10-3x4"></td> </tr>
+				<tr> <td id="lcd-0x10-4x0"></td><td id="lcd-0x10-4x1"></td><td id="lcd-0x10-4x2"></td><td id="lcd-0x10-4x3"></td><td id="lcd-0x10-4x4"></td> </tr>
+				<tr> <td id="lcd-0x10-5x0"></td><td id="lcd-0x10-5x1"></td><td id="lcd-0x10-5x2"></td><td id="lcd-0x10-5x3"></td><td id="lcd-0x10-5x4"></td> </tr>
+				<tr> <td id="lcd-0x10-6x0"></td><td id="lcd-0x10-6x1"></td><td id="lcd-0x10-6x2"></td><td id="lcd-0x10-6x3"></td><td id="lcd-0x10-6x4"></td> </tr>
+				<tr> <td id="lcd-0x10-7x0"></td><td id="lcd-0x10-7x1"></td><td id="lcd-0x10-7x2"></td><td id="lcd-0x10-7x3"></td><td id="lcd-0x10-7x4"></td> </tr>
+			</table>
+		    <table id="lcd-0x11" class="lcd_pixel" onclick="select_lcd(this.id);">
+				<tr> <td id="lcd-0x11-0x0"></td><td id="lcd-0x11-0x1"></td><td id="lcd-0x11-0x2"></td><td id="lcd-0x11-0x3"></td><td id="lcd-0x11-0x4"></td> </tr>
+				<tr> <td id="lcd-0x11-1x0"></td><td id="lcd-0x11-1x1"></td><td id="lcd-0x11-1x2"></td><td id="lcd-0x11-1x3"></td><td id="lcd-0x11-1x4"></td> </tr>
+				<tr> <td id="lcd-0x11-2x0"></td><td id="lcd-0x11-2x1"></td><td id="lcd-0x11-2x2"></td><td id="lcd-0x11-2x3"></td><td id="lcd-0x11-2x4"></td> </tr>
+				<tr> <td id="lcd-0x11-3x0"></td><td id="lcd-0x11-3x1"></td><td id="lcd-0x11-3x2"></td><td id="lcd-0x11-3x3"></td><td id="lcd-0x11-3x4"></td> </tr>
+				<tr> <td id="lcd-0x11-4x0"></td><td id="lcd-0x11-4x1"></td><td id="lcd-0x11-4x2"></td><td id="lcd-0x11-4x3"></td><td id="lcd-0x11-4x4"></td> </tr>
+				<tr> <td id="lcd-0x11-5x0"></td><td id="lcd-0x11-5x1"></td><td id="lcd-0x11-5x2"></td><td id="lcd-0x11-5x3"></td><td id="lcd-0x11-5x4"></td> </tr>
+				<tr> <td id="lcd-0x11-6x0"></td><td id="lcd-0x11-6x1"></td><td id="lcd-0x11-6x2"></td><td id="lcd-0x11-6x3"></td><td id="lcd-0x11-6x4"></td> </tr>
+				<tr> <td id="lcd-0x11-7x0"></td><td id="lcd-0x11-7x1"></td><td id="lcd-0x11-7x2"></td><td id="lcd-0x11-7x3"></td><td id="lcd-0x11-7x4"></td> </tr>
+			</table>
+		    <table id="lcd-0x12" class="lcd_pixel" onclick="select_lcd(this.id);">
+				<tr> <td id="lcd-0x12-0x0"></td><td id="lcd-0x12-0x1"></td><td id="lcd-0x12-0x2"></td><td id="lcd-0x12-0x3"></td><td id="lcd-0x12-0x4"></td> </tr>
+				<tr> <td id="lcd-0x12-1x0"></td><td id="lcd-0x12-1x1"></td><td id="lcd-0x12-1x2"></td><td id="lcd-0x12-1x3"></td><td id="lcd-0x12-1x4"></td> </tr>
+				<tr> <td id="lcd-0x12-2x0"></td><td id="lcd-0x12-2x1"></td><td id="lcd-0x12-2x2"></td><td id="lcd-0x12-2x3"></td><td id="lcd-0x12-2x4"></td> </tr>
+				<tr> <td id="lcd-0x12-3x0"></td><td id="lcd-0x12-3x1"></td><td id="lcd-0x12-3x2"></td><td id="lcd-0x12-3x3"></td><td id="lcd-0x12-3x4"></td> </tr>
+				<tr> <td id="lcd-0x12-4x0"></td><td id="lcd-0x12-4x1"></td><td id="lcd-0x12-4x2"></td><td id="lcd-0x12-4x3"></td><td id="lcd-0x12-4x4"></td> </tr>
+				<tr> <td id="lcd-0x12-5x0"></td><td id="lcd-0x12-5x1"></td><td id="lcd-0x12-5x2"></td><td id="lcd-0x12-5x3"></td><td id="lcd-0x12-5x4"></td> </tr>
+				<tr> <td id="lcd-0x12-6x0"></td><td id="lcd-0x12-6x1"></td><td id="lcd-0x12-6x2"></td><td id="lcd-0x12-6x3"></td><td id="lcd-0x12-6x4"></td> </tr>
+				<tr> <td id="lcd-0x12-7x0"></td><td id="lcd-0x12-7x1"></td><td id="lcd-0x12-7x2"></td><td id="lcd-0x12-7x3"></td><td id="lcd-0x12-7x4"></td> </tr>
+			</table>
+		    <table id="lcd-0x13" class="lcd_pixel" onclick="select_lcd(this.id);">
+				<tr> <td id="lcd-0x13-0x0"></td><td id="lcd-0x13-0x1"></td><td id="lcd-0x13-0x2"></td><td id="lcd-0x13-0x3"></td><td id="lcd-0x13-0x4"></td> </tr>
+				<tr> <td id="lcd-0x13-1x0"></td><td id="lcd-0x13-1x1"></td><td id="lcd-0x13-1x2"></td><td id="lcd-0x13-1x3"></td><td id="lcd-0x13-1x4"></td> </tr>
+				<tr> <td id="lcd-0x13-2x0"></td><td id="lcd-0x13-2x1"></td><td id="lcd-0x13-2x2"></td><td id="lcd-0x13-2x3"></td><td id="lcd-0x13-2x4"></td> </tr>
+				<tr> <td id="lcd-0x13-3x0"></td><td id="lcd-0x13-3x1"></td><td id="lcd-0x13-3x2"></td><td id="lcd-0x13-3x3"></td><td id="lcd-0x13-3x4"></td> </tr>
+				<tr> <td id="lcd-0x13-4x0"></td><td id="lcd-0x13-4x1"></td><td id="lcd-0x13-4x2"></td><td id="lcd-0x13-4x3"></td><td id="lcd-0x13-4x4"></td> </tr>
+				<tr> <td id="lcd-0x13-5x0"></td><td id="lcd-0x13-5x1"></td><td id="lcd-0x13-5x2"></td><td id="lcd-0x13-5x3"></td><td id="lcd-0x13-5x4"></td> </tr>
+				<tr> <td id="lcd-0x13-6x0"></td><td id="lcd-0x13-6x1"></td><td id="lcd-0x13-6x2"></td><td id="lcd-0x13-6x3"></td><td id="lcd-0x13-6x4"></td> </tr>
+				<tr> <td id="lcd-0x13-7x0"></td><td id="lcd-0x13-7x1"></td><td id="lcd-0x13-7x2"></td><td id="lcd-0x13-7x3"></td><td id="lcd-0x13-7x4"></td> </tr>
+			</table>
+		    <table id="lcd-0x14" class="lcd_pixel" onclick="select_lcd(this.id);">
+				<tr> <td id="lcd-0x14-0x0"></td><td id="lcd-0x14-0x1"></td><td id="lcd-0x14-0x2"></td><td id="lcd-0x14-0x3"></td><td id="lcd-0x14-0x4"></td> </tr>
+				<tr> <td id="lcd-0x14-1x0"></td><td id="lcd-0x14-1x1"></td><td id="lcd-0x14-1x2"></td><td id="lcd-0x14-1x3"></td><td id="lcd-0x14-1x4"></td> </tr>
+				<tr> <td id="lcd-0x14-2x0"></td><td id="lcd-0x14-2x1"></td><td id="lcd-0x14-2x2"></td><td id="lcd-0x14-2x3"></td><td id="lcd-0x14-2x4"></td> </tr>
+				<tr> <td id="lcd-0x14-3x0"></td><td id="lcd-0x14-3x1"></td><td id="lcd-0x14-3x2"></td><td id="lcd-0x14-3x3"></td><td id="lcd-0x14-3x4"></td> </tr>
+				<tr> <td id="lcd-0x14-4x0"></td><td id="lcd-0x14-4x1"></td><td id="lcd-0x14-4x2"></td><td id="lcd-0x14-4x3"></td><td id="lcd-0x14-4x4"></td> </tr>
+				<tr> <td id="lcd-0x14-5x0"></td><td id="lcd-0x14-5x1"></td><td id="lcd-0x14-5x2"></td><td id="lcd-0x14-5x3"></td><td id="lcd-0x14-5x4"></td> </tr>
+				<tr> <td id="lcd-0x14-6x0"></td><td id="lcd-0x14-6x1"></td><td id="lcd-0x14-6x2"></td><td id="lcd-0x14-6x3"></td><td id="lcd-0x14-6x4"></td> </tr>
+				<tr> <td id="lcd-0x14-7x0"></td><td id="lcd-0x14-7x1"></td><td id="lcd-0x14-7x2"></td><td id="lcd-0x14-7x3"></td><td id="lcd-0x14-7x4"></td> </tr>
+			</table>
+		    <table id="lcd-0x15" class="lcd_pixel" onclick="select_lcd(this.id);">
+				<tr> <td id="lcd-0x15-0x0"></td><td id="lcd-0x15-0x1"></td><td id="lcd-0x15-0x2"></td><td id="lcd-0x15-0x3"></td><td id="lcd-0x15-0x4"></td> </tr>
+				<tr> <td id="lcd-0x15-1x0"></td><td id="lcd-0x15-1x1"></td><td id="lcd-0x15-1x2"></td><td id="lcd-0x15-1x3"></td><td id="lcd-0x15-1x4"></td> </tr>
+				<tr> <td id="lcd-0x15-2x0"></td><td id="lcd-0x15-2x1"></td><td id="lcd-0x15-2x2"></td><td id="lcd-0x15-2x3"></td><td id="lcd-0x15-2x4"></td> </tr>
+				<tr> <td id="lcd-0x15-3x0"></td><td id="lcd-0x15-3x1"></td><td id="lcd-0x15-3x2"></td><td id="lcd-0x15-3x3"></td><td id="lcd-0x15-3x4"></td> </tr>
+				<tr> <td id="lcd-0x15-4x0"></td><td id="lcd-0x15-4x1"></td><td id="lcd-0x15-4x2"></td><td id="lcd-0x15-4x3"></td><td id="lcd-0x15-4x4"></td> </tr>
+				<tr> <td id="lcd-0x15-5x0"></td><td id="lcd-0x15-5x1"></td><td id="lcd-0x15-5x2"></td><td id="lcd-0x15-5x3"></td><td id="lcd-0x15-5x4"></td> </tr>
+				<tr> <td id="lcd-0x15-6x0"></td><td id="lcd-0x15-6x1"></td><td id="lcd-0x15-6x2"></td><td id="lcd-0x15-6x3"></td><td id="lcd-0x15-6x4"></td> </tr>
+				<tr> <td id="lcd-0x15-7x0"></td><td id="lcd-0x15-7x1"></td><td id="lcd-0x15-7x2"></td><td id="lcd-0x15-7x3"></td><td id="lcd-0x15-7x4"></td> </tr>
+			</table>
+			<br>
+			<table id="lcd-1x0" class="lcd_pixel" onclick="select_lcd(this.id);">
+				<tr> <td id="lcd-1x0-0x0"></td><td id="lcd-1x0-0x1"></td><td id="lcd-1x0-0x2"></td><td id="lcd-1x0-0x3"></td><td id="lcd-1x0-0x4"></td> </tr>
+				<tr> <td id="lcd-1x0-1x0"></td><td id="lcd-1x0-1x1"></td><td id="lcd-1x0-1x2"></td><td id="lcd-1x0-1x3"></td><td id="lcd-1x0-1x4"></td> </tr>
+				<tr> <td id="lcd-1x0-2x0"></td><td id="lcd-1x0-2x1"></td><td id="lcd-1x0-2x2"></td><td id="lcd-1x0-2x3"></td><td id="lcd-1x0-2x4"></td> </tr>
+				<tr> <td id="lcd-1x0-3x0"></td><td id="lcd-1x0-3x1"></td><td id="lcd-1x0-3x2"></td><td id="lcd-1x0-3x3"></td><td id="lcd-1x0-3x4"></td> </tr>
+				<tr> <td id="lcd-1x0-4x0"></td><td id="lcd-1x0-4x1"></td><td id="lcd-1x0-4x2"></td><td id="lcd-1x0-4x3"></td><td id="lcd-1x0-4x4"></td> </tr>
+				<tr> <td id="lcd-1x0-5x0"></td><td id="lcd-1x0-5x1"></td><td id="lcd-1x0-5x2"></td><td id="lcd-1x0-5x3"></td><td id="lcd-1x0-5x4"></td> </tr>
+				<tr> <td id="lcd-1x0-6x0"></td><td id="lcd-1x0-6x1"></td><td id="lcd-1x0-6x2"></td><td id="lcd-1x0-6x3"></td><td id="lcd-1x0-6x4"></td> </tr>
+				<tr> <td id="lcd-1x0-7x0"></td><td id="lcd-1x0-7x1"></td><td id="lcd-1x0-7x2"></td><td id="lcd-1x0-7x3"></td><td id="lcd-1x0-7x4"></td> </tr>
+			</table>
+			<table id="lcd-1x1" class="lcd_pixel" onclick="select_lcd(this.id);">
+				<tr> <td id="lcd-1x1-0x0"></td><td id="lcd-1x1-0x1"></td><td id="lcd-1x1-0x2"></td><td id="lcd-1x1-0x3"></td><td id="lcd-1x1-0x4"></td> </tr>
+				<tr> <td id="lcd-1x1-1x0"></td><td id="lcd-1x1-1x1"></td><td id="lcd-1x1-1x2"></td><td id="lcd-1x1-1x3"></td><td id="lcd-1x1-1x4"></td> </tr>
+				<tr> <td id="lcd-1x1-2x0"></td><td id="lcd-1x1-2x1"></td><td id="lcd-1x1-2x2"></td><td id="lcd-1x1-2x3"></td><td id="lcd-1x1-2x4"></td> </tr>
+				<tr> <td id="lcd-1x1-3x0"></td><td id="lcd-1x1-3x1"></td><td id="lcd-1x1-3x2"></td><td id="lcd-1x1-3x3"></td><td id="lcd-1x1-3x4"></td> </tr>
+				<tr> <td id="lcd-1x1-4x0"></td><td id="lcd-1x1-4x1"></td><td id="lcd-1x1-4x2"></td><td id="lcd-1x1-4x3"></td><td id="lcd-1x1-4x4"></td> </tr>
+				<tr> <td id="lcd-1x1-5x0"></td><td id="lcd-1x1-5x1"></td><td id="lcd-1x1-5x2"></td><td id="lcd-1x1-5x3"></td><td id="lcd-1x1-5x4"></td> </tr>
+				<tr> <td id="lcd-1x1-6x0"></td><td id="lcd-1x1-6x1"></td><td id="lcd-1x1-6x2"></td><td id="lcd-1x1-6x3"></td><td id="lcd-1x1-6x4"></td> </tr>
+				<tr> <td id="lcd-1x1-7x0"></td><td id="lcd-1x1-7x1"></td><td id="lcd-1x1-7x2"></td><td id="lcd-1x1-7x3"></td><td id="lcd-1x1-7x4"></td> </tr>
+			</table>
+			<table id="lcd-1x2" class="lcd_pixel" onclick="select_lcd(this.id);">
+				<tr> <td id="lcd-1x2-0x0"></td><td id="lcd-1x2-0x1"></td><td id="lcd-1x2-0x2"></td><td id="lcd-1x2-0x3"></td><td id="lcd-1x2-0x4"></td> </tr>
+				<tr> <td id="lcd-1x2-1x0"></td><td id="lcd-1x2-1x1"></td><td id="lcd-1x2-1x2"></td><td id="lcd-1x2-1x3"></td><td id="lcd-1x2-1x4"></td> </tr>
+				<tr> <td id="lcd-1x2-2x0"></td><td id="lcd-1x2-2x1"></td><td id="lcd-1x2-2x2"></td><td id="lcd-1x2-2x3"></td><td id="lcd-1x2-2x4"></td> </tr>
+				<tr> <td id="lcd-1x2-3x0"></td><td id="lcd-1x2-3x1"></td><td id="lcd-1x2-3x2"></td><td id="lcd-1x2-3x3"></td><td id="lcd-1x2-3x4"></td> </tr>
+				<tr> <td id="lcd-1x2-4x0"></td><td id="lcd-1x2-4x1"></td><td id="lcd-1x2-4x2"></td><td id="lcd-1x2-4x3"></td><td id="lcd-1x2-4x4"></td> </tr>
+				<tr> <td id="lcd-1x2-5x0"></td><td id="lcd-1x2-5x1"></td><td id="lcd-1x2-5x2"></td><td id="lcd-1x2-5x3"></td><td id="lcd-1x2-5x4"></td> </tr>
+				<tr> <td id="lcd-1x2-6x0"></td><td id="lcd-1x2-6x1"></td><td id="lcd-1x2-6x2"></td><td id="lcd-1x2-6x3"></td><td id="lcd-1x2-6x4"></td> </tr>
+				<tr> <td id="lcd-1x2-7x0"></td><td id="lcd-1x2-7x1"></td><td id="lcd-1x2-7x2"></td><td id="lcd-1x2-7x3"></td><td id="lcd-1x2-7x4"></td> </tr>
+			</table>
+			<table id="lcd-1x3" class="lcd_pixel" onclick="select_lcd(this.id);">
+				<tr> <td id="lcd-1x3-0x0"></td><td id="lcd-1x3-0x1"></td><td id="lcd-1x3-0x2"></td><td id="lcd-1x3-0x3"></td><td id="lcd-1x3-0x4"></td> </tr>
+				<tr> <td id="lcd-1x3-1x0"></td><td id="lcd-1x3-1x1"></td><td id="lcd-1x3-1x2"></td><td id="lcd-1x3-1x3"></td><td id="lcd-1x3-1x4"></td> </tr>
+				<tr> <td id="lcd-1x3-2x0"></td><td id="lcd-1x3-2x1"></td><td id="lcd-1x3-2x2"></td><td id="lcd-1x3-2x3"></td><td id="lcd-1x3-2x4"></td> </tr>
+				<tr> <td id="lcd-1x3-3x0"></td><td id="lcd-1x3-3x1"></td><td id="lcd-1x3-3x2"></td><td id="lcd-1x3-3x3"></td><td id="lcd-1x3-3x4"></td> </tr>
+				<tr> <td id="lcd-1x3-4x0"></td><td id="lcd-1x3-4x1"></td><td id="lcd-1x3-4x2"></td><td id="lcd-1x3-4x3"></td><td id="lcd-1x3-4x4"></td> </tr>
+				<tr> <td id="lcd-1x3-5x0"></td><td id="lcd-1x3-5x1"></td><td id="lcd-1x3-5x2"></td><td id="lcd-1x3-5x3"></td><td id="lcd-1x3-5x4"></td> </tr>
+				<tr> <td id="lcd-1x3-6x0"></td><td id="lcd-1x3-6x1"></td><td id="lcd-1x3-6x2"></td><td id="lcd-1x3-6x3"></td><td id="lcd-1x3-6x4"></td> </tr>
+				<tr> <td id="lcd-1x3-7x0"></td><td id="lcd-1x3-7x1"></td><td id="lcd-1x3-7x2"></td><td id="lcd-1x3-7x3"></td><td id="lcd-1x3-7x4"></td> </tr>
+			</table>
+			<table id="lcd-1x4" class="lcd_pixel" onclick="select_lcd(this.id);">
+				<tr> <td id="lcd-1x4-0x0"></td><td id="lcd-1x4-0x1"></td><td id="lcd-1x4-0x2"></td><td id="lcd-1x4-0x3"></td><td id="lcd-1x4-0x4"></td> </tr>
+				<tr> <td id="lcd-1x4-1x0"></td><td id="lcd-1x4-1x1"></td><td id="lcd-1x4-1x2"></td><td id="lcd-1x4-1x3"></td><td id="lcd-1x4-1x4"></td> </tr>
+				<tr> <td id="lcd-1x4-2x0"></td><td id="lcd-1x4-2x1"></td><td id="lcd-1x4-2x2"></td><td id="lcd-1x4-2x3"></td><td id="lcd-1x4-2x4"></td> </tr>
+				<tr> <td id="lcd-1x4-3x0"></td><td id="lcd-1x4-3x1"></td><td id="lcd-1x4-3x2"></td><td id="lcd-1x4-3x3"></td><td id="lcd-1x4-3x4"></td> </tr>
+				<tr> <td id="lcd-1x4-4x0"></td><td id="lcd-1x4-4x1"></td><td id="lcd-1x4-4x2"></td><td id="lcd-1x4-4x3"></td><td id="lcd-1x4-4x4"></td> </tr>
+				<tr> <td id="lcd-1x4-5x0"></td><td id="lcd-1x4-5x1"></td><td id="lcd-1x4-5x2"></td><td id="lcd-1x4-5x3"></td><td id="lcd-1x4-5x4"></td> </tr>
+				<tr> <td id="lcd-1x4-6x0"></td><td id="lcd-1x4-6x1"></td><td id="lcd-1x4-6x2"></td><td id="lcd-1x4-6x3"></td><td id="lcd-1x4-6x4"></td> </tr>
+				<tr> <td id="lcd-1x4-7x0"></td><td id="lcd-1x4-7x1"></td><td id="lcd-1x4-7x2"></td><td id="lcd-1x4-7x3"></td><td id="lcd-1x4-7x4"></td> </tr>
+			</table>
+			<table id="lcd-1x5" class="lcd_pixel" onclick="select_lcd(this.id);">
+				<tr> <td id="lcd-1x5-0x0"></td><td id="lcd-1x5-0x1"></td><td id="lcd-1x5-0x2"></td><td id="lcd-1x5-0x3"></td><td id="lcd-1x5-0x4"></td> </tr>
+				<tr> <td id="lcd-1x5-1x0"></td><td id="lcd-1x5-1x1"></td><td id="lcd-1x5-1x2"></td><td id="lcd-1x5-1x3"></td><td id="lcd-1x5-1x4"></td> </tr>
+				<tr> <td id="lcd-1x5-2x0"></td><td id="lcd-1x5-2x1"></td><td id="lcd-1x5-2x2"></td><td id="lcd-1x5-2x3"></td><td id="lcd-1x5-2x4"></td> </tr>
+				<tr> <td id="lcd-1x5-3x0"></td><td id="lcd-1x5-3x1"></td><td id="lcd-1x5-3x2"></td><td id="lcd-1x5-3x3"></td><td id="lcd-1x5-3x4"></td> </tr>
+				<tr> <td id="lcd-1x5-4x0"></td><td id="lcd-1x5-4x1"></td><td id="lcd-1x5-4x2"></td><td id="lcd-1x5-4x3"></td><td id="lcd-1x5-4x4"></td> </tr>
+				<tr> <td id="lcd-1x5-5x0"></td><td id="lcd-1x5-5x1"></td><td id="lcd-1x5-5x2"></td><td id="lcd-1x5-5x3"></td><td id="lcd-1x5-5x4"></td> </tr>
+				<tr> <td id="lcd-1x5-6x0"></td><td id="lcd-1x5-6x1"></td><td id="lcd-1x5-6x2"></td><td id="lcd-1x5-6x3"></td><td id="lcd-1x5-6x4"></td> </tr>
+				<tr> <td id="lcd-1x5-7x0"></td><td id="lcd-1x5-7x1"></td><td id="lcd-1x5-7x2"></td><td id="lcd-1x5-7x3"></td><td id="lcd-1x5-7x4"></td> </tr>
+			</table>
+			<table id="lcd-1x6" class="lcd_pixel" onclick="select_lcd(this.id);">
+				<tr> <td id="lcd-1x6-0x0"></td><td id="lcd-1x6-0x1"></td><td id="lcd-1x6-0x2"></td><td id="lcd-1x6-0x3"></td><td id="lcd-1x6-0x4"></td> </tr>
+				<tr> <td id="lcd-1x6-1x0"></td><td id="lcd-1x6-1x1"></td><td id="lcd-1x6-1x2"></td><td id="lcd-1x6-1x3"></td><td id="lcd-1x6-1x4"></td> </tr>
+				<tr> <td id="lcd-1x6-2x0"></td><td id="lcd-1x6-2x1"></td><td id="lcd-1x6-2x2"></td><td id="lcd-1x6-2x3"></td><td id="lcd-1x6-2x4"></td> </tr>
+				<tr> <td id="lcd-1x6-3x0"></td><td id="lcd-1x6-3x1"></td><td id="lcd-1x6-3x2"></td><td id="lcd-1x6-3x3"></td><td id="lcd-1x6-3x4"></td> </tr>
+				<tr> <td id="lcd-1x6-4x0"></td><td id="lcd-1x6-4x1"></td><td id="lcd-1x6-4x2"></td><td id="lcd-1x6-4x3"></td><td id="lcd-1x6-4x4"></td> </tr>
+				<tr> <td id="lcd-1x6-5x0"></td><td id="lcd-1x6-5x1"></td><td id="lcd-1x6-5x2"></td><td id="lcd-1x6-5x3"></td><td id="lcd-1x6-5x4"></td> </tr>
+				<tr> <td id="lcd-1x6-6x0"></td><td id="lcd-1x6-6x1"></td><td id="lcd-1x6-6x2"></td><td id="lcd-1x6-6x3"></td><td id="lcd-1x6-6x4"></td> </tr>
+				<tr> <td id="lcd-1x6-7x0"></td><td id="lcd-1x6-7x1"></td><td id="lcd-1x6-7x2"></td><td id="lcd-1x6-7x3"></td><td id="lcd-1x6-7x4"></td> </tr>
+			</table>
+			<table id="lcd-1x7" class="lcd_pixel" onclick="select_lcd(this.id);">
+				<tr> <td id="lcd-1x7-0x0"></td><td id="lcd-1x7-0x1"></td><td id="lcd-1x7-0x2"></td><td id="lcd-1x7-0x3"></td><td id="lcd-1x7-0x4"></td> </tr>
+				<tr> <td id="lcd-1x7-1x0"></td><td id="lcd-1x7-1x1"></td><td id="lcd-1x7-1x2"></td><td id="lcd-1x7-1x3"></td><td id="lcd-1x7-1x4"></td> </tr>
+				<tr> <td id="lcd-1x7-2x0"></td><td id="lcd-1x7-2x1"></td><td id="lcd-1x7-2x2"></td><td id="lcd-1x7-2x3"></td><td id="lcd-1x7-2x4"></td> </tr>
+				<tr> <td id="lcd-1x7-3x0"></td><td id="lcd-1x7-3x1"></td><td id="lcd-1x7-3x2"></td><td id="lcd-1x7-3x3"></td><td id="lcd-1x7-3x4"></td> </tr>
+				<tr> <td id="lcd-1x7-4x0"></td><td id="lcd-1x7-4x1"></td><td id="lcd-1x7-4x2"></td><td id="lcd-1x7-4x3"></td><td id="lcd-1x7-4x4"></td> </tr>
+				<tr> <td id="lcd-1x7-5x0"></td><td id="lcd-1x7-5x1"></td><td id="lcd-1x7-5x2"></td><td id="lcd-1x7-5x3"></td><td id="lcd-1x7-5x4"></td> </tr>
+				<tr> <td id="lcd-1x7-6x0"></td><td id="lcd-1x7-6x1"></td><td id="lcd-1x7-6x2"></td><td id="lcd-1x7-6x3"></td><td id="lcd-1x7-6x4"></td> </tr>
+				<tr> <td id="lcd-1x7-7x0"></td><td id="lcd-1x7-7x1"></td><td id="lcd-1x7-7x2"></td><td id="lcd-1x7-7x3"></td><td id="lcd-1x7-7x4"></td> </tr>
+			</table>
+			<table id="lcd-1x8" class="lcd_pixel" onclick="select_lcd(this.id);">
+				<tr> <td id="lcd-1x8-0x0"></td><td id="lcd-1x8-0x1"></td><td id="lcd-1x8-0x2"></td><td id="lcd-1x8-0x3"></td><td id="lcd-1x8-0x4"></td> </tr>
+				<tr> <td id="lcd-1x8-1x0"></td><td id="lcd-1x8-1x1"></td><td id="lcd-1x8-1x2"></td><td id="lcd-1x8-1x3"></td><td id="lcd-1x8-1x4"></td> </tr>
+				<tr> <td id="lcd-1x8-2x0"></td><td id="lcd-1x8-2x1"></td><td id="lcd-1x8-2x2"></td><td id="lcd-1x8-2x3"></td><td id="lcd-1x8-2x4"></td> </tr>
+				<tr> <td id="lcd-1x8-3x0"></td><td id="lcd-1x8-3x1"></td><td id="lcd-1x8-3x2"></td><td id="lcd-1x8-3x3"></td><td id="lcd-1x8-3x4"></td> </tr>
+				<tr> <td id="lcd-1x8-4x0"></td><td id="lcd-1x8-4x1"></td><td id="lcd-1x8-4x2"></td><td id="lcd-1x8-4x3"></td><td id="lcd-1x8-4x4"></td> </tr>
+				<tr> <td id="lcd-1x8-5x0"></td><td id="lcd-1x8-5x1"></td><td id="lcd-1x8-5x2"></td><td id="lcd-1x8-5x3"></td><td id="lcd-1x8-5x4"></td> </tr>
+				<tr> <td id="lcd-1x8-6x0"></td><td id="lcd-1x8-6x1"></td><td id="lcd-1x8-6x2"></td><td id="lcd-1x8-6x3"></td><td id="lcd-1x8-6x4"></td> </tr>
+				<tr> <td id="lcd-1x8-7x0"></td><td id="lcd-1x8-7x1"></td><td id="lcd-1x8-7x2"></td><td id="lcd-1x8-7x3"></td><td id="lcd-1x8-7x4"></td> </tr>
+			</table>
+			<table id="lcd-1x9" class="lcd_pixel" onclick="select_lcd(this.id);">
+				<tr> <td id="lcd-1x9-0x0"></td><td id="lcd-1x9-0x1"></td><td id="lcd-1x9-0x2"></td><td id="lcd-1x9-0x3"></td><td id="lcd-1x9-0x4"></td> </tr>
+				<tr> <td id="lcd-1x9-1x0"></td><td id="lcd-1x9-1x1"></td><td id="lcd-1x9-1x2"></td><td id="lcd-1x9-1x3"></td><td id="lcd-1x9-1x4"></td> </tr>
+				<tr> <td id="lcd-1x9-2x0"></td><td id="lcd-1x9-2x1"></td><td id="lcd-1x9-2x2"></td><td id="lcd-1x9-2x3"></td><td id="lcd-1x9-2x4"></td> </tr>
+				<tr> <td id="lcd-1x9-3x0"></td><td id="lcd-1x9-3x1"></td><td id="lcd-1x9-3x2"></td><td id="lcd-1x9-3x3"></td><td id="lcd-1x9-3x4"></td> </tr>
+				<tr> <td id="lcd-1x9-4x0"></td><td id="lcd-1x9-4x1"></td><td id="lcd-1x9-4x2"></td><td id="lcd-1x9-4x3"></td><td id="lcd-1x9-4x4"></td> </tr>
+				<tr> <td id="lcd-1x9-5x0"></td><td id="lcd-1x9-5x1"></td><td id="lcd-1x9-5x2"></td><td id="lcd-1x9-5x3"></td><td id="lcd-1x9-5x4"></td> </tr>
+				<tr> <td id="lcd-1x9-6x0"></td><td id="lcd-1x9-6x1"></td><td id="lcd-1x9-6x2"></td><td id="lcd-1x9-6x3"></td><td id="lcd-1x9-6x4"></td> </tr>
+				<tr> <td id="lcd-1x9-7x0"></td><td id="lcd-1x9-7x1"></td><td id="lcd-1x9-7x2"></td><td id="lcd-1x9-7x3"></td><td id="lcd-1x9-7x4"></td> </tr>
+			</table>
+			<table id="lcd-1x10" class="lcd_pixel" onclick="select_lcd(this.id);">
+				<tr> <td id="lcd-1x10-0x0"></td><td id="lcd-1x10-0x1"></td><td id="lcd-1x10-0x2"></td><td id="lcd-1x10-0x3"></td><td id="lcd-1x10-0x4"></td> </tr>
+				<tr> <td id="lcd-1x10-1x0"></td><td id="lcd-1x10-1x1"></td><td id="lcd-1x10-1x2"></td><td id="lcd-1x10-1x3"></td><td id="lcd-1x10-1x4"></td> </tr>
+				<tr> <td id="lcd-1x10-2x0"></td><td id="lcd-1x10-2x1"></td><td id="lcd-1x10-2x2"></td><td id="lcd-1x10-2x3"></td><td id="lcd-1x10-2x4"></td> </tr>
+				<tr> <td id="lcd-1x10-3x0"></td><td id="lcd-1x10-3x1"></td><td id="lcd-1x10-3x2"></td><td id="lcd-1x10-3x3"></td><td id="lcd-1x10-3x4"></td> </tr>
+				<tr> <td id="lcd-1x10-4x0"></td><td id="lcd-1x10-4x1"></td><td id="lcd-1x10-4x2"></td><td id="lcd-1x10-4x3"></td><td id="lcd-1x10-4x4"></td> </tr>
+				<tr> <td id="lcd-1x10-5x0"></td><td id="lcd-1x10-5x1"></td><td id="lcd-1x10-5x2"></td><td id="lcd-1x10-5x3"></td><td id="lcd-1x10-5x4"></td> </tr>
+				<tr> <td id="lcd-1x10-6x0"></td><td id="lcd-1x10-6x1"></td><td id="lcd-1x10-6x2"></td><td id="lcd-1x10-6x3"></td><td id="lcd-1x10-6x4"></td> </tr>
+				<tr> <td id="lcd-1x10-7x0"></td><td id="lcd-1x10-7x1"></td><td id="lcd-1x10-7x2"></td><td id="lcd-1x10-7x3"></td><td id="lcd-1x10-7x4"></td> </tr>
+			</table>
+			<table id="lcd-1x11" class="lcd_pixel" onclick="select_lcd(this.id);">
+				<tr> <td id="lcd-1x11-0x0"></td><td id="lcd-1x11-0x1"></td><td id="lcd-1x11-0x2"></td><td id="lcd-1x11-0x3"></td><td id="lcd-1x11-0x4"></td> </tr>
+				<tr> <td id="lcd-1x11-1x0"></td><td id="lcd-1x11-1x1"></td><td id="lcd-1x11-1x2"></td><td id="lcd-1x11-1x3"></td><td id="lcd-1x11-1x4"></td> </tr>
+				<tr> <td id="lcd-1x11-2x0"></td><td id="lcd-1x11-2x1"></td><td id="lcd-1x11-2x2"></td><td id="lcd-1x11-2x3"></td><td id="lcd-1x11-2x4"></td> </tr>
+				<tr> <td id="lcd-1x11-3x0"></td><td id="lcd-1x11-3x1"></td><td id="lcd-1x11-3x2"></td><td id="lcd-1x11-3x3"></td><td id="lcd-1x11-3x4"></td> </tr>
+				<tr> <td id="lcd-1x11-4x0"></td><td id="lcd-1x11-4x1"></td><td id="lcd-1x11-4x2"></td><td id="lcd-1x11-4x3"></td><td id="lcd-1x11-4x4"></td> </tr>
+				<tr> <td id="lcd-1x11-5x0"></td><td id="lcd-1x11-5x1"></td><td id="lcd-1x11-5x2"></td><td id="lcd-1x11-5x3"></td><td id="lcd-1x11-5x4"></td> </tr>
+				<tr> <td id="lcd-1x11-6x0"></td><td id="lcd-1x11-6x1"></td><td id="lcd-1x11-6x2"></td><td id="lcd-1x11-6x3"></td><td id="lcd-1x11-6x4"></td> </tr>
+				<tr> <td id="lcd-1x11-7x0"></td><td id="lcd-1x11-7x1"></td><td id="lcd-1x11-7x2"></td><td id="lcd-1x11-7x3"></td><td id="lcd-1x11-7x4"></td> </tr>
+			</table>
+			<table id="lcd-1x12" class="lcd_pixel" onclick="select_lcd(this.id);">
+				<tr> <td id="lcd-1x12-0x0"></td><td id="lcd-1x12-0x1"></td><td id="lcd-1x12-0x2"></td><td id="lcd-1x12-0x3"></td><td id="lcd-1x12-0x4"></td> </tr>
+				<tr> <td id="lcd-1x12-1x0"></td><td id="lcd-1x12-1x1"></td><td id="lcd-1x12-1x2"></td><td id="lcd-1x12-1x3"></td><td id="lcd-1x12-1x4"></td> </tr>
+				<tr> <td id="lcd-1x12-2x0"></td><td id="lcd-1x12-2x1"></td><td id="lcd-1x12-2x2"></td><td id="lcd-1x12-2x3"></td><td id="lcd-1x12-2x4"></td> </tr>
+				<tr> <td id="lcd-1x12-3x0"></td><td id="lcd-1x12-3x1"></td><td id="lcd-1x12-3x2"></td><td id="lcd-1x12-3x3"></td><td id="lcd-1x12-3x4"></td> </tr>
+				<tr> <td id="lcd-1x12-4x0"></td><td id="lcd-1x12-4x1"></td><td id="lcd-1x12-4x2"></td><td id="lcd-1x12-4x3"></td><td id="lcd-1x12-4x4"></td> </tr>
+				<tr> <td id="lcd-1x12-5x0"></td><td id="lcd-1x12-5x1"></td><td id="lcd-1x12-5x2"></td><td id="lcd-1x12-5x3"></td><td id="lcd-1x12-5x4"></td> </tr>
+				<tr> <td id="lcd-1x12-6x0"></td><td id="lcd-1x12-6x1"></td><td id="lcd-1x12-6x2"></td><td id="lcd-1x12-6x3"></td><td id="lcd-1x12-6x4"></td> </tr>
+				<tr> <td id="lcd-1x12-7x0"></td><td id="lcd-1x12-7x1"></td><td id="lcd-1x12-7x2"></td><td id="lcd-1x12-7x3"></td><td id="lcd-1x12-7x4"></td> </tr>
+			</table>
+			<table id="lcd-1x13" class="lcd_pixel" onclick="select_lcd(this.id);">
+				<tr> <td id="lcd-1x13-0x0"></td><td id="lcd-1x13-0x1"></td><td id="lcd-1x13-0x2"></td><td id="lcd-1x13-0x3"></td><td id="lcd-1x13-0x4"></td> </tr>
+				<tr> <td id="lcd-1x13-1x0"></td><td id="lcd-1x13-1x1"></td><td id="lcd-1x13-1x2"></td><td id="lcd-1x13-1x3"></td><td id="lcd-1x13-1x4"></td> </tr>
+				<tr> <td id="lcd-1x13-2x0"></td><td id="lcd-1x13-2x1"></td><td id="lcd-1x13-2x2"></td><td id="lcd-1x13-2x3"></td><td id="lcd-1x13-2x4"></td> </tr>
+				<tr> <td id="lcd-1x13-3x0"></td><td id="lcd-1x13-3x1"></td><td id="lcd-1x13-3x2"></td><td id="lcd-1x13-3x3"></td><td id="lcd-1x13-3x4"></td> </tr>
+				<tr> <td id="lcd-1x13-4x0"></td><td id="lcd-1x13-4x1"></td><td id="lcd-1x13-4x2"></td><td id="lcd-1x13-4x3"></td><td id="lcd-1x13-4x4"></td> </tr>
+				<tr> <td id="lcd-1x13-5x0"></td><td id="lcd-1x13-5x1"></td><td id="lcd-1x13-5x2"></td><td id="lcd-1x13-5x3"></td><td id="lcd-1x13-5x4"></td> </tr>
+				<tr> <td id="lcd-1x13-6x0"></td><td id="lcd-1x13-6x1"></td><td id="lcd-1x13-6x2"></td><td id="lcd-1x13-6x3"></td><td id="lcd-1x13-6x4"></td> </tr>
+				<tr> <td id="lcd-1x13-7x0"></td><td id="lcd-1x13-7x1"></td><td id="lcd-1x13-7x2"></td><td id="lcd-1x13-7x3"></td><td id="lcd-1x13-7x4"></td> </tr>
+			</table>
+			<table id="lcd-1x14" class="lcd_pixel" onclick="select_lcd(this.id);">
+				<tr> <td id="lcd-1x14-0x0"></td><td id="lcd-1x14-0x1"></td><td id="lcd-1x14-0x2"></td><td id="lcd-1x14-0x3"></td><td id="lcd-1x14-0x4"></td> </tr>
+				<tr> <td id="lcd-1x14-1x0"></td><td id="lcd-1x14-1x1"></td><td id="lcd-1x14-1x2"></td><td id="lcd-1x14-1x3"></td><td id="lcd-1x14-1x4"></td> </tr>
+				<tr> <td id="lcd-1x14-2x0"></td><td id="lcd-1x14-2x1"></td><td id="lcd-1x14-2x2"></td><td id="lcd-1x14-2x3"></td><td id="lcd-1x14-2x4"></td> </tr>
+				<tr> <td id="lcd-1x14-3x0"></td><td id="lcd-1x14-3x1"></td><td id="lcd-1x14-3x2"></td><td id="lcd-1x14-3x3"></td><td id="lcd-1x14-3x4"></td> </tr>
+				<tr> <td id="lcd-1x14-4x0"></td><td id="lcd-1x14-4x1"></td><td id="lcd-1x14-4x2"></td><td id="lcd-1x14-4x3"></td><td id="lcd-1x14-4x4"></td> </tr>
+				<tr> <td id="lcd-1x14-5x0"></td><td id="lcd-1x14-5x1"></td><td id="lcd-1x14-5x2"></td><td id="lcd-1x14-5x3"></td><td id="lcd-1x14-5x4"></td> </tr>
+				<tr> <td id="lcd-1x14-6x0"></td><td id="lcd-1x14-6x1"></td><td id="lcd-1x14-6x2"></td><td id="lcd-1x14-6x3"></td><td id="lcd-1x14-6x4"></td> </tr>
+				<tr> <td id="lcd-1x14-7x0"></td><td id="lcd-1x14-7x1"></td><td id="lcd-1x14-7x2"></td><td id="lcd-1x14-7x3"></td><td id="lcd-1x14-7x4"></td> </tr>
+			</table>
+			<table id="lcd-1x15" class="lcd_pixel" onclick="select_lcd(this.id);">
+				<tr> <td id="lcd-1x15-0x0"></td><td id="lcd-1x15-0x1"></td><td id="lcd-1x15-0x2"></td><td id="lcd-1x15-0x3"></td><td id="lcd-1x15-0x4"></td> </tr>
+				<tr> <td id="lcd-1x15-1x0"></td><td id="lcd-1x15-1x1"></td><td id="lcd-1x15-1x2"></td><td id="lcd-1x15-1x3"></td><td id="lcd-1x15-1x4"></td> </tr>
+				<tr> <td id="lcd-1x15-2x0"></td><td id="lcd-1x15-2x1"></td><td id="lcd-1x15-2x2"></td><td id="lcd-1x15-2x3"></td><td id="lcd-1x15-2x4"></td> </tr>
+				<tr> <td id="lcd-1x15-3x0"></td><td id="lcd-1x15-3x1"></td><td id="lcd-1x15-3x2"></td><td id="lcd-1x15-3x3"></td><td id="lcd-1x15-3x4"></td> </tr>
+				<tr> <td id="lcd-1x15-4x0"></td><td id="lcd-1x15-4x1"></td><td id="lcd-1x15-4x2"></td><td id="lcd-1x15-4x3"></td><td id="lcd-1x15-4x4"></td> </tr>
+				<tr> <td id="lcd-1x15-5x0"></td><td id="lcd-1x15-5x1"></td><td id="lcd-1x15-5x2"></td><td id="lcd-1x15-5x3"></td><td id="lcd-1x15-5x4"></td> </tr>
+				<tr> <td id="lcd-1x15-6x0"></td><td id="lcd-1x15-6x1"></td><td id="lcd-1x15-6x2"></td><td id="lcd-1x15-6x3"></td><td id="lcd-1x15-6x4"></td> </tr>
+				<tr> <td id="lcd-1x15-7x0"></td><td id="lcd-1x15-7x1"></td><td id="lcd-1x15-7x2"></td><td id="lcd-1x15-7x3"></td><td id="lcd-1x15-7x4"></td> </tr>
+			</table>
+		</div>		
+	</div>
+		
 	<script type="text/javascript">
+	/* Code Functions */
 	function update_code(){
 		var charname = document.getElementById("charname").value;
 		var code_header = "byte " + charname + "[] = {"
@@ -185,11 +561,13 @@
 		document.getElementById("code").value = full_code;
 	}
 	
+	/* Pixel editor functions */	
 	function toggle_pixel(pixelID){
 		var pixel = document.getElementById(pixelID);
 		if (pixel.className == "pixel_off") pixel.className = "pixel_on";
 		else pixel.className = "pixel_off";
 		update_code();
+		preview();
 	}
 	
 	function clear_pixels(){
@@ -201,6 +579,7 @@
 			}
 		}
 		update_code();
+		preview();
 	}
 	
 	function invert_pixels(){
@@ -211,10 +590,45 @@
 			}
 		}
 		update_code();
+		preview();
 	}
 	
 	function checkEnter(event) {
 		if (event.keyCode == 13) return false;
+	}
+	
+	/* Preview Functions */
+	var sel_lcd_id = "lcd-0x0";
+	
+	function preview(){
+		for (var row=0; row<8; row++){
+			for (var col=0; col<5; col++) {
+				var pixelID = "pixel-" + row + "x" + col;
+				var lcdpixelID = sel_lcd_id + "-" + row + "x" + col;
+				var lcdpixel = document.getElementById(lcdpixelID);
+				var pixel_state = document.getElementById(pixelID).className;
+				
+				if (pixel_state == "pixel_off") lcdpixel.className = "";
+				else lcdpixel.className = "lcd_pixel_on";
+			}
+		}
+	}
+	
+	function select_lcd(lcdID){
+		unselect_all();	
+		var lcdpixel = document.getElementById(lcdID);
+		lcdpixel.className = "lcd_pixel_selected";
+		sel_lcd_id = lcdID;
+	}
+	
+	function unselect_all(){
+			for (var row=0; row<2; row++){
+			for (var col=0; col<16; col++) {
+				var lcdID = "lcd-" + row + "x" + col;
+				var lcdpixel = document.getElementById(lcdID);
+				lcdpixel.className = "lcd_pixel";
+			}
+		}
 	}
 	</script>
 </body>
