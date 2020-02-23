@@ -20,6 +20,8 @@ function update_code(){
 	code_body = code_body.substring(0, code_body.length - 3)
 	var full_code = code_header + "\r\n" + code_body + "\r\n" + code_footer;
 	document.getElementById("code").value = full_code;
+	
+	copyToClipboard();
 }
 
 /* Pixel editor functions */	
@@ -28,7 +30,7 @@ function toggle_pixel(pixelID){
 	if (pixel.className == "pixel_off") pixel.className = "pixel_on";
 	else pixel.className = "pixel_off";
 	update_code();
-	preview();
+	toggleLCDPixel(pixelID);
 }
 
 function clear_pixels(){
@@ -51,7 +53,6 @@ function invert_pixels(){
 		}
 	}
 	update_code();
-	preview();
 }
 
 function checkEnter(event) {
@@ -73,6 +74,14 @@ function preview(){
 			else lcdpixel.className = "lcd_pixel_on";
 		}
 	}
+}
+
+function toggleLCDPixel(pixelID){
+	var LCDpixelID = sel_lcd_id + pixelID.substr(-4);
+	var LCDpixel = document.getElementById(LCDpixelID);
+	
+	if (LCDpixel.className == "lcd_pixel_on") LCDpixel.className = "";
+	else LCDpixel.className = "lcd_pixel_on";
 }
 
 function select_lcd(lcdID){
@@ -108,4 +117,20 @@ function load_lcd_to_editor(lcdID){
 			else pixel.className = "pixel_off";
 		}
 	}
+}
+
+/* Options Functions */
+function isAutoCopyOn(){
+	var auto_copy_checkbox = document.getElementById("autocopy");
+	var checked_value = auto_copy_checkbox.checked;
+	return checked_value;
+}
+
+function copyToClipboard(){
+	isAutoCopyOn();
+	var copyText = document.getElementById("code");
+	copyText.select();
+	copyText.setSelectionRange(0, 99999);
+	document.execCommand("copy");
+	copyText.setSelectionRange(0, 0);
 }
