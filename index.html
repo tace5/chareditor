@@ -8,7 +8,7 @@
 	<link href="style.css" rel="stylesheet" type="text/css" />
 </head>
 
-<body onload="update_code();">
+<body onload="updateCode();">
 	<div class="header">
 		<h1 class="header_title">LCD Custom Character Editor</h1>
 	</div>
@@ -29,65 +29,65 @@
 		
 		<div class="pixel_editor">
 				<form class="editor_options">
-					<input type="text-area" id="charname" class="char_name_input" value="charName" oninput="update_code();" onkeydown="return checkEnter(event);"/> <br>
+					<input type="text-area" id="charname" class="char_name_input" value="charName" oninput="updateCode();" onkeydown="return checkEnter(event);"/> <br>
 					<input type="button" class="button" value="Clear" onclick="clear_pixels();"/>
-					<input type="button" class="button" value="Invert" onclick="invert_pixels();"/>
+					<input type="button" class="button" value="Invert" onclick="invertPixels();"/>
 				</form>
 				
 			<div class="pixel_box">
-					<div id="pixel-0x0" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
-					<div id="pixel-0x1" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
-					<div id="pixel-0x2" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
-					<div id="pixel-0x3" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
-					<div id="pixel-0x4" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+					<div id="pixel-0x0" class="pixel_off" onclick="togglePixel(this.id)"> </div>
+					<div id="pixel-0x1" class="pixel_off" onclick="togglePixel(this.id)"> </div>
+					<div id="pixel-0x2" class="pixel_off" onclick="togglePixel(this.id)"> </div>
+					<div id="pixel-0x3" class="pixel_off" onclick="togglePixel(this.id)"> </div>
+					<div id="pixel-0x4" class="pixel_off" onclick="togglePixel(this.id)"> </div>
 				<br>
-					<div id="pixel-1x0" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
-					<div id="pixel-1x1" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
-					<div id="pixel-1x2" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
-					<div id="pixel-1x3" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
-					<div id="pixel-1x4" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+					<div id="pixel-1x0" class="pixel_off" onclick="togglePixel(this.id)"> </div>
+					<div id="pixel-1x1" class="pixel_off" onclick="togglePixel(this.id)"> </div>
+					<div id="pixel-1x2" class="pixel_off" onclick="togglePixel(this.id)"> </div>
+					<div id="pixel-1x3" class="pixel_off" onclick="togglePixel(this.id)"> </div>
+					<div id="pixel-1x4" class="pixel_off" onclick="togglePixel(this.id)"> </div>
 				<br>
-					<div id="pixel-2x0" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
-					<div id="pixel-2x1" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
-					<div id="pixel-2x2" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
-					<div id="pixel-2x3" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
-					<div id="pixel-2x4" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+					<div id="pixel-2x0" class="pixel_off" onclick="togglePixel(this.id)"> </div>
+					<div id="pixel-2x1" class="pixel_off" onclick="togglePixel(this.id)"> </div>
+					<div id="pixel-2x2" class="pixel_off" onclick="togglePixel(this.id)"> </div>
+					<div id="pixel-2x3" class="pixel_off" onclick="togglePixel(this.id)"> </div>
+					<div id="pixel-2x4" class="pixel_off" onclick="togglePixel(this.id)"> </div>
 				<br>
-					<div id="pixel-3x0" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
-					<div id="pixel-3x1" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
-					<div id="pixel-3x2" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
-					<div id="pixel-3x3" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
-					<div id="pixel-3x4" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+					<div id="pixel-3x0" class="pixel_off" onclick="togglePixel(this.id)"> </div>
+					<div id="pixel-3x1" class="pixel_off" onclick="togglePixel(this.id)"> </div>
+					<div id="pixel-3x2" class="pixel_off" onclick="togglePixel(this.id)"> </div>
+					<div id="pixel-3x3" class="pixel_off" onclick="togglePixel(this.id)"> </div>
+					<div id="pixel-3x4" class="pixel_off" onclick="togglePixel(this.id)"> </div>
 				<br>
-					<div id="pixel-4x0" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
-					<div id="pixel-4x1" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
-					<div id="pixel-4x2" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
-					<div id="pixel-4x3" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
-					<div id="pixel-4x4" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+					<div id="pixel-4x0" class="pixel_off" onclick="togglePixel(this.id)"> </div>
+					<div id="pixel-4x1" class="pixel_off" onclick="togglePixel(this.id)"> </div>
+					<div id="pixel-4x2" class="pixel_off" onclick="togglePixel(this.id)"> </div>
+					<div id="pixel-4x3" class="pixel_off" onclick="togglePixel(this.id)"> </div>
+					<div id="pixel-4x4" class="pixel_off" onclick="togglePixel(this.id)"> </div>
 				<br>
-					<div id="pixel-5x0" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
-					<div id="pixel-5x1" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
-					<div id="pixel-5x2" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
-					<div id="pixel-5x3" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
-					<div id="pixel-5x4" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+					<div id="pixel-5x0" class="pixel_off" onclick="togglePixel(this.id)"> </div>
+					<div id="pixel-5x1" class="pixel_off" onclick="togglePixel(this.id)"> </div>
+					<div id="pixel-5x2" class="pixel_off" onclick="togglePixel(this.id)"> </div>
+					<div id="pixel-5x3" class="pixel_off" onclick="togglePixel(this.id)"> </div>
+					<div id="pixel-5x4" class="pixel_off" onclick="togglePixel(this.id)"> </div>
 				<br>
-					<div id="pixel-6x0" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
-					<div id="pixel-6x1" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
-					<div id="pixel-6x2" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
-					<div id="pixel-6x3" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
-					<div id="pixel-6x4" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+					<div id="pixel-6x0" class="pixel_off" onclick="togglePixel(this.id)"> </div>
+					<div id="pixel-6x1" class="pixel_off" onclick="togglePixel(this.id)"> </div>
+					<div id="pixel-6x2" class="pixel_off" onclick="togglePixel(this.id)"> </div>
+					<div id="pixel-6x3" class="pixel_off" onclick="togglePixel(this.id)"> </div>
+					<div id="pixel-6x4" class="pixel_off" onclick="togglePixel(this.id)"> </div>
 				<br>
-					<div id="pixel-7x0" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
-					<div id="pixel-7x1" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
-					<div id="pixel-7x2" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
-					<div id="pixel-7x3" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
-					<div id="pixel-7x4" class="pixel_off" onclick="toggle_pixel(this.id)"> </div>
+					<div id="pixel-7x0" class="pixel_off" onclick="togglePixel(this.id)"> </div>
+					<div id="pixel-7x1" class="pixel_off" onclick="togglePixel(this.id)"> </div>
+					<div id="pixel-7x2" class="pixel_off" onclick="togglePixel(this.id)"> </div>
+					<div id="pixel-7x3" class="pixel_off" onclick="togglePixel(this.id)"> </div>
+					<div id="pixel-7x4" class="pixel_off" onclick="togglePixel(this.id)"> </div>
 			</div>
 		</div>
 				
 		<div class="preview_box">
 			<div class="box_title">LCD 16x2 Preview</div>
-			<table id="lcd-0x0" class="lcd_pixel_selected" onclick="select_lcd(this.id);">
+			<table id="lcd-0x0" class="lcd_pixel_selected" onclick="selectLCD(this.id);">
 				<tr> <td id="lcd-0x0-0x0"></td><td id="lcd-0x0-0x1"></td><td id="lcd-0x0-0x2"></td><td id="lcd-0x0-0x3"></td><td id="lcd-0x0-0x4"></td> </tr>
 				<tr> <td id="lcd-0x0-1x0"></td><td id="lcd-0x0-1x1"></td><td id="lcd-0x0-1x2"></td><td id="lcd-0x0-1x3"></td><td id="lcd-0x0-1x4"></td> </tr>
 				<tr> <td id="lcd-0x0-2x0"></td><td id="lcd-0x0-2x1"></td><td id="lcd-0x0-2x2"></td><td id="lcd-0x0-2x3"></td><td id="lcd-0x0-2x4"></td> </tr>
@@ -97,7 +97,7 @@
 				<tr> <td id="lcd-0x0-6x0"></td><td id="lcd-0x0-6x1"></td><td id="lcd-0x0-6x2"></td><td id="lcd-0x0-6x3"></td><td id="lcd-0x0-6x4"></td> </tr>
 				<tr> <td id="lcd-0x0-7x0"></td><td id="lcd-0x0-7x1"></td><td id="lcd-0x0-7x2"></td><td id="lcd-0x0-7x3"></td><td id="lcd-0x0-7x4"></td> </tr>
 			</table>
-			<table id="lcd-0x1" class="lcd_pixel" onclick="select_lcd(this.id);">
+			<table id="lcd-0x1" class="lcd_pixel" onclick="selectLCD(this.id);">
 				<tr> <td id="lcd-0x1-0x0"></td><td id="lcd-0x1-0x1"></td><td id="lcd-0x1-0x2"></td><td id="lcd-0x1-0x3"></td><td id="lcd-0x1-0x4"></td> </tr>
 				<tr> <td id="lcd-0x1-1x0"></td><td id="lcd-0x1-1x1"></td><td id="lcd-0x1-1x2"></td><td id="lcd-0x1-1x3"></td><td id="lcd-0x1-1x4"></td> </tr>
 				<tr> <td id="lcd-0x1-2x0"></td><td id="lcd-0x1-2x1"></td><td id="lcd-0x1-2x2"></td><td id="lcd-0x1-2x3"></td><td id="lcd-0x1-2x4"></td> </tr>
@@ -107,7 +107,7 @@
 				<tr> <td id="lcd-0x1-6x0"></td><td id="lcd-0x1-6x1"></td><td id="lcd-0x1-6x2"></td><td id="lcd-0x1-6x3"></td><td id="lcd-0x1-6x4"></td> </tr>
 				<tr> <td id="lcd-0x1-7x0"></td><td id="lcd-0x1-7x1"></td><td id="lcd-0x1-7x2"></td><td id="lcd-0x1-7x3"></td><td id="lcd-0x1-7x4"></td> </tr>
 			</table>
-		    <table id="lcd-0x2" class="lcd_pixel" onclick="select_lcd(this.id);">
+		    <table id="lcd-0x2" class="lcd_pixel" onclick="selectLCD(this.id);">
 				<tr> <td id="lcd-0x2-0x0"></td><td id="lcd-0x2-0x1"></td><td id="lcd-0x2-0x2"></td><td id="lcd-0x2-0x3"></td><td id="lcd-0x2-0x4"></td> </tr>
 				<tr> <td id="lcd-0x2-1x0"></td><td id="lcd-0x2-1x1"></td><td id="lcd-0x2-1x2"></td><td id="lcd-0x2-1x3"></td><td id="lcd-0x2-1x4"></td> </tr>
 				<tr> <td id="lcd-0x2-2x0"></td><td id="lcd-0x2-2x1"></td><td id="lcd-0x2-2x2"></td><td id="lcd-0x2-2x3"></td><td id="lcd-0x2-2x4"></td> </tr>
@@ -117,7 +117,7 @@
 				<tr> <td id="lcd-0x2-6x0"></td><td id="lcd-0x2-6x1"></td><td id="lcd-0x2-6x2"></td><td id="lcd-0x2-6x3"></td><td id="lcd-0x2-6x4"></td> </tr>
 				<tr> <td id="lcd-0x2-7x0"></td><td id="lcd-0x2-7x1"></td><td id="lcd-0x2-7x2"></td><td id="lcd-0x2-7x3"></td><td id="lcd-0x2-7x4"></td> </tr>
 			</table>
-		    <table id="lcd-0x3" class="lcd_pixel" onclick="select_lcd(this.id);">
+		    <table id="lcd-0x3" class="lcd_pixel" onclick="selectLCD(this.id);">
 				<tr> <td id="lcd-0x3-0x0"></td><td id="lcd-0x3-0x1"></td><td id="lcd-0x3-0x2"></td><td id="lcd-0x3-0x3"></td><td id="lcd-0x3-0x4"></td> </tr>
 				<tr> <td id="lcd-0x3-1x0"></td><td id="lcd-0x3-1x1"></td><td id="lcd-0x3-1x2"></td><td id="lcd-0x3-1x3"></td><td id="lcd-0x3-1x4"></td> </tr>
 				<tr> <td id="lcd-0x3-2x0"></td><td id="lcd-0x3-2x1"></td><td id="lcd-0x3-2x2"></td><td id="lcd-0x3-2x3"></td><td id="lcd-0x3-2x4"></td> </tr>
@@ -127,7 +127,7 @@
 				<tr> <td id="lcd-0x3-6x0"></td><td id="lcd-0x3-6x1"></td><td id="lcd-0x3-6x2"></td><td id="lcd-0x3-6x3"></td><td id="lcd-0x3-6x4"></td> </tr>
 				<tr> <td id="lcd-0x3-7x0"></td><td id="lcd-0x3-7x1"></td><td id="lcd-0x3-7x2"></td><td id="lcd-0x3-7x3"></td><td id="lcd-0x3-7x4"></td> </tr>
 			</table>
-		    <table id="lcd-0x4" class="lcd_pixel" onclick="select_lcd(this.id);">
+		    <table id="lcd-0x4" class="lcd_pixel" onclick="selectLCD(this.id);">
 				<tr> <td id="lcd-0x4-0x0"></td><td id="lcd-0x4-0x1"></td><td id="lcd-0x4-0x2"></td><td id="lcd-0x4-0x3"></td><td id="lcd-0x4-0x4"></td> </tr>
 				<tr> <td id="lcd-0x4-1x0"></td><td id="lcd-0x4-1x1"></td><td id="lcd-0x4-1x2"></td><td id="lcd-0x4-1x3"></td><td id="lcd-0x4-1x4"></td> </tr>
 				<tr> <td id="lcd-0x4-2x0"></td><td id="lcd-0x4-2x1"></td><td id="lcd-0x4-2x2"></td><td id="lcd-0x4-2x3"></td><td id="lcd-0x4-2x4"></td> </tr>
@@ -137,7 +137,7 @@
 				<tr> <td id="lcd-0x4-6x0"></td><td id="lcd-0x4-6x1"></td><td id="lcd-0x4-6x2"></td><td id="lcd-0x4-6x3"></td><td id="lcd-0x4-6x4"></td> </tr>
 				<tr> <td id="lcd-0x4-7x0"></td><td id="lcd-0x4-7x1"></td><td id="lcd-0x4-7x2"></td><td id="lcd-0x4-7x3"></td><td id="lcd-0x4-7x4"></td> </tr>
 			</table>
-		    <table id="lcd-0x5" class="lcd_pixel" onclick="select_lcd(this.id);">
+		    <table id="lcd-0x5" class="lcd_pixel" onclick="selectLCD(this.id);">
 				<tr> <td id="lcd-0x5-0x0"></td><td id="lcd-0x5-0x1"></td><td id="lcd-0x5-0x2"></td><td id="lcd-0x5-0x3"></td><td id="lcd-0x5-0x4"></td> </tr>
 				<tr> <td id="lcd-0x5-1x0"></td><td id="lcd-0x5-1x1"></td><td id="lcd-0x5-1x2"></td><td id="lcd-0x5-1x3"></td><td id="lcd-0x5-1x4"></td> </tr>
 				<tr> <td id="lcd-0x5-2x0"></td><td id="lcd-0x5-2x1"></td><td id="lcd-0x5-2x2"></td><td id="lcd-0x5-2x3"></td><td id="lcd-0x5-2x4"></td> </tr>
@@ -147,7 +147,7 @@
 				<tr> <td id="lcd-0x5-6x0"></td><td id="lcd-0x5-6x1"></td><td id="lcd-0x5-6x2"></td><td id="lcd-0x5-6x3"></td><td id="lcd-0x5-6x4"></td> </tr>
 				<tr> <td id="lcd-0x5-7x0"></td><td id="lcd-0x5-7x1"></td><td id="lcd-0x5-7x2"></td><td id="lcd-0x5-7x3"></td><td id="lcd-0x5-7x4"></td> </tr>
 			</table>
-		    <table id="lcd-0x6" class="lcd_pixel" onclick="select_lcd(this.id);">
+		    <table id="lcd-0x6" class="lcd_pixel" onclick="selectLCD(this.id);">
 				<tr> <td id="lcd-0x6-0x0"></td><td id="lcd-0x6-0x1"></td><td id="lcd-0x6-0x2"></td><td id="lcd-0x6-0x3"></td><td id="lcd-0x6-0x4"></td> </tr>
 				<tr> <td id="lcd-0x6-1x0"></td><td id="lcd-0x6-1x1"></td><td id="lcd-0x6-1x2"></td><td id="lcd-0x6-1x3"></td><td id="lcd-0x6-1x4"></td> </tr>
 				<tr> <td id="lcd-0x6-2x0"></td><td id="lcd-0x6-2x1"></td><td id="lcd-0x6-2x2"></td><td id="lcd-0x6-2x3"></td><td id="lcd-0x6-2x4"></td> </tr>
@@ -157,7 +157,7 @@
 				<tr> <td id="lcd-0x6-6x0"></td><td id="lcd-0x6-6x1"></td><td id="lcd-0x6-6x2"></td><td id="lcd-0x6-6x3"></td><td id="lcd-0x6-6x4"></td> </tr>
 				<tr> <td id="lcd-0x6-7x0"></td><td id="lcd-0x6-7x1"></td><td id="lcd-0x6-7x2"></td><td id="lcd-0x6-7x3"></td><td id="lcd-0x6-7x4"></td> </tr>
 			</table>
-		    <table id="lcd-0x7" class="lcd_pixel" onclick="select_lcd(this.id);">
+		    <table id="lcd-0x7" class="lcd_pixel" onclick="selectLCD(this.id);">
 				<tr> <td id="lcd-0x7-0x0"></td><td id="lcd-0x7-0x1"></td><td id="lcd-0x7-0x2"></td><td id="lcd-0x7-0x3"></td><td id="lcd-0x7-0x4"></td> </tr>
 				<tr> <td id="lcd-0x7-1x0"></td><td id="lcd-0x7-1x1"></td><td id="lcd-0x7-1x2"></td><td id="lcd-0x7-1x3"></td><td id="lcd-0x7-1x4"></td> </tr>
 				<tr> <td id="lcd-0x7-2x0"></td><td id="lcd-0x7-2x1"></td><td id="lcd-0x7-2x2"></td><td id="lcd-0x7-2x3"></td><td id="lcd-0x7-2x4"></td> </tr>
@@ -167,7 +167,7 @@
 				<tr> <td id="lcd-0x7-6x0"></td><td id="lcd-0x7-6x1"></td><td id="lcd-0x7-6x2"></td><td id="lcd-0x7-6x3"></td><td id="lcd-0x7-6x4"></td> </tr>
 				<tr> <td id="lcd-0x7-7x0"></td><td id="lcd-0x7-7x1"></td><td id="lcd-0x7-7x2"></td><td id="lcd-0x7-7x3"></td><td id="lcd-0x7-7x4"></td> </tr>
 			</table>
-		    <table id="lcd-0x8" class="lcd_pixel" onclick="select_lcd(this.id);">
+		    <table id="lcd-0x8" class="lcd_pixel" onclick="selectLCD(this.id);">
 				<tr> <td id="lcd-0x8-0x0"></td><td id="lcd-0x8-0x1"></td><td id="lcd-0x8-0x2"></td><td id="lcd-0x8-0x3"></td><td id="lcd-0x8-0x4"></td> </tr>
 				<tr> <td id="lcd-0x8-1x0"></td><td id="lcd-0x8-1x1"></td><td id="lcd-0x8-1x2"></td><td id="lcd-0x8-1x3"></td><td id="lcd-0x8-1x4"></td> </tr>
 				<tr> <td id="lcd-0x8-2x0"></td><td id="lcd-0x8-2x1"></td><td id="lcd-0x8-2x2"></td><td id="lcd-0x8-2x3"></td><td id="lcd-0x8-2x4"></td> </tr>
@@ -177,7 +177,7 @@
 				<tr> <td id="lcd-0x8-6x0"></td><td id="lcd-0x8-6x1"></td><td id="lcd-0x8-6x2"></td><td id="lcd-0x8-6x3"></td><td id="lcd-0x8-6x4"></td> </tr>
 				<tr> <td id="lcd-0x8-7x0"></td><td id="lcd-0x8-7x1"></td><td id="lcd-0x8-7x2"></td><td id="lcd-0x8-7x3"></td><td id="lcd-0x8-7x4"></td> </tr>
 			</table>
-		    <table id="lcd-0x9" class="lcd_pixel" onclick="select_lcd(this.id);">
+		    <table id="lcd-0x9" class="lcd_pixel" onclick="selectLCD(this.id);">
 				<tr> <td id="lcd-0x9-0x0"></td><td id="lcd-0x9-0x1"></td><td id="lcd-0x9-0x2"></td><td id="lcd-0x9-0x3"></td><td id="lcd-0x9-0x4"></td> </tr>
 				<tr> <td id="lcd-0x9-1x0"></td><td id="lcd-0x9-1x1"></td><td id="lcd-0x9-1x2"></td><td id="lcd-0x9-1x3"></td><td id="lcd-0x9-1x4"></td> </tr>
 				<tr> <td id="lcd-0x9-2x0"></td><td id="lcd-0x9-2x1"></td><td id="lcd-0x9-2x2"></td><td id="lcd-0x9-2x3"></td><td id="lcd-0x9-2x4"></td> </tr>
@@ -187,7 +187,7 @@
 				<tr> <td id="lcd-0x9-6x0"></td><td id="lcd-0x9-6x1"></td><td id="lcd-0x9-6x2"></td><td id="lcd-0x9-6x3"></td><td id="lcd-0x9-6x4"></td> </tr>
 				<tr> <td id="lcd-0x9-7x0"></td><td id="lcd-0x9-7x1"></td><td id="lcd-0x9-7x2"></td><td id="lcd-0x9-7x3"></td><td id="lcd-0x9-7x4"></td> </tr>
 			</table>
-		    <table id="lcd-0x10" class="lcd_pixel" onclick="select_lcd(this.id);">
+		    <table id="lcd-0x10" class="lcd_pixel" onclick="selectLCD(this.id);">
 				<tr> <td id="lcd-0x10-0x0"></td><td id="lcd-0x10-0x1"></td><td id="lcd-0x10-0x2"></td><td id="lcd-0x10-0x3"></td><td id="lcd-0x10-0x4"></td> </tr>
 				<tr> <td id="lcd-0x10-1x0"></td><td id="lcd-0x10-1x1"></td><td id="lcd-0x10-1x2"></td><td id="lcd-0x10-1x3"></td><td id="lcd-0x10-1x4"></td> </tr>
 				<tr> <td id="lcd-0x10-2x0"></td><td id="lcd-0x10-2x1"></td><td id="lcd-0x10-2x2"></td><td id="lcd-0x10-2x3"></td><td id="lcd-0x10-2x4"></td> </tr>
@@ -197,7 +197,7 @@
 				<tr> <td id="lcd-0x10-6x0"></td><td id="lcd-0x10-6x1"></td><td id="lcd-0x10-6x2"></td><td id="lcd-0x10-6x3"></td><td id="lcd-0x10-6x4"></td> </tr>
 				<tr> <td id="lcd-0x10-7x0"></td><td id="lcd-0x10-7x1"></td><td id="lcd-0x10-7x2"></td><td id="lcd-0x10-7x3"></td><td id="lcd-0x10-7x4"></td> </tr>
 			</table>
-		    <table id="lcd-0x11" class="lcd_pixel" onclick="select_lcd(this.id);">
+		    <table id="lcd-0x11" class="lcd_pixel" onclick="selectLCD(this.id);">
 				<tr> <td id="lcd-0x11-0x0"></td><td id="lcd-0x11-0x1"></td><td id="lcd-0x11-0x2"></td><td id="lcd-0x11-0x3"></td><td id="lcd-0x11-0x4"></td> </tr>
 				<tr> <td id="lcd-0x11-1x0"></td><td id="lcd-0x11-1x1"></td><td id="lcd-0x11-1x2"></td><td id="lcd-0x11-1x3"></td><td id="lcd-0x11-1x4"></td> </tr>
 				<tr> <td id="lcd-0x11-2x0"></td><td id="lcd-0x11-2x1"></td><td id="lcd-0x11-2x2"></td><td id="lcd-0x11-2x3"></td><td id="lcd-0x11-2x4"></td> </tr>
@@ -207,7 +207,7 @@
 				<tr> <td id="lcd-0x11-6x0"></td><td id="lcd-0x11-6x1"></td><td id="lcd-0x11-6x2"></td><td id="lcd-0x11-6x3"></td><td id="lcd-0x11-6x4"></td> </tr>
 				<tr> <td id="lcd-0x11-7x0"></td><td id="lcd-0x11-7x1"></td><td id="lcd-0x11-7x2"></td><td id="lcd-0x11-7x3"></td><td id="lcd-0x11-7x4"></td> </tr>
 			</table>
-		    <table id="lcd-0x12" class="lcd_pixel" onclick="select_lcd(this.id);">
+		    <table id="lcd-0x12" class="lcd_pixel" onclick="selectLCD(this.id);">
 				<tr> <td id="lcd-0x12-0x0"></td><td id="lcd-0x12-0x1"></td><td id="lcd-0x12-0x2"></td><td id="lcd-0x12-0x3"></td><td id="lcd-0x12-0x4"></td> </tr>
 				<tr> <td id="lcd-0x12-1x0"></td><td id="lcd-0x12-1x1"></td><td id="lcd-0x12-1x2"></td><td id="lcd-0x12-1x3"></td><td id="lcd-0x12-1x4"></td> </tr>
 				<tr> <td id="lcd-0x12-2x0"></td><td id="lcd-0x12-2x1"></td><td id="lcd-0x12-2x2"></td><td id="lcd-0x12-2x3"></td><td id="lcd-0x12-2x4"></td> </tr>
@@ -217,7 +217,7 @@
 				<tr> <td id="lcd-0x12-6x0"></td><td id="lcd-0x12-6x1"></td><td id="lcd-0x12-6x2"></td><td id="lcd-0x12-6x3"></td><td id="lcd-0x12-6x4"></td> </tr>
 				<tr> <td id="lcd-0x12-7x0"></td><td id="lcd-0x12-7x1"></td><td id="lcd-0x12-7x2"></td><td id="lcd-0x12-7x3"></td><td id="lcd-0x12-7x4"></td> </tr>
 			</table>
-		    <table id="lcd-0x13" class="lcd_pixel" onclick="select_lcd(this.id);">
+		    <table id="lcd-0x13" class="lcd_pixel" onclick="selectLCD(this.id);">
 				<tr> <td id="lcd-0x13-0x0"></td><td id="lcd-0x13-0x1"></td><td id="lcd-0x13-0x2"></td><td id="lcd-0x13-0x3"></td><td id="lcd-0x13-0x4"></td> </tr>
 				<tr> <td id="lcd-0x13-1x0"></td><td id="lcd-0x13-1x1"></td><td id="lcd-0x13-1x2"></td><td id="lcd-0x13-1x3"></td><td id="lcd-0x13-1x4"></td> </tr>
 				<tr> <td id="lcd-0x13-2x0"></td><td id="lcd-0x13-2x1"></td><td id="lcd-0x13-2x2"></td><td id="lcd-0x13-2x3"></td><td id="lcd-0x13-2x4"></td> </tr>
@@ -227,7 +227,7 @@
 				<tr> <td id="lcd-0x13-6x0"></td><td id="lcd-0x13-6x1"></td><td id="lcd-0x13-6x2"></td><td id="lcd-0x13-6x3"></td><td id="lcd-0x13-6x4"></td> </tr>
 				<tr> <td id="lcd-0x13-7x0"></td><td id="lcd-0x13-7x1"></td><td id="lcd-0x13-7x2"></td><td id="lcd-0x13-7x3"></td><td id="lcd-0x13-7x4"></td> </tr>
 			</table>
-		    <table id="lcd-0x14" class="lcd_pixel" onclick="select_lcd(this.id);">
+		    <table id="lcd-0x14" class="lcd_pixel" onclick="selectLCD(this.id);">
 				<tr> <td id="lcd-0x14-0x0"></td><td id="lcd-0x14-0x1"></td><td id="lcd-0x14-0x2"></td><td id="lcd-0x14-0x3"></td><td id="lcd-0x14-0x4"></td> </tr>
 				<tr> <td id="lcd-0x14-1x0"></td><td id="lcd-0x14-1x1"></td><td id="lcd-0x14-1x2"></td><td id="lcd-0x14-1x3"></td><td id="lcd-0x14-1x4"></td> </tr>
 				<tr> <td id="lcd-0x14-2x0"></td><td id="lcd-0x14-2x1"></td><td id="lcd-0x14-2x2"></td><td id="lcd-0x14-2x3"></td><td id="lcd-0x14-2x4"></td> </tr>
@@ -237,7 +237,7 @@
 				<tr> <td id="lcd-0x14-6x0"></td><td id="lcd-0x14-6x1"></td><td id="lcd-0x14-6x2"></td><td id="lcd-0x14-6x3"></td><td id="lcd-0x14-6x4"></td> </tr>
 				<tr> <td id="lcd-0x14-7x0"></td><td id="lcd-0x14-7x1"></td><td id="lcd-0x14-7x2"></td><td id="lcd-0x14-7x3"></td><td id="lcd-0x14-7x4"></td> </tr>
 			</table>
-		    <table id="lcd-0x15" class="lcd_pixel" onclick="select_lcd(this.id);">
+		    <table id="lcd-0x15" class="lcd_pixel" onclick="selectLCD(this.id);">
 				<tr> <td id="lcd-0x15-0x0"></td><td id="lcd-0x15-0x1"></td><td id="lcd-0x15-0x2"></td><td id="lcd-0x15-0x3"></td><td id="lcd-0x15-0x4"></td> </tr>
 				<tr> <td id="lcd-0x15-1x0"></td><td id="lcd-0x15-1x1"></td><td id="lcd-0x15-1x2"></td><td id="lcd-0x15-1x3"></td><td id="lcd-0x15-1x4"></td> </tr>
 				<tr> <td id="lcd-0x15-2x0"></td><td id="lcd-0x15-2x1"></td><td id="lcd-0x15-2x2"></td><td id="lcd-0x15-2x3"></td><td id="lcd-0x15-2x4"></td> </tr>
@@ -248,7 +248,7 @@
 				<tr> <td id="lcd-0x15-7x0"></td><td id="lcd-0x15-7x1"></td><td id="lcd-0x15-7x2"></td><td id="lcd-0x15-7x3"></td><td id="lcd-0x15-7x4"></td> </tr>
 			</table>
 			<br>
-			<table id="lcd-1x0" class="lcd_pixel" onclick="select_lcd(this.id);">
+			<table id="lcd-1x0" class="lcd_pixel" onclick="selectLCD(this.id);">
 				<tr> <td id="lcd-1x0-0x0"></td><td id="lcd-1x0-0x1"></td><td id="lcd-1x0-0x2"></td><td id="lcd-1x0-0x3"></td><td id="lcd-1x0-0x4"></td> </tr>
 				<tr> <td id="lcd-1x0-1x0"></td><td id="lcd-1x0-1x1"></td><td id="lcd-1x0-1x2"></td><td id="lcd-1x0-1x3"></td><td id="lcd-1x0-1x4"></td> </tr>
 				<tr> <td id="lcd-1x0-2x0"></td><td id="lcd-1x0-2x1"></td><td id="lcd-1x0-2x2"></td><td id="lcd-1x0-2x3"></td><td id="lcd-1x0-2x4"></td> </tr>
@@ -258,7 +258,7 @@
 				<tr> <td id="lcd-1x0-6x0"></td><td id="lcd-1x0-6x1"></td><td id="lcd-1x0-6x2"></td><td id="lcd-1x0-6x3"></td><td id="lcd-1x0-6x4"></td> </tr>
 				<tr> <td id="lcd-1x0-7x0"></td><td id="lcd-1x0-7x1"></td><td id="lcd-1x0-7x2"></td><td id="lcd-1x0-7x3"></td><td id="lcd-1x0-7x4"></td> </tr>
 			</table>
-			<table id="lcd-1x1" class="lcd_pixel" onclick="select_lcd(this.id);">
+			<table id="lcd-1x1" class="lcd_pixel" onclick="selectLCD(this.id);">
 				<tr> <td id="lcd-1x1-0x0"></td><td id="lcd-1x1-0x1"></td><td id="lcd-1x1-0x2"></td><td id="lcd-1x1-0x3"></td><td id="lcd-1x1-0x4"></td> </tr>
 				<tr> <td id="lcd-1x1-1x0"></td><td id="lcd-1x1-1x1"></td><td id="lcd-1x1-1x2"></td><td id="lcd-1x1-1x3"></td><td id="lcd-1x1-1x4"></td> </tr>
 				<tr> <td id="lcd-1x1-2x0"></td><td id="lcd-1x1-2x1"></td><td id="lcd-1x1-2x2"></td><td id="lcd-1x1-2x3"></td><td id="lcd-1x1-2x4"></td> </tr>
@@ -268,7 +268,7 @@
 				<tr> <td id="lcd-1x1-6x0"></td><td id="lcd-1x1-6x1"></td><td id="lcd-1x1-6x2"></td><td id="lcd-1x1-6x3"></td><td id="lcd-1x1-6x4"></td> </tr>
 				<tr> <td id="lcd-1x1-7x0"></td><td id="lcd-1x1-7x1"></td><td id="lcd-1x1-7x2"></td><td id="lcd-1x1-7x3"></td><td id="lcd-1x1-7x4"></td> </tr>
 			</table>
-			<table id="lcd-1x2" class="lcd_pixel" onclick="select_lcd(this.id);">
+			<table id="lcd-1x2" class="lcd_pixel" onclick="selectLCD(this.id);">
 				<tr> <td id="lcd-1x2-0x0"></td><td id="lcd-1x2-0x1"></td><td id="lcd-1x2-0x2"></td><td id="lcd-1x2-0x3"></td><td id="lcd-1x2-0x4"></td> </tr>
 				<tr> <td id="lcd-1x2-1x0"></td><td id="lcd-1x2-1x1"></td><td id="lcd-1x2-1x2"></td><td id="lcd-1x2-1x3"></td><td id="lcd-1x2-1x4"></td> </tr>
 				<tr> <td id="lcd-1x2-2x0"></td><td id="lcd-1x2-2x1"></td><td id="lcd-1x2-2x2"></td><td id="lcd-1x2-2x3"></td><td id="lcd-1x2-2x4"></td> </tr>
@@ -278,7 +278,7 @@
 				<tr> <td id="lcd-1x2-6x0"></td><td id="lcd-1x2-6x1"></td><td id="lcd-1x2-6x2"></td><td id="lcd-1x2-6x3"></td><td id="lcd-1x2-6x4"></td> </tr>
 				<tr> <td id="lcd-1x2-7x0"></td><td id="lcd-1x2-7x1"></td><td id="lcd-1x2-7x2"></td><td id="lcd-1x2-7x3"></td><td id="lcd-1x2-7x4"></td> </tr>
 			</table>
-			<table id="lcd-1x3" class="lcd_pixel" onclick="select_lcd(this.id);">
+			<table id="lcd-1x3" class="lcd_pixel" onclick="selectLCD(this.id);">
 				<tr> <td id="lcd-1x3-0x0"></td><td id="lcd-1x3-0x1"></td><td id="lcd-1x3-0x2"></td><td id="lcd-1x3-0x3"></td><td id="lcd-1x3-0x4"></td> </tr>
 				<tr> <td id="lcd-1x3-1x0"></td><td id="lcd-1x3-1x1"></td><td id="lcd-1x3-1x2"></td><td id="lcd-1x3-1x3"></td><td id="lcd-1x3-1x4"></td> </tr>
 				<tr> <td id="lcd-1x3-2x0"></td><td id="lcd-1x3-2x1"></td><td id="lcd-1x3-2x2"></td><td id="lcd-1x3-2x3"></td><td id="lcd-1x3-2x4"></td> </tr>
@@ -288,7 +288,7 @@
 				<tr> <td id="lcd-1x3-6x0"></td><td id="lcd-1x3-6x1"></td><td id="lcd-1x3-6x2"></td><td id="lcd-1x3-6x3"></td><td id="lcd-1x3-6x4"></td> </tr>
 				<tr> <td id="lcd-1x3-7x0"></td><td id="lcd-1x3-7x1"></td><td id="lcd-1x3-7x2"></td><td id="lcd-1x3-7x3"></td><td id="lcd-1x3-7x4"></td> </tr>
 			</table>
-			<table id="lcd-1x4" class="lcd_pixel" onclick="select_lcd(this.id);">
+			<table id="lcd-1x4" class="lcd_pixel" onclick="selectLCD(this.id);">
 				<tr> <td id="lcd-1x4-0x0"></td><td id="lcd-1x4-0x1"></td><td id="lcd-1x4-0x2"></td><td id="lcd-1x4-0x3"></td><td id="lcd-1x4-0x4"></td> </tr>
 				<tr> <td id="lcd-1x4-1x0"></td><td id="lcd-1x4-1x1"></td><td id="lcd-1x4-1x2"></td><td id="lcd-1x4-1x3"></td><td id="lcd-1x4-1x4"></td> </tr>
 				<tr> <td id="lcd-1x4-2x0"></td><td id="lcd-1x4-2x1"></td><td id="lcd-1x4-2x2"></td><td id="lcd-1x4-2x3"></td><td id="lcd-1x4-2x4"></td> </tr>
@@ -298,7 +298,7 @@
 				<tr> <td id="lcd-1x4-6x0"></td><td id="lcd-1x4-6x1"></td><td id="lcd-1x4-6x2"></td><td id="lcd-1x4-6x3"></td><td id="lcd-1x4-6x4"></td> </tr>
 				<tr> <td id="lcd-1x4-7x0"></td><td id="lcd-1x4-7x1"></td><td id="lcd-1x4-7x2"></td><td id="lcd-1x4-7x3"></td><td id="lcd-1x4-7x4"></td> </tr>
 			</table>
-			<table id="lcd-1x5" class="lcd_pixel" onclick="select_lcd(this.id);">
+			<table id="lcd-1x5" class="lcd_pixel" onclick="selectLCD(this.id);">
 				<tr> <td id="lcd-1x5-0x0"></td><td id="lcd-1x5-0x1"></td><td id="lcd-1x5-0x2"></td><td id="lcd-1x5-0x3"></td><td id="lcd-1x5-0x4"></td> </tr>
 				<tr> <td id="lcd-1x5-1x0"></td><td id="lcd-1x5-1x1"></td><td id="lcd-1x5-1x2"></td><td id="lcd-1x5-1x3"></td><td id="lcd-1x5-1x4"></td> </tr>
 				<tr> <td id="lcd-1x5-2x0"></td><td id="lcd-1x5-2x1"></td><td id="lcd-1x5-2x2"></td><td id="lcd-1x5-2x3"></td><td id="lcd-1x5-2x4"></td> </tr>
@@ -308,7 +308,7 @@
 				<tr> <td id="lcd-1x5-6x0"></td><td id="lcd-1x5-6x1"></td><td id="lcd-1x5-6x2"></td><td id="lcd-1x5-6x3"></td><td id="lcd-1x5-6x4"></td> </tr>
 				<tr> <td id="lcd-1x5-7x0"></td><td id="lcd-1x5-7x1"></td><td id="lcd-1x5-7x2"></td><td id="lcd-1x5-7x3"></td><td id="lcd-1x5-7x4"></td> </tr>
 			</table>
-			<table id="lcd-1x6" class="lcd_pixel" onclick="select_lcd(this.id);">
+			<table id="lcd-1x6" class="lcd_pixel" onclick="selectLCD(this.id);">
 				<tr> <td id="lcd-1x6-0x0"></td><td id="lcd-1x6-0x1"></td><td id="lcd-1x6-0x2"></td><td id="lcd-1x6-0x3"></td><td id="lcd-1x6-0x4"></td> </tr>
 				<tr> <td id="lcd-1x6-1x0"></td><td id="lcd-1x6-1x1"></td><td id="lcd-1x6-1x2"></td><td id="lcd-1x6-1x3"></td><td id="lcd-1x6-1x4"></td> </tr>
 				<tr> <td id="lcd-1x6-2x0"></td><td id="lcd-1x6-2x1"></td><td id="lcd-1x6-2x2"></td><td id="lcd-1x6-2x3"></td><td id="lcd-1x6-2x4"></td> </tr>
@@ -318,7 +318,7 @@
 				<tr> <td id="lcd-1x6-6x0"></td><td id="lcd-1x6-6x1"></td><td id="lcd-1x6-6x2"></td><td id="lcd-1x6-6x3"></td><td id="lcd-1x6-6x4"></td> </tr>
 				<tr> <td id="lcd-1x6-7x0"></td><td id="lcd-1x6-7x1"></td><td id="lcd-1x6-7x2"></td><td id="lcd-1x6-7x3"></td><td id="lcd-1x6-7x4"></td> </tr>
 			</table>
-			<table id="lcd-1x7" class="lcd_pixel" onclick="select_lcd(this.id);">
+			<table id="lcd-1x7" class="lcd_pixel" onclick="selectLCD(this.id);">
 				<tr> <td id="lcd-1x7-0x0"></td><td id="lcd-1x7-0x1"></td><td id="lcd-1x7-0x2"></td><td id="lcd-1x7-0x3"></td><td id="lcd-1x7-0x4"></td> </tr>
 				<tr> <td id="lcd-1x7-1x0"></td><td id="lcd-1x7-1x1"></td><td id="lcd-1x7-1x2"></td><td id="lcd-1x7-1x3"></td><td id="lcd-1x7-1x4"></td> </tr>
 				<tr> <td id="lcd-1x7-2x0"></td><td id="lcd-1x7-2x1"></td><td id="lcd-1x7-2x2"></td><td id="lcd-1x7-2x3"></td><td id="lcd-1x7-2x4"></td> </tr>
@@ -328,7 +328,7 @@
 				<tr> <td id="lcd-1x7-6x0"></td><td id="lcd-1x7-6x1"></td><td id="lcd-1x7-6x2"></td><td id="lcd-1x7-6x3"></td><td id="lcd-1x7-6x4"></td> </tr>
 				<tr> <td id="lcd-1x7-7x0"></td><td id="lcd-1x7-7x1"></td><td id="lcd-1x7-7x2"></td><td id="lcd-1x7-7x3"></td><td id="lcd-1x7-7x4"></td> </tr>
 			</table>
-			<table id="lcd-1x8" class="lcd_pixel" onclick="select_lcd(this.id);">
+			<table id="lcd-1x8" class="lcd_pixel" onclick="selectLCD(this.id);">
 				<tr> <td id="lcd-1x8-0x0"></td><td id="lcd-1x8-0x1"></td><td id="lcd-1x8-0x2"></td><td id="lcd-1x8-0x3"></td><td id="lcd-1x8-0x4"></td> </tr>
 				<tr> <td id="lcd-1x8-1x0"></td><td id="lcd-1x8-1x1"></td><td id="lcd-1x8-1x2"></td><td id="lcd-1x8-1x3"></td><td id="lcd-1x8-1x4"></td> </tr>
 				<tr> <td id="lcd-1x8-2x0"></td><td id="lcd-1x8-2x1"></td><td id="lcd-1x8-2x2"></td><td id="lcd-1x8-2x3"></td><td id="lcd-1x8-2x4"></td> </tr>
@@ -338,7 +338,7 @@
 				<tr> <td id="lcd-1x8-6x0"></td><td id="lcd-1x8-6x1"></td><td id="lcd-1x8-6x2"></td><td id="lcd-1x8-6x3"></td><td id="lcd-1x8-6x4"></td> </tr>
 				<tr> <td id="lcd-1x8-7x0"></td><td id="lcd-1x8-7x1"></td><td id="lcd-1x8-7x2"></td><td id="lcd-1x8-7x3"></td><td id="lcd-1x8-7x4"></td> </tr>
 			</table>
-			<table id="lcd-1x9" class="lcd_pixel" onclick="select_lcd(this.id);">
+			<table id="lcd-1x9" class="lcd_pixel" onclick="selectLCD(this.id);">
 				<tr> <td id="lcd-1x9-0x0"></td><td id="lcd-1x9-0x1"></td><td id="lcd-1x9-0x2"></td><td id="lcd-1x9-0x3"></td><td id="lcd-1x9-0x4"></td> </tr>
 				<tr> <td id="lcd-1x9-1x0"></td><td id="lcd-1x9-1x1"></td><td id="lcd-1x9-1x2"></td><td id="lcd-1x9-1x3"></td><td id="lcd-1x9-1x4"></td> </tr>
 				<tr> <td id="lcd-1x9-2x0"></td><td id="lcd-1x9-2x1"></td><td id="lcd-1x9-2x2"></td><td id="lcd-1x9-2x3"></td><td id="lcd-1x9-2x4"></td> </tr>
@@ -348,7 +348,7 @@
 				<tr> <td id="lcd-1x9-6x0"></td><td id="lcd-1x9-6x1"></td><td id="lcd-1x9-6x2"></td><td id="lcd-1x9-6x3"></td><td id="lcd-1x9-6x4"></td> </tr>
 				<tr> <td id="lcd-1x9-7x0"></td><td id="lcd-1x9-7x1"></td><td id="lcd-1x9-7x2"></td><td id="lcd-1x9-7x3"></td><td id="lcd-1x9-7x4"></td> </tr>
 			</table>
-			<table id="lcd-1x10" class="lcd_pixel" onclick="select_lcd(this.id);">
+			<table id="lcd-1x10" class="lcd_pixel" onclick="selectLCD(this.id);">
 				<tr> <td id="lcd-1x10-0x0"></td><td id="lcd-1x10-0x1"></td><td id="lcd-1x10-0x2"></td><td id="lcd-1x10-0x3"></td><td id="lcd-1x10-0x4"></td> </tr>
 				<tr> <td id="lcd-1x10-1x0"></td><td id="lcd-1x10-1x1"></td><td id="lcd-1x10-1x2"></td><td id="lcd-1x10-1x3"></td><td id="lcd-1x10-1x4"></td> </tr>
 				<tr> <td id="lcd-1x10-2x0"></td><td id="lcd-1x10-2x1"></td><td id="lcd-1x10-2x2"></td><td id="lcd-1x10-2x3"></td><td id="lcd-1x10-2x4"></td> </tr>
@@ -358,7 +358,7 @@
 				<tr> <td id="lcd-1x10-6x0"></td><td id="lcd-1x10-6x1"></td><td id="lcd-1x10-6x2"></td><td id="lcd-1x10-6x3"></td><td id="lcd-1x10-6x4"></td> </tr>
 				<tr> <td id="lcd-1x10-7x0"></td><td id="lcd-1x10-7x1"></td><td id="lcd-1x10-7x2"></td><td id="lcd-1x10-7x3"></td><td id="lcd-1x10-7x4"></td> </tr>
 			</table>
-			<table id="lcd-1x11" class="lcd_pixel" onclick="select_lcd(this.id);">
+			<table id="lcd-1x11" class="lcd_pixel" onclick="selectLCD(this.id);">
 				<tr> <td id="lcd-1x11-0x0"></td><td id="lcd-1x11-0x1"></td><td id="lcd-1x11-0x2"></td><td id="lcd-1x11-0x3"></td><td id="lcd-1x11-0x4"></td> </tr>
 				<tr> <td id="lcd-1x11-1x0"></td><td id="lcd-1x11-1x1"></td><td id="lcd-1x11-1x2"></td><td id="lcd-1x11-1x3"></td><td id="lcd-1x11-1x4"></td> </tr>
 				<tr> <td id="lcd-1x11-2x0"></td><td id="lcd-1x11-2x1"></td><td id="lcd-1x11-2x2"></td><td id="lcd-1x11-2x3"></td><td id="lcd-1x11-2x4"></td> </tr>
@@ -368,7 +368,7 @@
 				<tr> <td id="lcd-1x11-6x0"></td><td id="lcd-1x11-6x1"></td><td id="lcd-1x11-6x2"></td><td id="lcd-1x11-6x3"></td><td id="lcd-1x11-6x4"></td> </tr>
 				<tr> <td id="lcd-1x11-7x0"></td><td id="lcd-1x11-7x1"></td><td id="lcd-1x11-7x2"></td><td id="lcd-1x11-7x3"></td><td id="lcd-1x11-7x4"></td> </tr>
 			</table>
-			<table id="lcd-1x12" class="lcd_pixel" onclick="select_lcd(this.id);">
+			<table id="lcd-1x12" class="lcd_pixel" onclick="selectLCD(this.id);">
 				<tr> <td id="lcd-1x12-0x0"></td><td id="lcd-1x12-0x1"></td><td id="lcd-1x12-0x2"></td><td id="lcd-1x12-0x3"></td><td id="lcd-1x12-0x4"></td> </tr>
 				<tr> <td id="lcd-1x12-1x0"></td><td id="lcd-1x12-1x1"></td><td id="lcd-1x12-1x2"></td><td id="lcd-1x12-1x3"></td><td id="lcd-1x12-1x4"></td> </tr>
 				<tr> <td id="lcd-1x12-2x0"></td><td id="lcd-1x12-2x1"></td><td id="lcd-1x12-2x2"></td><td id="lcd-1x12-2x3"></td><td id="lcd-1x12-2x4"></td> </tr>
@@ -378,7 +378,7 @@
 				<tr> <td id="lcd-1x12-6x0"></td><td id="lcd-1x12-6x1"></td><td id="lcd-1x12-6x2"></td><td id="lcd-1x12-6x3"></td><td id="lcd-1x12-6x4"></td> </tr>
 				<tr> <td id="lcd-1x12-7x0"></td><td id="lcd-1x12-7x1"></td><td id="lcd-1x12-7x2"></td><td id="lcd-1x12-7x3"></td><td id="lcd-1x12-7x4"></td> </tr>
 			</table>
-			<table id="lcd-1x13" class="lcd_pixel" onclick="select_lcd(this.id);">
+			<table id="lcd-1x13" class="lcd_pixel" onclick="selectLCD(this.id);">
 				<tr> <td id="lcd-1x13-0x0"></td><td id="lcd-1x13-0x1"></td><td id="lcd-1x13-0x2"></td><td id="lcd-1x13-0x3"></td><td id="lcd-1x13-0x4"></td> </tr>
 				<tr> <td id="lcd-1x13-1x0"></td><td id="lcd-1x13-1x1"></td><td id="lcd-1x13-1x2"></td><td id="lcd-1x13-1x3"></td><td id="lcd-1x13-1x4"></td> </tr>
 				<tr> <td id="lcd-1x13-2x0"></td><td id="lcd-1x13-2x1"></td><td id="lcd-1x13-2x2"></td><td id="lcd-1x13-2x3"></td><td id="lcd-1x13-2x4"></td> </tr>
@@ -388,7 +388,7 @@
 				<tr> <td id="lcd-1x13-6x0"></td><td id="lcd-1x13-6x1"></td><td id="lcd-1x13-6x2"></td><td id="lcd-1x13-6x3"></td><td id="lcd-1x13-6x4"></td> </tr>
 				<tr> <td id="lcd-1x13-7x0"></td><td id="lcd-1x13-7x1"></td><td id="lcd-1x13-7x2"></td><td id="lcd-1x13-7x3"></td><td id="lcd-1x13-7x4"></td> </tr>
 			</table>
-			<table id="lcd-1x14" class="lcd_pixel" onclick="select_lcd(this.id);">
+			<table id="lcd-1x14" class="lcd_pixel" onclick="selectLCD(this.id);">
 				<tr> <td id="lcd-1x14-0x0"></td><td id="lcd-1x14-0x1"></td><td id="lcd-1x14-0x2"></td><td id="lcd-1x14-0x3"></td><td id="lcd-1x14-0x4"></td> </tr>
 				<tr> <td id="lcd-1x14-1x0"></td><td id="lcd-1x14-1x1"></td><td id="lcd-1x14-1x2"></td><td id="lcd-1x14-1x3"></td><td id="lcd-1x14-1x4"></td> </tr>
 				<tr> <td id="lcd-1x14-2x0"></td><td id="lcd-1x14-2x1"></td><td id="lcd-1x14-2x2"></td><td id="lcd-1x14-2x3"></td><td id="lcd-1x14-2x4"></td> </tr>
@@ -398,7 +398,7 @@
 				<tr> <td id="lcd-1x14-6x0"></td><td id="lcd-1x14-6x1"></td><td id="lcd-1x14-6x2"></td><td id="lcd-1x14-6x3"></td><td id="lcd-1x14-6x4"></td> </tr>
 				<tr> <td id="lcd-1x14-7x0"></td><td id="lcd-1x14-7x1"></td><td id="lcd-1x14-7x2"></td><td id="lcd-1x14-7x3"></td><td id="lcd-1x14-7x4"></td> </tr>
 			</table>
-			<table id="lcd-1x15" class="lcd_pixel" onclick="select_lcd(this.id);">
+			<table id="lcd-1x15" class="lcd_pixel" onclick="selectLCD(this.id);">
 				<tr> <td id="lcd-1x15-0x0"></td><td id="lcd-1x15-0x1"></td><td id="lcd-1x15-0x2"></td><td id="lcd-1x15-0x3"></td><td id="lcd-1x15-0x4"></td> </tr>
 				<tr> <td id="lcd-1x15-1x0"></td><td id="lcd-1x15-1x1"></td><td id="lcd-1x15-1x2"></td><td id="lcd-1x15-1x3"></td><td id="lcd-1x15-1x4"></td> </tr>
 				<tr> <td id="lcd-1x15-2x0"></td><td id="lcd-1x15-2x1"></td><td id="lcd-1x15-2x2"></td><td id="lcd-1x15-2x3"></td><td id="lcd-1x15-2x4"></td> </tr>

@@ -1,136 +1,154 @@
-/* Code Functions */
-function update_code(){
+/**
+ * Contains all JavaScript functions.
+ *
+ * @file   This files defines all functions.
+ * @author Alejandro Santiago (@alestiago)
+ * @since  23.02.2020
+ */
+
+/* global selectedLCD */
+
+/* CODE Functions */
+function updateCode (){
 	var charname = document.getElementById("charname").value;
-	var code_header = "byte " + charname + "[] = {"
+	var code_header = "byte " + charname + "[] = {";
 	var code_body = "";
-	var code_footer = "};"
+	var code_footer = "};";
 	
-	for (var row=0; row<8; row++){
+	for (var row = 0; row < 8; row++) {
 		code_body += "    B";
-		for (var col=0; col<5; col++) {
+		for (var col = 0; col < 5; col++) {
 			var pixelID = "pixel-" + row + "x" + col;
-			var pixel_state = document.getElementById(pixelID).className
+			var pixel_state = document.getElementById(pixelID).className;
 			
-			if (pixel_state == "pixel_off") code_body += "0";
+			if (pixel_state === "pixel_off") code_body += "0";
 			else code_body += "1";
 		}
 		code_body += ",\r\n";
 	}
-	
-	code_body = code_body.substring(0, code_body.length - 3)
+  
+	code_body = code_body.substring(0, code_body.length - 3);
 	var full_code = code_header + "\r\n" + code_body + "\r\n" + code_footer;
-	document.getElementById("code").value = full_code;
+    document.getElementById("code").value = full_code;
 	
-	copyToClipboard();
+  if (isAutoCopyOn()) copyToClipboard();
 }
 
-/* Pixel editor functions */	
-function toggle_pixel(pixelID){
+/* PIXEL EDITOR functions */
+function togglePixel (pixelID) {
+  /* Toggles state of specified pixel */
 	var pixel = document.getElementById(pixelID);
-	if (pixel.className == "pixel_off") pixel.className = "pixel_on";
+	if (pixel.className === "pixel_off") pixel.className = "pixel_on";
 	else pixel.className = "pixel_off";
-	update_code();
-	toggleLCDPixel(pixelID);
+  updateCode();
+  toggleLCDPixel(pixelID);
 }
 
-function clear_pixels(){
-	for (var row=0; row<8; row++){
-		for (var col=0; col<5; col++) {
+function clear_pixels () {
+  /* Sets off all pixels" state of selected LCD */
+	for (var row = 0; row < 8; row++) {
+		for (var col = 0; col < 5; col++) {
 			var pixelID = "pixel-" + row + "x" + col;
 			var pixel = document.getElementById(pixelID);
 			pixel.className = "pixel_off";
 		}
 	}
-	update_code();
-	preview();
+	updateCode();
+	updateLCD();
 }
 
-function invert_pixels(){
-	for (var row=0; row<8; row++){
-		for (var col=0; col<5; col++) {
+function invertPixels () {
+  /* Inverts all pixels" state of selected LCD */
+	for (var row = 0; row < 8; row++) {
+		for (var col = 0; col < 5; col++) {
 			var pixelID = "pixel-" + row + "x" + col;
-			toggle_pixel(pixelID);
+			togglePixel(pixelID);
 		}
 	}
-	update_code();
+	updateCode();
 }
 
-function checkEnter(event) {
+function checkEnter (event) {
+  /* Check if enter key is pressed, if so avoids action */
 	if (event.keyCode == 13) return false;
 }
 
-/* Preview Functions */
-var sel_lcd_id = "lcd-0x0";
+/* PREVIEW Functions */
+var selectedLCD = "lcd-0x0";
 
-function preview(){
-	for (var row=0; row<8; row++){
-		for (var col=0; col<5; col++) {
+function updateLCD () {
+  /* Updates all editor pixels states to selected LCD */
+	for (var row = 0; row < 8; row++) {
+		for (var col = 0; col < 5; col++) {
 			var pixelID = "pixel-" + row + "x" + col;
-			var lcdpixelID = sel_lcd_id + "-" + row + "x" + col;
+			var lcdpixelID = selectedLCD + "-" + row + "x" + col;
 			var lcdpixel = document.getElementById(lcdpixelID);
-			var pixel_state = document.getElementById(pixelID).className;
+			var pixelState = document.getElementById(pixelID).className;
 			
-			if (pixel_state == "pixel_off") lcdpixel.className = null;
+			if (pixelState === "pixel_off") lcdpixel.className = null;
 			else lcdpixel.className = "lcd_pixel_on";
 		}
 	}
 }
 
-function toggleLCDPixel(pixelID){
-	var LCDpixelID = sel_lcd_id + pixelID.substr(-4);
+function toggleLCDPixel (pixelID) {
+  /* Toggles state of specified LCD pixel */
+	var LCDpixelID = selectedLCD + pixelID.substr(-4);
 	var LCDpixel = document.getElementById(LCDpixelID);
 	
-	if (LCDpixel.className == "lcd_pixel_on") LCDpixel.className = "";
+	if (LCDpixel.className === "lcd_pixel_on") LCDpixel.className = null;
 	else LCDpixel.className = "lcd_pixel_on";
 }
 
-function select_lcd(lcdID){
-	unselect_all();	
+function selectLCD (lcdID) {
+  /* Selects specified LCD and updates Editor and Code */
+	unselectLCD(selectedLCD); // Unselect previous	LCD
+  
 	var lcdpixel = document.getElementById(lcdID);
 	lcdpixel.className = "lcd_pixel_selected";
-	sel_lcd_id = lcdID;
-	load_lcd_to_editor(lcdID);
-	update_code();
+	selectedLCD = lcdID;
+	loadLCDtoEditor(lcdID);
+	updateCode();
 }
 
-function unselect_all(){
-	for (var row=0; row<2; row++){
-		for (var col=0; col<16; col++) {
-			var lcdID = "lcd-" + row + "x" + col;
-			var lcdpixel = document.getElementById(lcdID);
-			lcdpixel.className = "lcd_pixel";
-		}
-	}
+function unselectLCD (lcdID) {
+  /* Removes selection of the specified LCD */
+  var lcd = document.getElementById(lcdID);
+  lcd.className = "lcd_pixel";
 }
 
-function load_lcd_to_editor(lcdID){
-	for (var row=0; row<8; row++){
-		for (var col=0; col<5; col++) {
+function loadLCDtoEditor (lcdID) {
+  /* Loads specified LCD pixel to editor */
+	for (var row = 0; row < 8; row++) {
+		for (var col = 0; col < 5; col++) {
 			var lcdpixelID = lcdID + "-" + row + "x" + col;
 			var lcdpixel = document.getElementById(lcdpixelID);
-			var lcdpixel_state = lcdpixel.className;
+			var lcdpixelState = lcdpixel.className;
 			
 			var pixelID = "pixel-" + row + "x" + col;
 			var pixel = document.getElementById(pixelID);
 			
-			if (lcdpixel_state == "lcd_pixel_on") pixel.className = "pixel_on";
+			if (lcdpixelState === "lcd_pixel_on") pixel.className = "pixel_on";
 			else pixel.className = "pixel_off";
 		}
 	}
 }
 
-/* Options Functions */
-function isAutoCopyOn(){
-	var auto_copy_checkbox = document.getElementById("autocopy");
-	var checked_value = auto_copy_checkbox.checked;
-	return checked_value;
-}
+/* OPTIONS functions */
+function isAutoCopyOn () {
+  /* Checks if Auto Copy checkbox is checked, returns boolean accordingly.*/
+  var autoCopyCheckbox = document.getElementById("autocopy");
+	var checkedValue = autoCopyCheckbox.checked;
+	return checkedValue;
+};
 
-function copyToClipboard(){
-	isAutoCopyOn();
+function copyToClipboard () {
+  /* Copies content of code text area to clipboard */
 	var copyText = document.getElementById("code");
+  
 	copyText.select();
-	copyText.setSelectionRange(0, 99999);
+	copyText.setSelectionRange(0, 99999);  // Select all text
 	document.execCommand("copy");
-	copyText.setSelectionRange(0, 0);
-}
+  
+	copyText.setSelectionRange(0, 0);  // Unselect all text
+};
