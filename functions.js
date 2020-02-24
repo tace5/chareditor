@@ -10,6 +10,7 @@
 
 /* CODE Functions */
 function updateCode (){
+  /* Updates the code according to editor */
 	var charname = document.getElementById("charname").value;
 	var code_header = "byte " + charname + "[] = {";
 	var code_body = "";
@@ -26,12 +27,24 @@ function updateCode (){
 		}
 		code_body += ",\r\n";
 	}
-  
 	code_body = code_body.substring(0, code_body.length - 3);
-	var full_code = code_header + "\r\n" + code_body + "\r\n" + code_footer;
+  
+  if (isCheckboxChecked("includeDefine")){
+    code_header = addDefineCode(charname) + "\r\n" + code_header;
+  }
+  
+	var full_code = code_header + "\r\n" +
+                  code_body + "\r\n" +
+                  code_footer;
     document.getElementById("code").value = full_code;
 	
-  if (isAutoCopyOn()) copyToClipboard();
+  if (isCheckboxChecked("autocopy")) copyToClipboard();
+}
+
+function addDefineCode(charname){
+  /* Returns a #define text according to the name */
+  var defineCode = "#define " + charname.toUpperCase() + "_CHAR 0";
+  return defineCode;
 }
 
 /* PIXEL EDITOR functions */
@@ -135,12 +148,12 @@ function loadLCDtoEditor (lcdID) {
 }
 
 /* OPTIONS functions */
-function isAutoCopyOn () {
-  /* Checks if Auto Copy checkbox is checked, returns boolean accordingly.*/
-  var autoCopyCheckbox = document.getElementById("autocopy");
-	var checkedValue = autoCopyCheckbox.checked;
-	return checkedValue;
-};
+function isCheckboxChecked (checkboxID) {
+  /* Checks if the checkbox is checked or not, returns boolean accordingly */
+  var myCheckbox = document.getElementById(checkboxID);
+  var checkedValue = myCheckbox.checked;
+  return checkedValue;
+}
 
 function copyToClipboard () {
   /* Copies content of code text area to clipboard */
