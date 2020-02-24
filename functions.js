@@ -58,7 +58,7 @@ function togglePixel (pixelID) {
 }
 
 function clear_pixels () {
-  /* Sets off all pixels" state of selected LCD */
+  /* Sets off all pixels' state of selected LCD */
 	for (var row = 0; row < 8; row++) {
 		for (var col = 0; col < 5; col++) {
 			var pixelID = "pixel-" + row + "x" + col;
@@ -71,7 +71,7 @@ function clear_pixels () {
 }
 
 function invertPixels () {
-  /* Inverts all pixels" state of selected LCD */
+  /* Inverts all pixels' state of selected LCD */
 	for (var row = 0; row < 8; row++) {
 		for (var col = 0; col < 5; col++) {
 			var pixelID = "pixel-" + row + "x" + col;
@@ -79,6 +79,27 @@ function invertPixels () {
 		}
 	}
 	updateCode();
+}
+
+function mirrorPixels () {
+  /* Mirrors vertically all pixels' state */
+  for (var row = 0; row < 8; row++) {
+    for (var col = 0; col < 2; col++) {
+      var leftpixelID = "pixel-" + row + "x" + col;
+      var leftpixel = document.getElementById(leftpixelID);
+      var leftpixelState = leftpixel.className;
+      
+      var rightpixelID = "pixel-" + row + "x" + (4 - col);
+      var rightpixel = document.getElementById(rightpixelID);
+      var rightpixelState = rightpixel.className;
+      
+      // Swap
+      leftpixel.className = rightpixelState;
+      rightpixel.className = leftpixelState;
+    }
+  }
+  updateCode();
+  updateLCD();
 }
 
 function checkEnter (event) {
