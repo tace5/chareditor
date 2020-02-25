@@ -186,3 +186,18 @@ function copyToClipboard () {
   
 	copyText.setSelectionRange(0, 0);  // Unselect all text
 };
+
+/* IMAGES functions */
+function iconHovered(iconID){
+  /* Changes image when hovered */
+  var icon = document.getElementById(iconID);
+  var hoveredImage = "images/" + iconID + "-hovered.png";
+  icon.src = hoveredImage;
+}
+
+function iconUnHovered(iconID){
+  /* Changes image when stoped hovered */
+  var icon = document.getElementById(iconID);
+  var unHoveredImage = "images/" + iconID + ".png";
+  icon.src = unHoveredImage;
+}

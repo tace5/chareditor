@@ -38,13 +38,20 @@
         View a code example by clicking 
         <a href= https://github.com/alestiago/LCD-Custom-Character-Generetor/tree/master/examples target="_blank">here</a>.
 		</div>
+    
+    <div class="share_box">
+    <div class="box_title">Share</div>
+    </div>
+    
+    <div class="editor_options_box">
+    <img id="clear_icon" class="editor_image" src="images/clear_icon.png" onclick="clear_pixels();" onmouseover="iconHovered(this.id);" onmouseout="iconUnHovered(this.id);">
+    <img id="invert_icon" class="editor_image" src="images/invert_icon.png" onclick="invertPixels();" onmouseover="iconHovered(this.id);" onmouseout="iconUnHovered(this.id);">
+    <img id="mirror_icon" class="editor_image" src="images/mirror_icon.png" onclick="mirrorPixels();" onmouseover="iconHovered(this.id);" onmouseout="iconUnHovered(this.id);">
+    </div>
 		
 		<div class="pixel_editor">
 				<form class="editor_options">
 					<input type="text-area" id="charname" class="char_name_input" value="charName" oninput="updateCode();" onkeydown="return checkEnter(event);"/> <br>
-					<input type="button" class="button" value="Clear" onclick="clear_pixels();"/>
-					<input type="button" class="button" value="Invert" onclick="invertPixels();"/>
-          <input type="button" class="button" value="Mirror" onclick="mirrorPixels();"/>
 				</form>
 				
 			<div class="pixel_box">
