@@ -105,12 +105,12 @@ Main page body
 }
 
 
-#shiftup_icon {
+#shift-up-icon {
   position: relative;
   top: 4px;
 }
 
-#shiftdown_icon {
+#shift-down-icon {
   position: relative;
   top: -7px;
 }

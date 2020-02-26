@@ -315,7 +315,7 @@ function copyToClipboard () {
 function iconHovered(iconID){
   /* Changes image when hovered */
   var icon = document.getElementById(iconID);
-  var hoveredImage = "images/" + iconID + "-hovered.png";
+  var hoveredImage = "images/" + iconID + "__hovered.png";
   icon.src = hoveredImage;
 }
 
