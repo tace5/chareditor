@@ -3,51 +3,42 @@ body {
 	margin: 0px;
 }
 
-a {
-	font-family: "Arial", Calibri, Dejavu Sans;
-	color: #7cb5f0;
-  font-size: 14px;
-}
 
-.checkbox {
-	position: relative;
-	top: 2px;
-}
-
-.header {
+/* Header */
+#header-bar {
 	position: fixed;
-	
 	background-color: #fafafa;
 	width: 100%;
   height: 60px;
 	padding-bottom: 7px;
 	padding-top: 7px;
-	
 	border-bottom: solid;
 	border-color: #d9d9d9;
 	border-width: thin;
 }
 	
-.header_title {
+#header-title {
   position: relative;
   top: -15px;
 	font-size: 30px;
 	text-align: center;
-	font-family: "Arial", Calibri, Dejavu Sans;
+	font-family: 'Arial', Calibri, Dejavu Sans;
 	user-select: none;
 }
 
-.header_subtitle {
+#header-subtitle {
   position: relative;
   top: -35px;
 	font-size: 12px;
   font-weight: normal;
 	text-align: center;
-	font-family: "Arial", Calibri, Dejavu Sans;
+	font-family: 'Arial', Calibri, Dejavu Sans;
 	user-select: none;
 }
 
-.footer {
+
+/* Footer */
+#footer-bar {
 	position: fixed;
 	top: 95%;
 	width: 100%;
@@ -57,7 +48,7 @@ a {
 	padding: 10px;
 }
 
-.license_text{
+#copyright-text {
   position: absolute;
   top: 10px;
   left: 20px;
@@ -65,29 +56,57 @@ a {
   user-select: none;
 }
 
-.page_content {
+a {
+	font-family: 'Arial', Calibri, Dejavu Sans;
+	color: #7cb5f0;
+  font-size: 14px;
+}
+
+
+/*************
+Main page body 
+*************/
+#page-content {
 	position: fixed;
   left: 20%;
 	top: 100px;
 	background-color: blue;
 }
 
-
-.code_box, .preview_box, .option_box, .about_box, .share_box, .editor_options_box,
+/* Box shape */
+#editor-options-box,
+#share-box,
+#code-box,
+#code-option-box,
+#about-box,
+#preview-box,
 .box {
 	margin: 8px;
 	padding: 8px;
 	background-color: #f5f2f0;
 	border-radius: 7px;
+  user-select: none;
 }
 
-.box_title{
-	font-family: "Arial", Calibri, Dejavu Sans;
+.box-title {
+	font-family: 'Arial', Calibri, Dejavu Sans;
 	margin-bottom: 5px;
 	user-select: none;
 }
 
-.share_box{
+
+/* Editor Options */
+#editor-options-box {
+  position: absolute;
+  top: 0px;
+  width: 40px;
+  height: 375px;
+  background-color: #97d1d3;
+}
+
+
+/* Share */
+#share-box {
   position: absolute;
   top: 400px;
   left: 60px;
@@ -95,28 +114,9 @@ a {
   height: 75px;
 }
 
-.editor_options_box {
-  position: absolute;
-  top: 0px;
-  width: 40px;
-  height: 375px;
-  background-color: #97d1d3;
-  z-index: 3;
-}
 
-.editor_image {
-}
-
-.image_description {
-  position: relative;
-  top: -30px;
-  left: 20px;
-  background-color: white;
-  font-size: 8px; 
-  width: 30px;
-}
-
-.code_box {
+/* Code */
+#code-box {
 	position: absolute;
 	left: 320px;
 	top: 141px;
@@ -124,7 +124,7 @@ a {
 	height: 234px;
 }
 
-.code_text {
+#code-box__code {
 	width: 313px;
 	height: 200px;
 	resize: none;
@@ -132,7 +132,7 @@ a {
 	border: none;
 }
 
-.option_box {
+#code-option-box {
 	position: absolute;
 	top: 141px;
   left: 640px;
@@ -140,7 +140,14 @@ a {
 	height: 234px;
 }
 
-.about_box {
+.code-option-box__checkbox {
+	position: relative;
+	top: 2px;
+}
+
+
+/* About */
+#about-box {
   position: absolute;
 	top: 400px;
   left: 320px;
@@ -148,24 +155,23 @@ a {
 	height: 180px;
 }
 
-.pixel_editor{
+
+/* Pixel editor */
+#pixel-editor {
 	position: absolute;
 	left: 60px;
 	top: 0px;
-	
 	width: 250px; 
 	height: 390px;
 	margin: 8px;
 	float: center;
 	border-radius: 10px;
 	background-color: #4db7bb;
+  text-align: center;
+  user-select: none;
 }
 
-.editor_options {
-	text-align: center;
-}
-
-.char_name_input {
+#pixel-editor__charname {
 	text-align: center;
 	border-radius: 4px;
 	border: none;
@@ -173,21 +179,8 @@ a {
 	margin-bottom: 20px;
 }
 
-.button {
-	background-color: transparent;
-	margin-bottom: 8px;
-	border: black 1px solid;
-	border-radius: 4px;
-}
 
-.pixel_box{
-	width: 205px; 
-	height: 326px;
-	user-select: none;
-	margin: auto;
-}
-
-.pixel_on {
+.pixel-on {
 	width: 32px;
 	height: 32px;
 	margin: 2px;
@@ -197,7 +190,7 @@ a {
 	display: inline-block;
 }
 
-.pixel_off {
+.pixel-off {
 	width: 32px;
 	height: 32px;
 	margin: 2px;
@@ -207,7 +200,9 @@ a {
 	display: inline-block;
 }
 
-.preview_box {
+
+/* Preview */
+#preview-box {
 	position: absolute;
 	left: 320px;
 	top: 0px;
@@ -215,7 +210,7 @@ a {
 	height: 115px;
 }
 
-.lcd_pixel {
+.lcd-pixel {
 	width: 25px;
 	height: 40px;
 	box-sizing: border-box;
@@ -234,7 +229,7 @@ td {
 	border-collapse: collapse;
 }
 
-.lcd_pixel_selected {
+.lcd-pixel__selected {
 	width: 25px;
 	height: 40px;
 	box-sizing: border-box;
@@ -245,6 +240,6 @@ td {
 	float: left;
 }
 
-.lcd_pixel_on{
+.lcd-pixel__on{
 	background-color: black;
 }

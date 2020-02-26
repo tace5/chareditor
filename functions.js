@@ -11,7 +11,7 @@
 /* CODE Functions */
 function updateCode (){
   /* Updates the code according to editor */
-	var charname = document.getElementById("charname").value;
+	var charname = document.getElementById("pixel-editor__charname").value;
 	var code_header = "byte " + charname + "[] = {";
 	var code_body = "";
 	var code_footer = "};";
@@ -22,7 +22,7 @@ function updateCode (){
 			var pixelID = "pixel-" + row + "x" + col;
 			var pixel_state = document.getElementById(pixelID).className;
 			
-			if (pixel_state === "pixel_off") code_body += "0";
+			if (pixel_state === "pixel-off") code_body += "0";
 			else code_body += "1";
 		}
 		code_body += ",\r\n";
@@ -36,7 +36,7 @@ function updateCode (){
 	var full_code = code_header + "\r\n" +
                   code_body + "\r\n" +
                   code_footer;
-    document.getElementById("code").value = full_code;
+    document.getElementById("code-box__code").value = full_code;
 	
   if (isCheckboxChecked("autocopy")) copyToClipboard();
 }
@@ -51,8 +51,8 @@ function addDefineCode(charname){
 function togglePixel (pixelID) {
   /* Toggles state of specified pixel */
 	var pixel = document.getElementById(pixelID);
-	if (pixel.className === "pixel_off") pixel.className = "pixel_on";
-	else pixel.className = "pixel_off";
+	if (pixel.className === "pixel-off") pixel.className = "pixel-on";
+	else pixel.className = "pixel-off";
   updateCode();
   toggleLCDPixel(pixelID);
 }
@@ -63,7 +63,7 @@ function clear_pixels () {
 		for (var col = 0; col < 5; col++) {
 			var pixelID = "pixel-" + row + "x" + col;
 			var pixel = document.getElementById(pixelID);
-			pixel.className = "pixel_off";
+			pixel.className = "pixel-off";
 		}
 	}
 	updateCode();
@@ -119,8 +119,8 @@ function updateLCD () {
 			var lcdpixel = document.getElementById(lcdpixelID);
 			var pixelState = document.getElementById(pixelID).className;
 			
-			if (pixelState === "pixel_off") lcdpixel.className = null;
-			else lcdpixel.className = "lcd_pixel_on";
+			if (pixelState === "pixel-off") lcdpixel.className = null;
+			else lcdpixel.className = "lcd-pixel__on";
 		}
 	}
 }
@@ -130,8 +130,8 @@ function toggleLCDPixel (pixelID) {
 	var LCDpixelID = selectedLCD + pixelID.substr(-4);
 	var LCDpixel = document.getElementById(LCDpixelID);
 	
-	if (LCDpixel.className === "lcd_pixel_on") LCDpixel.className = null;
-	else LCDpixel.className = "lcd_pixel_on";
+	if (LCDpixel.className === "lcd-pixel__on") LCDpixel.className = null;
+	else LCDpixel.className = "lcd-pixel__on";
 }
 
 function selectLCD (lcdID) {
@@ -139,7 +139,7 @@ function selectLCD (lcdID) {
 	unselectLCD(selectedLCD); // Unselect previous	LCD
   
 	var lcdpixel = document.getElementById(lcdID);
-	lcdpixel.className = "lcd_pixel_selected";
+	lcdpixel.className = "lcd-pixel__selected";
 	selectedLCD = lcdID;
 	loadLCDtoEditor(lcdID);
 	updateCode();
@@ -148,7 +148,7 @@ function selectLCD (lcdID) {
 function unselectLCD (lcdID) {
   /* Removes selection of the specified LCD */
   var lcd = document.getElementById(lcdID);
-  lcd.className = "lcd_pixel";
+  lcd.className = "lcd-pixel";
 }
 
 function loadLCDtoEditor (lcdID) {
@@ -162,8 +162,8 @@ function loadLCDtoEditor (lcdID) {
 			var pixelID = "pixel-" + row + "x" + col;
 			var pixel = document.getElementById(pixelID);
 			
-			if (lcdpixelState === "lcd_pixel_on") pixel.className = "pixel_on";
-			else pixel.className = "pixel_off";
+			if (lcdpixelState === "lcd-pixel__on") pixel.className = "pixel-on";
+			else pixel.className = "pixel-off";
 		}
 	}
 }
@@ -178,7 +178,7 @@ function isCheckboxChecked (checkboxID) {
 
 function copyToClipboard () {
   /* Copies content of code text area to clipboard */
-	var copyText = document.getElementById("code");
+	var copyText = document.getElementById("code-box__code");
   
 	copyText.select();
 	copyText.setSelectionRange(0, 99999);  // Select all text
