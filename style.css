@@ -105,6 +105,17 @@ Main page body
 }
 
 
+#shiftup_icon {
+  position: relative;
+  top: 4px;
+}
+
+#shiftdown_icon {
+  position: relative;
+  top: -7px;
+}
+
+
 /* Share */
 #share-box {
   position: absolute;

@@ -134,6 +134,98 @@ function pasteToPixelEditor () {
   updateLCD();
 }
 
+function shiftUp () {
+  /* Shifts every pixel upwards */
+  for (var row = 0; row < 7; row++) {
+    for (var col = 0; col < 5; col++) {
+      var pixelID = "pixel-" + row + "x" + col;
+      var pixel = document.getElementById(pixelID);
+      var pixelBelowID = "pixel-" + (row + 1) + "x" + col;
+      var pixelBelowState = document.getElementById(pixelBelowID).className;
+      pixel.className = pixelBelowState;
+    }
+  }
+  
+  // Clear last row
+  for (var col = 0; col < 5; col++) {
+    var pixelID = "pixel-7x" + col;
+    var pixel = document.getElementById(pixelID);
+    pixel.className = "pixel-off";
+  }
+  
+  updateCode();
+  updateLCD();
+}
+
+function shiftDown () {
+  /* Shift every pixel downwards */
+  for (var row = 7; row > 0; row--) {
+    for (var col = 0; col < 5; col++) {
+      var pixelID = "pixel-" + row + "x" + col;
+      var pixel = document.getElementById(pixelID);
+      var pixelAboveID = "pixel-" + (row - 1) + "x" + col;
+      var pixelAboveState = document.getElementById(pixelAboveID).className;
+      pixel.className = pixelAboveState;
+    }
+  }
+  
+  // Clear first row
+  for (var col = 0; col < 5; col++) {
+    var pixelID = "pixel-0x" + col;
+    var pixel = document.getElementById(pixelID);
+    pixel.className = "pixel-off";
+  }
+  
+  updateCode();
+  updateLCD();
+}
+
+function shiftLeft () {
+  /* Shifts every pixel leftwards */
+  for (var row = 0; row < 8; row++) {
+    for (var col = 0; col < 4; col++) {
+      var pixelID = "pixel-" + row + "x" + col;
+      var pixel = document.getElementById(pixelID);
+      var pixelToRightID = "pixel-" + row + "x" + (col + 1);
+      var pixelToRightState = document.getElementById(pixelToRightID).className;
+      pixel.className = pixelToRightState;
+    }
+  }
+  
+  // Clear rightest row
+  for (var row = 0; row < 8; row++) {
+    var pixelID = "pixel-" + row + "x4";
+    var pixel = document.getElementById(pixelID);
+    pixel.className = "pixel-off";
+  }
+  
+  updateCode();
+  updateLCD();
+}
+
+function shiftRight () {
+  /* Shift every pixel rightwards */
+  for (var row = 0; row < 8; row++) {
+    for (var col = 4; col > 0; col--) {
+      var pixelID = "pixel-" + row + "x" + col;
+      var pixel = document.getElementById(pixelID);
+      var pixelToLeftID = "pixel-" + row + "x" + (col - 1);
+      var pixelToLeftState = document.getElementById(pixelToLeftID).className;
+      pixel.className = pixelToLeftState;
+    }
+  }
+  
+  // Clear leftest row
+  for (var row = 0; row < 8; row++) {
+    var pixelID = "pixel-" + row + "x0";
+    var pixel = document.getElementById(pixelID);
+    pixel.className = "pixel-off";
+  }
+  
+  updateCode();
+  updateLCD();
+}
+
 function checkEnter (event) {
   /* Check if enter key is pressed, if so avoids action */
   if (event.keyCode == 13) return false;
