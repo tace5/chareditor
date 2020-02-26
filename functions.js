@@ -102,6 +102,38 @@ function mirrorPixels () {
   updateLCD();
 }
 
+function copyToPixelClipboard () {
+  /* Copies current state of editor to the clipboard */
+  for (var row = 0; row < 8; row++) {
+    for (var col = 0; col < 5; col++) {
+      var pixelID = "pixel-" + row + "x" + col;
+      var pixelState = document.getElementById(pixelID).className;
+      var clipboardPixelID = "clipboard-" + row + "x" + col;
+      var clipboardPixel = document.getElementById(clipboardPixelID);
+      
+      if (pixelState === "pixel-off") clipboardPixel.className = null;
+      else clipboardPixel.className = "lcd-pixel__on"; 
+    }
+  }
+}
+
+function pasteToPixelEditor () {
+  /* Paste current state of clipboard to editor */
+  for (var row = 0; row < 8; row++) {
+    for (var col = 0; col < 5; col++) {
+      var clipboardPixelID = "clipboard-" + row + "x" + col;
+      var clipboardState = document.getElementById(clipboardPixelID).className;
+      var pixelID = "pixel-" + row + "x" + col;
+      var pixel = document.getElementById(pixelID);
+      
+      if (clipboardState === "lcd-pixel__on") pixel.className = "pixel-on";
+      else pixel.className = "pixel-off"; 
+    }
+  }
+  updateCode();
+  updateLCD();
+}
+
 function checkEnter (event) {
   /* Check if enter key is pressed, if so avoids action */
   if (event.keyCode == 13) return false;
@@ -115,10 +147,10 @@ function updateLCD () {
   for (var row = 0; row < 8; row++) {
     for (var col = 0; col < 5; col++) {
       var pixelID = "pixel-" + row + "x" + col;
+      var pixelState = document.getElementById(pixelID).className;
       var lcdpixelID = selectedLCD + "-" + row + "x" + col;
       var lcdpixel = document.getElementById(lcdpixelID);
-      var pixelState = document.getElementById(pixelID).className;
-      
+ 
       if (pixelState === "pixel-off") lcdpixel.className = null;
       else lcdpixel.className = "lcd-pixel__on";
     }

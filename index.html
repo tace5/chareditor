@@ -47,8 +47,10 @@
     <img id="clear_icon"  src="images/clear_icon.png" onclick="clear_pixels();" onmouseover="iconHovered(this.id);" onmouseout="iconUnHovered(this.id);">
     <img id="invert_icon" src="images/invert_icon.png" onclick="invertPixels();" onmouseover="iconHovered(this.id);" onmouseout="iconUnHovered(this.id);">
     <img id="mirror_icon" src="images/mirror_icon.png" onclick="mirrorPixels();" onmouseover="iconHovered(this.id);" onmouseout="iconUnHovered(this.id);">
+    <img id="copy_icon" src="images/copy_icon.png" onclick="copyToPixelClipboard();" onmouseover="iconHovered(this.id);" onmouseout="iconUnHovered(this.id);">
+    <img id="paste_icon" src="images/paste_icon.png" onclick="pasteToPixelEditor();" onmouseover="iconHovered(this.id);" onmouseout="iconUnHovered(this.id);">
     </div>
-		
+    
 		<div id="pixel-editor">
 				<form>
 					<input type="text-area" id="pixel-editor__charname" value="charName" oninput="updateCode();" onkeydown="return checkEnter(event);"/> <br>
@@ -102,7 +104,18 @@
         <div id="pixel-7x3" class="pixel-off" onclick="togglePixel(this.id)"> </div>
         <div id="pixel-7x4" class="pixel-off" onclick="togglePixel(this.id)"> </div>
 		</div>
-				
+    
+		<table id="pixel-editor__clipboard">
+	    <tr> <td id="clipboard-0x0"></td><td id="clipboard-0x1"></td><td id="clipboard-0x2"></td><td id="clipboard-0x3"></td><td id="clipboard-0x4"></td> </tr>
+			<tr> <td id="clipboard-1x0"></td><td id="clipboard-1x1"></td><td id="clipboard-1x2"></td><td id="clipboard-1x3"></td><td id="clipboard-1x4"></td> </tr>
+			<tr> <td id="clipboard-2x0"></td><td id="clipboard-2x1"></td><td id="clipboard-2x2"></td><td id="clipboard-2x3"></td><td id="clipboard-2x4"></td> </tr>
+			<tr> <td id="clipboard-3x0"></td><td id="clipboard-3x1"></td><td id="clipboard-3x2"></td><td id="clipboard-3x3"></td><td id="clipboard-3x4"></td> </tr>
+			<tr> <td id="clipboard-4x0"></td><td id="clipboard-4x1"></td><td id="clipboard-4x2"></td><td id="clipboard-4x3"></td><td id="clipboard-4x4"></td> </tr>
+			<tr> <td id="clipboard-5x0"></td><td id="clipboard-5x1"></td><td id="clipboard-5x2"></td><td id="clipboard-5x3"></td><td id="clipboard-5x4"></td> </tr>
+			<tr> <td id="clipboard-6x0"></td><td id="clipboard-6x1"></td><td id="clipboard-6x2"></td><td id="clipboard-6x3"></td><td id="clipboard-6x4"></td> </tr>
+			<tr> <td id="clipboard-7x0"></td><td id="clipboard-7x1"></td><td id="clipboard-7x2"></td><td id="clipboard-7x3"></td><td id="clipboard-7x4"></td> </tr>
+		</table>
+    
 		<div id="preview-box">
 			<div class="box-title">LCD 16x2 Preview</div>
 			<table id="lcd-0x0" class="lcd-pixel__selected" onclick="selectLCD(this.id);">
