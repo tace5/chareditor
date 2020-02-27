@@ -48,15 +48,6 @@ footer {
   padding: 10px;
 }
 
-#copyright-text {
-  position: absolute;
-  top: 10px;
-  left: 20px;
-  color: #7cb5f0;
-  font-family: 'Arial', Calibri, Dejavu Sans;
-  font-size: 10px;
-  user-select: none;
-}
 
 #donate-form {
   display: inline;
@@ -75,6 +66,23 @@ a {
   border: none;
   cursor: pointer;
 }
+
+#copyright-text {
+  position: absolute;
+  top: 10px;
+  left: 20px;
+  color: #7cb5f0;
+  font-family: 'Arial', Calibri, Dejavu Sans;
+  font-size: 10px;
+  user-select: none;
+}
+
+#copyright-text__link {
+  color: #7cb5f0;
+  font-family: 'Arial', Calibri, Dejavu Sans;
+  font-size: 10px;
+}
+
 
 
 /*************
