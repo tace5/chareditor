@@ -13,6 +13,7 @@ Code will automatically update after every change you make. You can rename your 
 pixel editor. Code options are available at the left of the Code box. Some options are: automatic copy (which copies the code to your computer clipboard after every change), include #define, hex datatype and more. Use the checkboxes to activate these options as desired.
 
 ## Supporters
+This is a private space reserved for those kind people that supported this project.
 
 ## Contributors
 Here a list of the people that have contributed with this project in any form. If you wish to be part of this project refer to the contributing file.
