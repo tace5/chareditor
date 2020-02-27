@@ -3,7 +3,7 @@
  *
  * @file   This files defines all functions.
  * @author Alejandro Santiago (@alestiago)
- * @since  23.02.2020
+ * @since  27.02.2020
  */
 
 /* global selectedLCD */
@@ -13,9 +13,26 @@ function updateCode (){
   /* Updates the code according to editor */
   var charname = document.getElementById("pixel-editor__charname").value;
   var code_header = "byte " + charname + "[] = {";
-  var code_body = "";
+  var code_body;
+  if (isCheckboxChecked("hex-data-type")) code_body = getHexCode();
+  else code_body = getBinaryCode();
   var code_footer = "};";
+
+  if (isCheckboxChecked("include-define")){
+    code_header = addDefineCode(charname) + "\r\n" + code_header;
+  }
   
+  var full_code = code_header + "\r\n" +
+                  code_body + "\r\n" +
+                  code_footer;
+  document.getElementById("code-box__code").value = full_code;
+  
+  if (isCheckboxChecked("autocopy")) copyToClipboard();
+}
+
+function getBinaryCode () {
+  /* Returns binary code according to pixels state */
+  var code_body = "";
   for (var row = 0; row < 8; row++) {
     code_body += "    B";
     for (var col = 0; col < 5; col++) {
@@ -29,16 +46,30 @@ function updateCode (){
   }
   code_body = code_body.substring(0, code_body.length - 3);
   
-  if (isCheckboxChecked("includeDefine")){
-    code_header = addDefineCode(charname) + "\r\n" + code_header;
+  return code_body
+}
+
+function getHexCode () {
+  /* Returns hexadecimal code according to pixels state */
+  var code_body = "";
+  for (var row = 0; row < 8; row++) {
+    code_body += "    0x";
+    var thisLineBinary = "";
+    for (var col = 0; col < 5; col++) {
+      var pixelID = "pixel-" + row + "x" + col;
+      var pixel_state = document.getElementById(pixelID).className;
+			
+      if (pixel_state === "pixel-off") thisLineBinary += "0";
+      else thisLineBinary += "1";
+    }
+    var thisLineHex = parseInt(thisLineBinary, 2).toString(16);
+    thisLineHex = thisLineHex.toUpperCase();
+    if (thisLineHex.length < 2) thisLineHex += "0";
+    code_body += thisLineHex + ",\r\n";
   }
+  code_body = code_body.substring(0, code_body.length - 3);
   
-  var full_code = code_header + "\r\n" +
-                  code_body + "\r\n" +
-                  code_footer;
-  document.getElementById("code-box__code").value = full_code;
-  
-  if (isCheckboxChecked("autocopy")) copyToClipboard();
+  return code_body
 }
 
 function addDefineCode(charname){
