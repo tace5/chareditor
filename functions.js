@@ -347,13 +347,13 @@ function copyToClipboard () {
 function iconHovered(iconID){
   /* Changes image when hovered */
   var icon = document.getElementById(iconID);
-  var hoveredImage = "images/" + iconID + "__hovered.png";
+  var hoveredImage = "images/editor-icons/" + iconID + "__hovered.png";
   icon.src = hoveredImage;
 }
 
 function iconUnHovered(iconID){
   /* Changes image when stoped hovered */
   var icon = document.getElementById(iconID);
-  var unHoveredImage = "images/" + iconID + ".png";
+  var unHoveredImage = "images/editor-icons/" + iconID + ".png";
   icon.src = unHoveredImage;
 }

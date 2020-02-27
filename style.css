@@ -53,6 +53,8 @@ footer {
   top: 10px;
   left: 20px;
   color: #7cb5f0;
+  font-family: 'Arial', Calibri, Dejavu Sans;
+  font-size: 10px;
   user-select: none;
 }
 
