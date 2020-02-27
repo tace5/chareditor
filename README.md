@@ -1,5 +1,5 @@
-![alt text](https://github.com/alestiago/LCD-Custom-Character-Generetor/blob/master/images/logo.png "Character Editor logo")
-# Character Editor
+# ![alt text](https://github.com/alestiago/LCD-Custom-Character-Generetor/blob/master/images/logo.png "Character Editor logo") LCD Custom Character Editor
+
 Open source online editor to easily design LCD custom characters with self generating code.
 
 **Web tool available here:** [Character Editor](https://www.chareditor.com)
