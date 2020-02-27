@@ -15,6 +15,9 @@ pixel editor. Code options are available at the left of the Code box. Some optio
 ## Supporters
 
 ## Contributors
+Here a list of the people that have contributed with this project in any form. If you wish to be part of this project refer to the contributing file.
+
+* **Alejandro Santiago** - *Initial work* - [alestiago](https://github.com/alestiago)
 
 ## Author's note
 > The aim of this tool is to facilitate the design of custom characters for your microcontroller. I am looking forward to seeing your fantastic creations of complex character. Therefore a share option is in progress. <br><br> I started coding this with three weeks of web programming experience, hence the code might be modified as I keep learning more about it. If you find anything that can be improved please read the contributing file. <br><br> With this said, enjoy and create fantastic custom characters! <br><br> Enjoy, <br> Alejandro
