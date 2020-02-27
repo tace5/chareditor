@@ -186,6 +186,14 @@ Main page body
   left: 320px;
   width: 470px;
   height: 180px;
+  font-size: 14px;
+}
+
+#about-box__link {
+  font-size: 12px;
+  font-style: italic;
+  text-decoration: none;
+  color: black;
 }
 
 
