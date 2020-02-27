@@ -56,10 +56,22 @@ body {
   user-select: none;
 }
 
+#donate-form {
+  display: inline;
+}
+
+#donate-form__text,
 a {
   font-family: 'Arial', Calibri, Dejavu Sans;
   color: #7cb5f0;
   font-size: 14px;
+  text-decoration: underline;
+}
+
+#donate-form__text {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 }
 
 

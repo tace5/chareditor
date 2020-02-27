@@ -45,15 +45,15 @@
     </div>
     
     <div id="editor-options-box">
-      <img id="clear-icon"  src="images/clear-icon.png" onclick="clear_pixels();" onmouseover="iconHovered(this.id);" onmouseout="iconUnHovered(this.id);">
-      <img id="invert-icon" src="images/invert-icon.png" onclick="invertPixels();" onmouseover="iconHovered(this.id);" onmouseout="iconUnHovered(this.id);">
-      <img id="mirror-icon" src="images/mirror-icon.png" onclick="mirrorPixels();" onmouseover="iconHovered(this.id);" onmouseout="iconUnHovered(this.id);">
-      <img id="copy-icon" src="images/copy-icon.png" onclick="copyToPixelClipboard();" onmouseover="iconHovered(this.id);" onmouseout="iconUnHovered(this.id);">
-      <img id="paste-icon" src="images/paste-icon.png" onclick="pasteToPixelEditor();" onmouseover="iconHovered(this.id);" onmouseout="iconUnHovered(this.id);">
-      <img id="shift-up-icon" src="images/shift-up-icon.png" onclick="shiftUp();" onmouseover="iconHovered(this.id);" onmouseout="iconUnHovered(this.id);">
-      <img id="shift-left-icon" src="images/shift-left-icon.png" onclick="shiftLeft();" onmouseover="iconHovered(this.id);" onmouseout="iconUnHovered(this.id);">
-      <img id="shift-right-icon" src="images/shift-right-icon.png" onclick="shiftRight();" onmouseover="iconHovered(this.id);" onmouseout="iconUnHovered(this.id);">
-      <img id="shift-down-icon" src="images/shift-down-icon.png" onclick="shiftDown();" onmouseover="iconHovered(this.id);" onmouseout="iconUnHovered(this.id);">
+      <img id="clear-icon"  src="images/clear-icon.png" title="Clear"onclick="clear_pixels();" onmouseover="iconHovered(this.id);" onmouseout="iconUnHovered(this.id);">
+      <img id="invert-icon" src="images/invert-icon.png" title="Invert" onclick="invertPixels();" onmouseover="iconHovered(this.id);" onmouseout="iconUnHovered(this.id);">
+      <img id="mirror-icon" src="images/mirror-icon.png" title="Mirror" onclick="mirrorPixels();" onmouseover="iconHovered(this.id);" onmouseout="iconUnHovered(this.id);">
+      <img id="copy-icon" src="images/copy-icon.png" title="Copy" onclick="copyToPixelClipboard();" onmouseover="iconHovered(this.id);" onmouseout="iconUnHovered(this.id);">
+      <img id="paste-icon" src="images/paste-icon.png" title="Paste" onclick="pasteToPixelEditor();" onmouseover="iconHovered(this.id);" onmouseout="iconUnHovered(this.id);">
+      <img id="shift-up-icon" src="images/shift-up-icon.png" title="Shift upwards" onclick="shiftUp();" onmouseover="iconHovered(this.id);" onmouseout="iconUnHovered(this.id);">
+      <img id="shift-left-icon" src="images/shift-left-icon.png" title="Shift leftwards" onclick="shiftLeft();" onmouseover="iconHovered(this.id);" onmouseout="iconUnHovered(this.id);">
+      <img id="shift-right-icon" src="images/shift-right-icon.png" title="Shift rightwards" onclick="shiftRight();" onmouseover="iconHovered(this.id);" onmouseout="iconUnHovered(this.id);">
+      <img id="shift-down-icon" src="images/shift-down-icon.png" title="Shift downwards" onclick="shiftDown();" onmouseover="iconHovered(this.id);" onmouseout="iconUnHovered(this.id);">
     </div>
     
     <div id="pixel-editor">
@@ -448,10 +448,14 @@
   </div>
 	
   <div id="footer-bar">
-    <u><a href="https://github.com/alestiago/LCD-Custom-Character-Generetor" target="_blank">GitHub</a></u>
-    <u><a href="" target="_blank">Donate</a></u>
-    <u><a href="" target="_blank">Contribute</a></u> <br>
-    <label id="copyright-text">&copy; 2020 Name goes here</label>
+      <a href="https://github.com/alestiago/LCD-Custom-Character-Generetor" target="_blank">GitHub</a>
+      <form id="donate-form" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+        <input type="hidden" name="cmd" value="_s-xclick" />
+        <input type="hidden" name="hosted_button_id" value="YU78RUK3CND28" />
+        <input id="donate-form__text" type="submit" value="Get me a Pizza"/>
+      </form>
+      <a href="" target="_blank">Contribute</a>
+      <label id="copyright-text">&copy; 2020 Name goes here</label>
   </div>
   
   <script src="functions.js"></script> 
