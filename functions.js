@@ -64,7 +64,7 @@ function getHexCode () {
     }
     var thisLineHex = parseInt(thisLineBinary, 2).toString(16);
     thisLineHex = thisLineHex.toUpperCase();
-    if (thisLineHex.length < 2) thisLineHex += "0";
+    if (thisLineHex.length < 2) thisLineHex = "0" + thisLineHex;  //Todo: modify this
     
     code_body += thisLineHex + ",\r\n";
   }
