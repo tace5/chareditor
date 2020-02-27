@@ -15,7 +15,7 @@ pixel editor. Code options are available at the left of the Code box. Some optio
 ## Contributors
 
 ## Author's note
-> The aim of this tool is to facilitate the design of custom characters for your microcontroller. I am looking forward to seeing your fantastic creations of complex character. Therefore a share option is in progress. <br> I started coding this with three weeks of web programming experience, hence the code might be modified as I keep learning more about it. If you find any room for improvement please read the contributing file. <br> With this said, enjoy and create fantastic custom characters! <br> Enjoy, <br> Alejandro
+> The aim of this tool is to facilitate the design of custom characters for your microcontroller. I am looking forward to seeing your fantastic creations of complex character. Therefore a share option is in progress. <br><br> I started coding this with three weeks of web programming experience, hence the code might be modified as I keep learning more about it. If you find any room for improvement please read the contributing file. <br><br> With this said, enjoy and create fantastic custom characters! <br><br> Enjoy, <br> Alejandro
 
 ## License
 There is currently no license. Meaning that you can not use this code for any purpose.
