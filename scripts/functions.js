@@ -364,9 +364,10 @@ function copyToClipboard () {
 };
 
 /* IMAGES functions */
-function iconHovered(iconID){
+function iconHovered(iconID, targetID){
   /* Changes image when hovered */
-  var icon = document.getElementById(iconID);
+  if (targetID === undefined) targetID = iconID;
+  var icon = document.getElementById(targetID);
   var hoveredImage = "images/editor-icons/" + iconID + "__hovered.png";
   icon.src = hoveredImage;
 }
