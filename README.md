@@ -4,9 +4,6 @@ Open source online editor to easily design LCD custom characters with self gener
 
 **Web tool available here:** [Character Editor](https://www.chareditor.com)
 
-## Author's note
-> The aim of this tool is to facilitate the design of custom characters for your microcontroller. I am looking forward to seeing your fantastic characters creations. Therefore a share option is in progress. <br><br> I started coding this with three weeks of web programming experience, hence the code might be modified as I keep learning more about it. If you find anything that can be improved please read the contributing file. <br><br> With this said, enjoy and create fantastic custom characters! <br><br> Enjoy, <br> Alejandro
-
 ## Usage
 Click pixels to generate a custom character for your Arduino microcontroller. Use the *LCD 16x2 preview* to visualize your custom characters, swap between the preview pixels by clicking on them.
 
@@ -15,6 +12,9 @@ Use the icons at the left of the editor to perform this actions.
 
 Code will automatically update after every change you make. You can rename your character by using the text box above the
 pixel editor. Code options are available at the left of the *code box*. Some options are: *automatic copy* (which copies the code to your computer clipboard after every change), *include #define*, *hex datatype* and more. Use the checkboxes to activate these options as desired.
+
+## Author's note
+> The aim of this tool is to facilitate the design of custom characters for your microcontroller. I am looking forward to seeing your fantastic characters creations. Therefore a share option is in progress. <br><br> I started coding this with three weeks of web programming experience, hence the code might be modified as I keep learning more about it. If you find anything that can be improved please read the contributing file. <br><br> With this said, enjoy and create fantastic custom characters! <br><br> Enjoy, <br> Alejandro
 
 ## Supporters
 This is a private space reserved for those kind people that supported this project.
