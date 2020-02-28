@@ -104,7 +104,6 @@ a {
 }
 
 
-
 /*************
 Main page body 
 *************/
@@ -113,6 +112,7 @@ Main page body
   left: 23%;
   top: 100px;
   background-color: blue;
+  margin:0 auto;
 }
 
 /* Box shape */
