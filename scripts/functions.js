@@ -80,13 +80,12 @@ function addDefineCode(charname){
 }
 
 /* PIXEL EDITOR functions */
-function togglePixel (pixelID) {
+function togglePixel (pixel) {
   /* Toggles state of specified pixel */
-  var pixel = document.getElementById(pixelID);
   if (pixel.className === "pixel-off") pixel.className = "pixel-on";
   else pixel.className = "pixel-off";
   updateCode();
-  toggleLCDPixel(pixelID);
+  toggleLCDPixel(pixel);
 }
 
 function clear_pixels () {
@@ -258,13 +257,8 @@ function shiftRight () {
   updateLCD();
 }
 
-function checkEnter (event) {
-  /* Check if enter key is pressed, if so avoids action */
-  if (event.keyCode == 13) return false;
-}
-
 /* PREVIEW Functions */
-var selectedLCD = "lcd-0x0";
+var selectedLCD = document.getElementById("lcd-0x0");
 
 function updateLCD () {
   /* Updates all editor pixels states to selected LCD */
@@ -281,37 +275,35 @@ function updateLCD () {
   }
 }
 
-function toggleLCDPixel (pixelID) {
+function toggleLCDPixel (pixel) {
   /* Toggles state of specified LCD pixel */
-  var LCDpixelID = selectedLCD + pixelID.substr(-4);
+  var LCDpixelID = selectedLCD + pixel.id.substr(-4);
   var LCDpixel = document.getElementById(LCDpixelID);
   
   if (LCDpixel.className === "lcd-pixel__on") LCDpixel.className = null;
   else LCDpixel.className = "lcd-pixel__on";
 }
 
-function selectLCD (lcdID) {
+function selectLCD (lcdpixel) {
   /* Selects specified LCD and updates Editor and Code */
   unselectLCD(selectedLCD); // Unselect previous	LCD
-  
-  var lcdpixel = document.getElementById(lcdID);
+
   lcdpixel.className = "lcd-pixel__selected";
-  selectedLCD = lcdID;
-  loadLCDtoEditor(lcdID);
+  selectedLCD = lcdpixel;
+  loadLCDtoEditor(lcdpixel);
   updateCode();
 }
 
-function unselectLCD (lcdID) {
+function unselectLCD (lcd) {
   /* Removes selection of the specified LCD */
-  var lcd = document.getElementById(lcdID);
   lcd.className = "lcd-pixel";
 }
 
-function loadLCDtoEditor (lcdID) {
+function loadLCDtoEditor (lcd) {
   /* Loads specified LCD pixel to editor */
   for (var row = 0; row < 8; row++) {
     for (var col = 0; col < 5; col++) {
-      var lcdpixelID = lcdID + "-" + row + "x" + col;
+      var lcdpixelID = lcd.id + "-" + row + "x" + col;
       var lcdpixel = document.getElementById(lcdpixelID);
       var lcdpixelState = lcdpixel.className;
       
@@ -325,10 +317,9 @@ function loadLCDtoEditor (lcdID) {
 }
 
 /* OPTIONS functions */
-function isCheckboxChecked (checkboxID) {
+function isCheckboxChecked (checkbox) {
   /* Checks if the checkbox is checked or not, returns boolean accordingly */
-  var myCheckbox = document.getElementById(checkboxID);
-  var checkedValue = myCheckbox.checked;
+  var checkedValue = checkbox.checked;
   return checkedValue;
 }
 
@@ -344,16 +335,14 @@ function copyToClipboard () {
 };
 
 /* IMAGES functions */
-function iconHovered(iconID){
+function iconHovered(icon){
   /* Changes image when hovered */
-  var icon = document.getElementById(iconID);
-  var hoveredImage = "images/editor-icons/" + iconID + "__hovered.png";
+  var hoveredImage = "images/editor-icons/" + icon.id + "__hovered.png";
   icon.src = hoveredImage;
 }
 
-function iconUnHovered(iconID){
+function iconUnHovered(icon){
   /* Changes image when stoped hovered */
-  var icon = document.getElementById(iconID);
-  var unHoveredImage = "images/editor-icons/" + iconID + ".png";
+  var unHoveredImage = "images/editor-icons/" + icon.id + ".png";
   icon.src = unHoveredImage;
 }
