@@ -89,7 +89,7 @@ function togglePixel (pixelID) {
   toggleLCDPixel(pixelID);
 }
 
-function clear_pixels () {
+function clearPixels () {
   /* Sets off all pixels' state of selected LCD */
   for (var row = 0; row < 8; row++) {
     for (var col = 0; col < 5; col++) {
