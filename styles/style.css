@@ -67,6 +67,7 @@ a {
   cursor: pointer;
 }
 
+
 #copyright-text {
   position: absolute;
   top: 10px;
@@ -184,14 +185,27 @@ Main page body
   top: 400px;
   left: 320px;
   width: 470px;
-  height: 180px;
+  height: 150px;
   font-size: 14px;
 }
 
-#about-box__link {
-  font-size: 12px;
+#donate-form__link {
+  position: relative;
+  top: -14px;
+  left: -8px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
   font-style: italic;
-  text-decoration: none;
+  text-decoration: underline;
+  display: inline;
+}
+
+#donate-form__link,
+#about-box__link {
+  font-size: 13px;
+  font-style: italic;
+  text-decoration: underline;
   color: black;
 }
 
