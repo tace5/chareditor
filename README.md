@@ -13,6 +13,9 @@ Use the icons at the left of the editor to perform this actions.
 Code will automatically update after every change you make. You can rename your character by using the text box above the
 pixel editor. Code options are available at the left of the *code box*. Some options are: *automatic copy* (which copies the code to your computer clipboard after every change), *include #define*, *hex datatype* and more. Use the checkboxes to activate these options as desired.
 
+## Author's note
+> The aim of this tool is to facilitate the design of custom characters for your microcontroller. I am looking forward to seeing your fantastic characters creations. Therefore a share option is in progress. <br><br> I started coding this with three weeks of web programming experience, hence the code might be modified as I keep learning more about it. If you find anything that can be improved please read the contributing file. <br><br> With this said, enjoy and create fantastic custom characters! <br><br> Enjoy, <br> Alejandro
+
 ## Supporters
 This is a private space reserved for those kind people that supported this project.
 
@@ -21,9 +24,6 @@ Here a list of the people that have contributed with this project in any form. I
 
 * **Alejandro Santiago** - *Initial work* - [alestiago](https://github.com/alestiago)
 
-## Author's note
-> The aim of this tool is to facilitate the design of custom characters for your microcontroller. I am looking forward to seeing your fantastic characters creations. Therefore a share option is in progress. <br><br> I started coding this with three weeks of web programming experience, hence the code might be modified as I keep learning more about it. If you find anything that can be improved please read the contributing file. <br><br> With this said, enjoy and create fantastic custom characters! <br><br> Enjoy, <br> Alejandro
 
 ## License
 This project is described to be open source, collective collaboration is encouraged. This project is currently under the GPL-3.0 license. Refer to LICENSE.md for more details.
-
