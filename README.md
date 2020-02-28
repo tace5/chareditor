@@ -25,5 +25,5 @@ Here a list of the people that have contributed with this project in any form. I
 > The aim of this tool is to facilitate the design of custom characters for your microcontroller. I am looking forward to seeing your fantastic characters creations. Therefore a share option is in progress. <br><br> I started coding this with three weeks of web programming experience, hence the code might be modified as I keep learning more about it. If you find anything that can be improved please read the contributing file. <br><br> With this said, enjoy and create fantastic custom characters! <br><br> Enjoy, <br> Alejandro
 
 ## License
-This project is described to be open source, however there is currently no license. Meaning that you can not use this code for any purpose. There will be soon a license.
+This project is described to be open source, collective collaboration is encouraged. This project is currently under the GPL-3.0 license. Refer to LICENSE.md for more details.
 
