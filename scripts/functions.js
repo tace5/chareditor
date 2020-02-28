@@ -266,7 +266,7 @@ function updateLCD () {
     for (var col = 0; col < 5; col++) {
       var pixelID = "pixel-" + row + "x" + col;
       var pixelState = document.getElementById(pixelID).className;
-      var lcdpixelID = selectedLCD + "-" + row + "x" + col;
+      var lcdpixelID = selectedLCD.id + "-" + row + "x" + col;
       var lcdpixel = document.getElementById(lcdpixelID);
  
       if (pixelState === "pixel-off") lcdpixel.className = null;
@@ -277,7 +277,7 @@ function updateLCD () {
 
 function toggleLCDPixel (pixel) {
   /* Toggles state of specified LCD pixel */
-  var LCDpixelID = selectedLCD + pixel.id.substr(-4);
+  var LCDpixelID = selectedLCD.id + pixel.id.substr(-4);
   var LCDpixel = document.getElementById(LCDpixelID);
   
   if (LCDpixel.className === "lcd-pixel__on") LCDpixel.className = null;
