@@ -27,6 +27,17 @@ byte smilyFace[] = {
     B00000
 };
 
+byte sadFace[] = {
+    B00000,
+    B01010,
+    B01010,
+    B00000,
+    B01110,
+    B10001,
+    B00000,
+    B00000
+};
+
 void setup(){
   // Set up the LCD's number of columns and rows:
   lcd.begin(16, 2);
@@ -34,6 +45,7 @@ void setup(){
    // Creates new character smilyFace as 0
    // (Note: alternative you can use a macro [eg #define SMILYCHAR 0] for legibility)
   lcd.createChar(0, smilyFace);
+  lcd.createChar(1, sadFace);
   
   // Sets the cursor to column 2, row 0 (zero-based)
   lcd.setCursor(2, 0);
@@ -42,6 +54,7 @@ void setup(){
   // as 0 before.
   // (Note: we use .write to print characters and .print to print strings)
   lcd.write(0);
+  lcd.write(1)
 }
 
 void loop(){
