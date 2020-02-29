@@ -10,7 +10,7 @@
   <link href="styles/style.css" rel="stylesheet" type="text/css" />
 </head>
 
-<body onload="updateCode();">
+<body onload="onBodyLoad();">
   <header>
     <h1 id="header-title">LCD Custom Character Editor</h1>
     <h3 id="header-subtitle">Designing characters made easier</h3>
@@ -20,15 +20,15 @@
     
     <div id="code-box">
       <div class="box-title">Code</div>
-        <textarea id="code-box__code" readonly></textarea>
+        <textarea id="code-box__code" readonly class="saveable"></textarea>
       </div>
     
     <div id="code-option-box">
       <div class="box-title">Code Options</div>
         <form>
-          Automatic copy:<input id="autocopy" class="code-option-box__checkbox" type="checkbox" onclick="updateCode();"> <br>
-          Include #define:<input id="include-define" class="code-option-box__checkbox" type="checkbox" onclick="updateCode();">
-          Hex datatype:<input id="hex-data-type" class="code-option-box__checkbox" type="checkbox" onclick="updateCode();">
+          Automatic copy:<input id="autocopy" class="code-option-box__checkbox saveable" type="checkbox" onclick="updateCode();"> <br>
+          Include #define:<input id="include-define" class="code-option-box__checkbox saveable" type="checkbox" onclick="updateCode();">
+          Hex datatype:<input id="hex-data-type" class="code-option-box__checkbox saveable" type="checkbox" onclick="updateCode();">
         </form>
     </div>
     
@@ -65,55 +65,56 @@
     </div>
     
     <div id="pixel-editor">
-      <input type="text-area" id="pixel-editor__charname" value="charName" oninput="updateCode();"/> <br>
-
-      <div id="pixel-0x0" class="pixel-off" onclick="togglePixel(this)"> </div>
-      <div id="pixel-0x1" class="pixel-off" onclick="togglePixel(this)"> </div>
-      <div id="pixel-0x2" class="pixel-off" onclick="togglePixel(this)"> </div>
-      <div id="pixel-0x3" class="pixel-off" onclick="togglePixel(this)"> </div>
-      <div id="pixel-0x4" class="pixel-off" onclick="togglePixel(this)"> </div>
-      <br>
-      <div id="pixel-1x0" class="pixel-off" onclick="togglePixel(this)"> </div>
-      <div id="pixel-1x1" class="pixel-off" onclick="togglePixel(this)"> </div>
-      <div id="pixel-1x2" class="pixel-off" onclick="togglePixel(this)"> </div>
-      <div id="pixel-1x3" class="pixel-off" onclick="togglePixel(this)"> </div>
-      <div id="pixel-1x4" class="pixel-off" onclick="togglePixel(this)"> </div>
-      <br>
-      <div id="pixel-2x0" class="pixel-off" onclick="togglePixel(this)"> </div>
-      <div id="pixel-2x1" class="pixel-off" onclick="togglePixel(this)"> </div>
-      <div id="pixel-2x2" class="pixel-off" onclick="togglePixel(this)"> </div>
-      <div id="pixel-2x3" class="pixel-off" onclick="togglePixel(this)"> </div>
-      <div id="pixel-2x4" class="pixel-off" onclick="togglePixel(this)"> </div>
-      <br>
-      <div id="pixel-3x0" class="pixel-off" onclick="togglePixel(this)"> </div>
-      <div id="pixel-3x1" class="pixel-off" onclick="togglePixel(this)"> </div>
-      <div id="pixel-3x2" class="pixel-off" onclick="togglePixel(this)"> </div>
-      <div id="pixel-3x3" class="pixel-off" onclick="togglePixel(this)"> </div>
-      <div id="pixel-3x4" class="pixel-off" onclick="togglePixel(this)"> </div>
-      <br>
-      <div id="pixel-4x0" class="pixel-off" onclick="togglePixel(this)"> </div>
-      <div id="pixel-4x1" class="pixel-off" onclick="togglePixel(this)"> </div>
-      <div id="pixel-4x2" class="pixel-off" onclick="togglePixel(this)"> </div>
-      <div id="pixel-4x3" class="pixel-off" onclick="togglePixel(this)"> </div>
-      <div id="pixel-4x4" class="pixel-off" onclick="togglePixel(this)"> </div>
-      <br>
-      <div id="pixel-5x0" class="pixel-off" onclick="togglePixel(this)"> </div>
-      <div id="pixel-5x1" class="pixel-off" onclick="togglePixel(this)"> </div>
-      <div id="pixel-5x2" class="pixel-off" onclick="togglePixel(this)"> </div>
-      <div id="pixel-5x3" class="pixel-off" onclick="togglePixel(this)"> </div>
-      <div id="pixel-5x4" class="pixel-off" onclick="togglePixel(this)"> </div>
-      <br>
-      <div id="pixel-6x0" class="pixel-off" onclick="togglePixel(this)"> </div>
-      <div id="pixel-6x1" class="pixel-off" onclick="togglePixel(this)"> </div>
-      <div id="pixel-6x2" class="pixel-off" onclick="togglePixel(this)"> </div>
-      <div id="pixel-6x3" class="pixel-off" onclick="togglePixel(this)"> </div>
-      <div id="pixel-6x4" class="pixel-off" onclick="togglePixel(this)"> </div>
-      <br>
-      <div id="pixel-7x0" class="pixel-off" onclick="togglePixel(this)"> </div>
-      <div id="pixel-7x1" class="pixel-off" onclick="togglePixel(this)"> </div>
-      <div id="pixel-7x2" class="pixel-off" onclick="togglePixel(this)"> </div>
-      <div id="pixel-7x3" class="pixel-off" onclick="togglePixel(this)"> </div>
-      <div id="pixel-7x4" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <input type="text-area" id="pixel-editor__charname" oninput="updateCode();" class="saveable" value="charName"/> <br>
+      <div id="pixels" class="saveable">
+        <div id="pixel-0x0" class="pixel-off" onclick="togglePixel(this)"> </div>
+        <div id="pixel-0x1" class="pixel-off" onclick="togglePixel(this)"> </div>
+        <div id="pixel-0x2" class="pixel-off" onclick="togglePixel(this)"> </div>
+        <div id="pixel-0x3" class="pixel-off" onclick="togglePixel(this)"> </div>
+        <div id="pixel-0x4" class="pixel-off" onclick="togglePixel(this)"> </div>
+        <br>
+        <div id="pixel-1x0" class="pixel-off" onclick="togglePixel(this)"> </div>
+        <div id="pixel-1x1" class="pixel-off" onclick="togglePixel(this)"> </div>
+        <div id="pixel-1x2" class="pixel-off" onclick="togglePixel(this)"> </div>
+        <div id="pixel-1x3" class="pixel-off" onclick="togglePixel(this)"> </div>
+        <div id="pixel-1x4" class="pixel-off" onclick="togglePixel(this)"> </div>
+        <br>
+        <div id="pixel-2x0" class="pixel-off" onclick="togglePixel(this)"> </div>
+        <div id="pixel-2x1" class="pixel-off" onclick="togglePixel(this)"> </div>
+        <div id="pixel-2x2" class="pixel-off" onclick="togglePixel(this)"> </div>
+        <div id="pixel-2x3" class="pixel-off" onclick="togglePixel(this)"> </div>
+        <div id="pixel-2x4" class="pixel-off" onclick="togglePixel(this)"> </div>
+        <br>
+        <div id="pixel-3x0" class="pixel-off" onclick="togglePixel(this)"> </div>
+        <div id="pixel-3x1" class="pixel-off" onclick="togglePixel(this)"> </div>
+        <div id="pixel-3x2" class="pixel-off" onclick="togglePixel(this)"> </div>
+        <div id="pixel-3x3" class="pixel-off" onclick="togglePixel(this)"> </div>
+        <div id="pixel-3x4" class="pixel-off" onclick="togglePixel(this)"> </div>
+        <br>
+        <div id="pixel-4x0" class="pixel-off" onclick="togglePixel(this)"> </div>
+        <div id="pixel-4x1" class="pixel-off" onclick="togglePixel(this)"> </div>
+        <div id="pixel-4x2" class="pixel-off" onclick="togglePixel(this)"> </div>
+        <div id="pixel-4x3" class="pixel-off" onclick="togglePixel(this)"> </div>
+        <div id="pixel-4x4" class="pixel-off" onclick="togglePixel(this)"> </div>
+        <br>
+        <div id="pixel-5x0" class="pixel-off" onclick="togglePixel(this)"> </div>
+        <div id="pixel-5x1" class="pixel-off" onclick="togglePixel(this)"> </div>
+        <div id="pixel-5x2" class="pixel-off" onclick="togglePixel(this)"> </div>
+        <div id="pixel-5x3" class="pixel-off" onclick="togglePixel(this)"> </div>
+        <div id="pixel-5x4" class="pixel-off" onclick="togglePixel(this)"> </div>
+        <br>
+        <div id="pixel-6x0" class="pixel-off" onclick="togglePixel(this)"> </div>
+        <div id="pixel-6x1" class="pixel-off" onclick="togglePixel(this)"> </div>
+        <div id="pixel-6x2" class="pixel-off" onclick="togglePixel(this)"> </div>
+        <div id="pixel-6x3" class="pixel-off" onclick="togglePixel(this)"> </div>
+        <div id="pixel-6x4" class="pixel-off" onclick="togglePixel(this)"> </div>
+        <br>
+        <div id="pixel-7x0" class="pixel-off" onclick="togglePixel(this)"> </div>
+        <div id="pixel-7x1" class="pixel-off" onclick="togglePixel(this)"> </div>
+        <div id="pixel-7x2" class="pixel-off" onclick="togglePixel(this)"> </div>
+        <div id="pixel-7x3" class="pixel-off" onclick="togglePixel(this)"> </div>
+        <div id="pixel-7x4" class="pixel-off" onclick="togglePixel(this)"> </div>
+      </div>
     </div>
     
   <table id="pixel-editor__clipboard">
@@ -127,7 +128,7 @@
     <tr> <td id="clipboard-7x0"></td><td id="clipboard-7x1"></td><td id="clipboard-7x2"></td><td id="clipboard-7x3"></td><td id="clipboard-7x4"></td> </tr>
   </table>
     
-  <div id="preview-box">
+  <div id="preview-box" class="saveable">
     <div class="box-title">LCD 16x2 Preview</div>
       <table id="lcd-0x0" class="lcd-pixel__selected" onclick="selectLCD(this);">
         <tr> <td id="lcd-0x0-0x0"></td><td id="lcd-0x0-0x1"></td><td id="lcd-0x0-0x2"></td><td id="lcd-0x0-0x3"></td><td id="lcd-0x0-0x4"></td> </tr>

@@ -9,15 +9,46 @@
 /* global selectedLCD */
 
 // Load content from memory
-if (localStorage.getItem("pixel-editor-state")) {
-  var pixelEditor = document.getElementById("pixel-editor");
-  var previewBox = document.getElementById("preview-box");
-  var codeBox = document.getElementById("code-box");
-  var codeOptionBox = document.getElementById("code-option-box");
-  pixelEditor.innerHTML = localStorage.getItem("pixel-editor-state");
-  previewBox.innerHTML = localStorage.getItem("preview-box-state");
-  codeBox.innerHTML = localStorage.getItem("code-box-state");
-  codeOptionBox.innerHTML = localStorage.getItem("code-option-box-state");
+function loadSavedData() {
+  var elements = document.getElementsByClassName("saveable");
+
+  for (var i = 0; i < elements.length; i++) {
+    var element = elements.item(i);
+
+    if (localStorage.getItem(element.id)) {
+      console.log("h")
+      if (element.tagName === "INPUT" && element.type === "checkbox") {
+        element.checked = (localStorage.getItem(element.id) === "true");
+      } else if (element.tagName === "INPUT" || element.tagName === "TEXTAREA") {
+        element.value = localStorage.getItem(element.id)
+      } else if (element.hasChildNodes()) {
+        element.innerHTML = localStorage.getItem(element.id);
+      }
+    }
+  }
+}
+
+// Save the content to browser memory
+function saveProgress() {
+  var elements = document.getElementsByClassName("saveable")
+  for (var i = 0; i < elements.length; i++) {
+    var element = elements.item(i);
+
+    if (element.tagName === "INPUT" && element.type === "checkbox") {
+      localStorage.setItem(element.id, element.checked);
+    } else if (element.tagName === "INPUT" || element.tagName === "TEXTAREA") {
+      localStorage.setItem(element.id, element.value);
+    } else if (element.hasChildNodes()) {
+      localStorage.setItem(element.id, element.innerHTML);
+    }
+  }
+  console.log(localStorage)
+}
+
+// Handler for when page has loaded
+function onBodyLoad() {
+  updateCode();
+  loadSavedData();
 }
 
 /* CODE Functions */
@@ -357,16 +388,4 @@ function iconUnHovered(icon){
   /* Changes image when stoped hovered */
   var unHoveredImage = "images/editor-icons/" + icon.id + ".png";
   icon.src = unHoveredImage;
-}
-
-// Save the content to browser memory
-function saveProgress() {
-  var pixelEditor = document.getElementById("pixel-editor");
-  var previewBox = document.getElementById("preview-box");
-  var codeBox = document.getElementById("code-box");
-  var codeOptionBox = document.getElementById("code-option-box");
-  localStorage.setItem("pixel-editor-state", pixelEditor.innerHTML);
-  localStorage.setItem("preview-box-state", previewBox.innerHTML);
-  localStorage.setItem("code-box-state", codeBox.innerHTML);
-  localStorage.setItem("code-option-box-state", codeOptionBox.innerHTML);
 }
