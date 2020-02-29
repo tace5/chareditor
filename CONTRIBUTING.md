@@ -6,9 +6,9 @@ If you want to contribute with code feel free to suggest a *Pull request*.
 
 ## Contributing Guidelines 
 For code:
-..* [JavaScript Guideline]():
-..* [HTML Guideline]():
-..* [CSS Guideline]():
++ JavaScript Guideline:
++ HTML Guideline:
++ CSS Guideline:
 
 
 ### Short notice
