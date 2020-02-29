@@ -75,10 +75,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <img id="mirror-icon" src="images/editor-icons/mirror-icon.png" title="Mirror" onclick="mirrorPixels();" onmouseover="iconHovered(this);" onmouseout="iconUnHovered(this);">
       <img id="copy-icon" src="images/editor-icons/copy-icon.png" title="Copy" onclick="copyToPixelClipboard();" onmouseover="iconHovered(this);" onmouseout="iconUnHovered(this);">
       <img id="paste-icon" src="images/editor-icons/paste-icon.png" title="Paste" onclick="pasteToPixelEditor();" onmouseover="iconHovered(this);" onmouseout="iconUnHovered(this);">
-      <img id="shift-up-icon" src="images/editor-icons/shift-up-icon.png" title="Shift upwards" onclick="shiftUp();" onmouseover="iconHovered(this);" onmouseout="iconUnHovered(this);">
-      <img id="shift-left-icon" src="images/editor-icons/shift-left-icon.png" title="Shift leftwards" onclick="shiftLeft();" onmouseover="iconHovered(this);" onmouseout="iconUnHovered(this);">
-      <img id="shift-right-icon" src="images/editor-icons/shift-right-icon.png" title="Shift rightwards" onclick="shiftRight();" onmouseover="iconHovered(this);" onmouseout="iconUnHovered(this);">
-      <img id="shift-down-icon" src="images/editor-icons/shift-down-icon.png" title="Shift downwards" onclick="shiftDown();" onmouseover="iconHovered(this);" onmouseout="iconUnHovered(this);">
+      <img id="shift-icon" src="images/editor-icons/shift-icon.png" width="40" height="40" usemap="#shiftmap">
+      <map name="shiftmap">
+        <area id="shift-icon-up" shape="rect" coords="11, 0, 29, 11" onclick="shiftUp();" title="Shift upwards" onmouseover="iconHovered(this, document.getElementById('shift-icon'));" onmouseout="iconUnHovered(document.getElementById('shift-icon'));">
+        <area id="shift-icon-down" shape="rect" coords="12, 29, 28, 39" onclick="shiftDown();" title="Shift downwards" onmouseover="iconHovered(this, document.getElementById('shift-icon'));" onmouseout="iconUnHovered(document.getElementById('shift-icon'));">
+        <area id="shift-icon-left" shape="rect" coords="0, 12, 11, 28" onclick="shiftLeft();" title="Shift leftwards" onmouseover="iconHovered(this, document.getElementById('shift-icon'));" onmouseout="iconUnHovered(document.getElementById('shift-icon'));">
+        <area id="shift-icon-right" shape="rect" coords="28, 12, 39, 28" onclick="shiftRight();" title="Shift rightwards" onmouseover="iconHovered(this, document.getElementById('shift-icon'));" onmouseout="iconUnHovered(document.getElementById('shift-icon'));">
+      </map>
       <img id="save-icon" src="images/editor-icons/save-icon__TEMP.png" title="Save" onclick="saveProgress();" height="40px" width="40px">
     </div>
     

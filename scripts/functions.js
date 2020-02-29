@@ -168,7 +168,7 @@ function invertPixels () {
   for (var row = 0; row < 8; row++) {
     for (var col = 0; col < 5; col++) {
       var pixelID = "pixel-" + row + "x" + col;
-      togglePixel(pixelID);
+      togglePixel(document.getElementById(pixelID));
     }
   }
   updateCode();
@@ -379,9 +379,10 @@ function loadLCDtoEditor (lcd) {
 }
 
 /* OPTIONS functions */
-function isCheckboxChecked (checkbox) {
+function isCheckboxChecked (checkboxID) {
   /* Checks if the checkbox is checked or not, returns boolean accordingly */
-  var checkedValue = checkbox.checked;
+  var thischeckbox = document.getElementById(checkboxID);
+  var checkedValue = thischeckbox.checked;
   return checkedValue;
 }
 
@@ -397,10 +398,12 @@ function copyToClipboard () {
 };
 
 /* IMAGES functions */
-function iconHovered(icon){
+
+function iconHovered(icon, target){
   /* Changes image when hovered */
+  if (target === undefined) target = icon;
   var hoveredImage = "images/editor-icons/" + icon.id + "__hovered.png";
-  icon.src = hoveredImage;
+  target.src = hoveredImage
 }
 
 function iconUnHovered(icon){
