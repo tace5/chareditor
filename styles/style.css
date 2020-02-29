@@ -16,7 +16,6 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 */
 
-
 body {
   padding: 0px;
   margin: 0px;
@@ -177,11 +176,11 @@ Main page body
 }
 
 #code-box__code {
-  width: 313px;
+  width: 298px;
   height: 200px;
   resize: none;
   background-color: transparent;
-  border: none;
+  border: black;
 }
 
 #code-option-box {
