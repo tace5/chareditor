@@ -6,9 +6,9 @@ If you want to contribute with code or an image feel free to suggest a *Pull req
 
 ## Contributing Guidelines 
 For code:
++ HTML and CSS Guideline: [Google Guidelines](https://google.github.io/styleguide/htmlcssguide.html)
 + JavaScript Guideline:
-+ HTML Guideline:
-+ CSS Guideline:
 
+If you find a line of code that does not follow these guidelines feel free to suggest a Pull Request with a comment that explaines what is wrong with it.
 
 ### Short notice
