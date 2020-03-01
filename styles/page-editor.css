@@ -1,13 +1,7 @@
 /* This file is part of chareditor.com
  * Refer to index.html for full license. */
 
-#page-content {
-  position: fixed;
-  left: 23%;
-  top: 100px;
-  background-color: blue;
-  margin:0 auto;
-}
+
 
 /* Box shape */
 #editor-options-box,
