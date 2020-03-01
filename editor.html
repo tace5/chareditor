@@ -14,6 +14,7 @@ Refer to index.html for full license. -->
   <link href="styles/footer.css" rel="stylesheet" type="text/css" />
   <link href="styles/alignment.css" rel="stylesheet" type="text/css" />
   <link href="styles/background.css" rel="stylesheet" type="text/css" />
+  <link href="styles/editor/options-navigation.css" rel="stylesheet" type="text/css" />
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans:600&display=swap" rel="stylesheet"> 
 </head>
@@ -25,36 +26,39 @@ Refer to index.html for full license. -->
       <textarea id="code-box__code" readonly></textarea>
     </div>
   
-  <div id="code-option-box">
-    <div class="box-title">Code Options</div>
-      <form>
+  
+  <div id="options-bar">
+    <div id="option-navigation-bar">
+      <img id="editor-options-icon" src="images/editor-icons/editor-options-icon.png" title="Editor options" onclick="showThisOption(this.id);" onmouseover="iconHovered(this);" onmouseout="iconUnHovered(this);">
+      <img id="code-options-icon" src="images/editor-icons/code-options-icon.png" title="Code options" onclick="showThisOption(this.id);" onmouseover="iconHovered(this);" onmouseout="iconUnHovered(this);">
+      <a href="https://chareditor.com" target="_blank"><img id="option-navigation-bar__logo" src="images/logo.png"></a>
+    </div>
+    
+    <div id="options-bar__options__editor" class="options-bar__options">
+      <div class="box-title">Editor Options</div>
+      <img id="clear-icon"  src="images/editor-icons/clear-icon.png" title="Clear" onclick="clearPixels();" onmouseover="iconHovered(this);" onmouseout="iconUnHovered(this);">
+      <img id="invert-icon" src="images/editor-icons/invert-icon.png" title="Invert" onclick="invertPixels();" onmouseover="iconHovered(this);" onmouseout="iconUnHovered(this);">
+      <img id="mirror-icon" src="images/editor-icons/mirror-icon.png" title="Mirror" onclick="mirrorPixels();" onmouseover="iconHovered(this);" onmouseout="iconUnHovered(this);">
+      <img id="copy-icon" src="images/editor-icons/copy-icon.png" title="Copy" onclick="copyToPixelClipboard();" onmouseover="iconHovered(this);" onmouseout="iconUnHovered(this);">
+      <img id="paste-icon" src="images/editor-icons/paste-icon.png" title="Paste" onclick="pasteToPixelEditor();" onmouseover="iconHovered(this);" onmouseout="iconUnHovered(this);">
+      <img id="shift-icon" src="images/editor-icons/shift-icon.png" width="40" height="40" usemap="#shiftmap">
+      <map name="shiftmap">
+        <area id="shift-icon-up" shape="rect" coords="11, 0, 29, 11" onclick="shiftUp();" title="Shift upwards" onmouseover="iconHovered(this, document.getElementById('shift-icon'));" onmouseout="iconUnHovered(document.getElementById('shift-icon'));">
+        <area id="shift-icon-down" shape="rect" coords="12, 29, 28, 39" onclick="shiftDown();" title="Shift downwards" onmouseover="iconHovered(this, document.getElementById('shift-icon'));" onmouseout="iconUnHovered(document.getElementById('shift-icon'));">
+        <area id="shift-icon-left" shape="rect" coords="0, 12, 11, 28" onclick="shiftLeft();" title="Shift leftwards" onmouseover="iconHovered(this, document.getElementById('shift-icon'));" onmouseout="iconUnHovered(document.getElementById('shift-icon'));">
+        <area id="shift-icon-right" shape="rect" coords="28, 12, 39, 28" onclick="shiftRight();" title="Shift rightwards" onmouseover="iconHovered(this, document.getElementById('shift-icon'));" onmouseout="iconUnHovered(document.getElementById('shift-icon'));">
+      </map>
+    </div>
+    
+    <div id="options-bar__options__code" class="options-bar__options" hidden="true">
+        <div class="box-title">Code Options</div>
         <input id="autocopy" class="code-option-box__checkbox" type="checkbox" onclick="updateCode();">Automatic copy <br>
         <input id="include-define" class="code-option-box__checkbox" type="checkbox" onclick="updateCode();">Include #define <br>
         <input id="hex-data-type" class="code-option-box__checkbox" type="checkbox" onclick="updateCode();">Hex datatype
-      </form>
-  </div>
-  </div>
-  
-  <div id="option-navigation-bar">
-    <a href="https://chareditor.com" target="_blank"><img id="option-navigation-bar__logo" src="images/logo.png" class="option-navigation-bar__child"></a>
+    </div>
   </div>
   
-  <div id="editor-options-box">
-    <img id="clear-icon"  src="images/editor-icons/clear-icon.png" title="Clear" onclick="clearPixels();" onmouseover="iconHovered(this);" onmouseout="iconUnHovered(this);">
-    <img id="invert-icon" src="images/editor-icons/invert-icon.png" title="Invert" onclick="invertPixels();" onmouseover="iconHovered(this);" onmouseout="iconUnHovered(this);">
-    <img id="mirror-icon" src="images/editor-icons/mirror-icon.png" title="Mirror" onclick="mirrorPixels();" onmouseover="iconHovered(this);" onmouseout="iconUnHovered(this);">
-    <img id="copy-icon" src="images/editor-icons/copy-icon.png" title="Copy" onclick="copyToPixelClipboard();" onmouseover="iconHovered(this);" onmouseout="iconUnHovered(this);">
-    <img id="paste-icon" src="images/editor-icons/paste-icon.png" title="Paste" onclick="pasteToPixelEditor();" onmouseover="iconHovered(this);" onmouseout="iconUnHovered(this);">
-    <img id="shift-icon" src="images/editor-icons/shift-icon.png" width="40" height="40" usemap="#shiftmap">
-    <map name="shiftmap">
-      <area id="shift-icon-up" shape="rect" coords="11, 0, 29, 11" onclick="shiftUp();" title="Shift upwards" onmouseover="iconHovered(this, document.getElementById('shift-icon'));" onmouseout="iconUnHovered(document.getElementById('shift-icon'));">
-      <area id="shift-icon-down" shape="rect" coords="12, 29, 28, 39" onclick="shiftDown();" title="Shift downwards" onmouseover="iconHovered(this, document.getElementById('shift-icon'));" onmouseout="iconUnHovered(document.getElementById('shift-icon'));">
-      <area id="shift-icon-left" shape="rect" coords="0, 12, 11, 28" onclick="shiftLeft();" title="Shift leftwards" onmouseover="iconHovered(this, document.getElementById('shift-icon'));" onmouseout="iconUnHovered(document.getElementById('shift-icon'));">
-      <area id="shift-icon-right" shape="rect" coords="28, 12, 39, 28" onclick="shiftRight();" title="Shift rightwards" onmouseover="iconHovered(this, document.getElementById('shift-icon'));" onmouseout="iconUnHovered(document.getElementById('shift-icon'));">
-    </map>
-  </div>
-  
-  <div id="pixel-editor">
+  <div id="pixel-editor" hidden="true">
     <input type="text-area" id="pixel-editor__charname" value="charName" oninput="updateCode();"/> <br>
 
     <div id="pixel-0x0" class="pixel-off" onclick="togglePixel(this)"> </div>
@@ -445,5 +449,7 @@ Refer to index.html for full license. -->
   <footer>
   <a id="copyright-text" class="bottom" href="https://github.com/alestiago" target="_blank">&copy; Open Source Web Tool by alestiago</a>
   </footer>
-  <script src="scripts/functions.js"></script> 
+  <script src="scripts/editor/functions.js"></script>
+  <script src="scripts/editor/hovering-icons.js"></script>
+  <script src="scripts/editor/options-navigation.js"></script> 
 </body>
