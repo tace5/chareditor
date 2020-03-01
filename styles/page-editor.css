@@ -24,6 +24,22 @@
   user-select: none;
 }
 
+#option-navigation-bar {
+  width: 60px;
+  height: 100%;
+  background-color: #2e4f71;
+  text-align: center;
+}
+  
+  #option-navigation-bar__logo {
+    opacity: 0.7;
+    position: relative;
+    top: 90%;
+  }
+  
+  .option-navigation-bar__child {
+    margin: 0 auto;
+  }
 
 /* Editor Options */
 #editor-options-box {
