@@ -30,7 +30,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /* Functions for saving and loading app state */
 function loadSavedData() {
   /* Loads data stored in the browser memory */
-  var elements = document.getElementsByClassName("saveable");
+  var elements = document.querySelectorAll('[data-saveable]');
 
   for (var i = 0; i < elements.length; i++) {
     var element = elements.item(i);
@@ -55,7 +55,8 @@ function loadSavedData() {
 
 function saveProgress() {
   /* Saves the current app state to browser memory */
-  var elements = document.getElementsByClassName("saveable")
+  var elements = document.querySelectorAll('[data-saveable]');
+
   for (var i = 0; i < elements.length; i++) {
     var element = elements.item(i);
 
