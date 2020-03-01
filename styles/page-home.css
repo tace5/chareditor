@@ -9,6 +9,10 @@
   color: white;
 }
 
+  a {
+    text-decoration: none;
+  }
+
   #page-description__title {
     font-family: 'Open Sans', 'Arial';
     font-size: 50px;
@@ -20,7 +24,7 @@
     font-family: 'Lato', 'Arial';
   }
 
-  #page-description__button a {
+  #page-description__button {
     border: 0px;
     border-radius: 7px;
     transition: background-color .7s ease;
@@ -29,8 +33,8 @@
     margin-top: 2%;
     height: 50px;
     font-family: 'Open Sans', 'Arial';
-    text-decoration: none;
   }
+  
 
   #page-description__button:hover{
     transition: background-color .7s ease;
