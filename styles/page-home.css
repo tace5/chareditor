@@ -20,7 +20,7 @@
     font-family: 'Lato', 'Arial';
   }
 
-  #page-description__button {
+  #page-description__button a {
     border: 0px;
     border-radius: 7px;
     transition: background-color .7s ease;
@@ -29,6 +29,7 @@
     margin-top: 2%;
     height: 50px;
     font-family: 'Open Sans', 'Arial';
+    text-decoration: none;
   }
 
   #page-description__button:hover{
