@@ -2,12 +2,12 @@
  * Refer to index.html for full license. */
 html {
   height: 100%;
-  background-color: #062340;
+  background-color: #0f1113;
+  background-image: linear-gradient(#0f1113, #062340);
 }
 
 body {
   height: 100%;
   padding: 0px;
   margin: 0px;
-  background-image: linear-gradient(#0f1113, #062340);
 }
