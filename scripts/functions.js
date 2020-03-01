@@ -35,7 +35,6 @@ function loadSavedData() {
     var element = elements.item(i);
 
     if (localStorage.getItem(element.id)) {
-      console.log("h")
       if (element.tagName === "INPUT" && element.type === "checkbox") {
         element.checked = (localStorage.getItem(element.id) === "true");
       } else if (element.tagName === "INPUT" || element.tagName === "TEXTAREA") {
@@ -61,7 +60,6 @@ function saveProgress() {
       localStorage.setItem(element.id, element.innerHTML);
     }
   }
-  console.log(localStorage)
 }
 
 // Handler for when page has loaded
