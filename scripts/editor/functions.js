@@ -27,8 +27,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  
 /* global selectedLCD */
 
-// Load content from memory
+/* Functions for saving and loading app state */
 function loadSavedData() {
+  /* Loads data stored in the browser memory */
   var elements = document.getElementsByClassName("saveable");
 
   for (var i = 0; i < elements.length; i++) {
@@ -52,8 +53,8 @@ function loadSavedData() {
   }
 }
 
-// Save the content to browser memory
 function saveProgress() {
+  /* Saves the current app state to browser memory */
   var elements = document.getElementsByClassName("saveable")
   for (var i = 0; i < elements.length; i++) {
     var element = elements.item(i);
@@ -74,8 +75,8 @@ function saveProgress() {
   }
 }
 
-// Handler for when page has loaded
 function onBodyLoad() {
+  /* Handler for when page has loaded */
   updateCode();
   loadSavedData();
 }
