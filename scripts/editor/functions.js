@@ -76,8 +76,21 @@ function saveProgress() {
   }
 }
 
+function onKeyDown(e) {
+  if (e.ctrlKey || e.metaKey) {
+    switch (e.key) {
+      case "s":
+        e.preventDefault();
+        saveProgress();
+        break;
+      default:
+    }
+  }
+}
+
 function onBodyLoad() {
   /* Handler for when page has loaded */
+  document.addEventListener('keydown', onKeyDown);
   updateCode();
   loadSavedData();
 }
