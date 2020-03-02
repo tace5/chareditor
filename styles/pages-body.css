@@ -1,0 +1,23 @@
+/* This file is part of chareditor.com 
+ * Refer to index.html for full license. */
+#page-description {
+  width: 100%;
+  text-align: center;
+  display: inline-block;
+  color: white;
+}
+
+  #page-description__title {
+    font-family: 'Open Sans', 'Arial';
+    font-size: 30px;
+  }
+
+  #page-description__subtitle {
+    font-size: 20px;
+    font-weight: none;
+    font-family: 'Lato', 'Arial';
+  }
+
+  a {
+    color: white;
+  }

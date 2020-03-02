@@ -1,0 +1,12 @@
+/* This file is part of chareditor.com
+ * Refer to index.html for full license. */
+#copyright-text {
+  color: white;
+  opacity: 0.7;
+  width: 100%;
+  text-align: center;
+  text-decoration: none;
+  font-family: 'Open Sans', 'Arial';
+  font-size: 10px;
+  user-select: none;
+}
