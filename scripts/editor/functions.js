@@ -356,6 +356,46 @@ function copyToClipboard () {
 };
 
 
+/**
+  * Function to get the co-ordinates of the selected character
+*/ 
+function getSelectedChar () {
+  // Gets the currently selected character on the LCD screen
+  // returns: integer list of coordinates
+
+  var selChar = document.getElementsByClassName("lcd-pixel__selected")[0].id;
+  var row = Number(selChar.substring(selChar.indexOf("-") + 1, selChar.indexOf("x")));
+  var column = Number(selChar.substring(selChar.indexOf("x") + 1));
+  
+  return [row, column];
+}
+
+
+/**
+    * Shifts the selected character on the LCD screen by parameters provided.
+    * @param shiftRowBy Integer to shift the row index
+    * @param shiftColumnBy Integer to shift the column index
+    * Negative integers are accepted and will decrease the index.
+    * If a shift will result in out of bounds selection, the shift is aborted.
+  */
+function shiftChar (shiftRowBy, shiftColumnBy) {
+  
+  // retrieves
+  var row = getSelectedChar()[0];
+  var column = getSelectedChar()[1];
+
+  try {
+    var id = "lcd-" + (row + shiftRowBy) + "x" + (column + shiftColumnBy);
+    var tableObj = document.getElementById(id);
+    selectLCD(tableObj);
+  } catch (error) {
+    var id = "lcd-" + row + "x" + column;
+    var tableObj = document.getElementById(id);
+    selectLCD(tableObj);
+  }
+}
+
+
 /* KEY LISTENERS */
 document.addEventListener("keydown", function (event) {
   /* Event listener looking for key presses */
@@ -385,6 +425,21 @@ document.addEventListener("keydown", function (event) {
         break;
       case "KeyV":        pasteToPixelEditor();
         break;
+    }
+
+    if (event.shiftKey) {
+      switch (event.code) {
+        // * All Ctrl+Shift key combinations go here
+
+        // Shifting the selected character on the LCD screen
+        case "ArrowUp":     shiftChar(-1, 0);
+          break;
+        case "ArrowDown":   shiftChar(1, 0);
+          break;
+        case "ArrowLeft":   shiftChar(0, -1);
+          break;
+        case "ArrowRight":  shiftChar(0, 1);
+      }
     }
   }
 });
