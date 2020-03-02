@@ -3,7 +3,7 @@
 
 
 /******************************
-        Show Option Content
+ Toggling Navigation Bar Menus
 *******************************/
 function showThisOption (optionIcon) {
   /* Sets the icon to active and shows the corresponding option menu */
@@ -44,7 +44,7 @@ function showOptionMenu (optionIcon) {
 
 
 /******************************
-        Option Icons
+ Image Handling of Option Icons
 *******************************/
 function optionIconHovered(optionIcon){
   /* Changes image when hovered */
