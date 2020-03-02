@@ -1,22 +1,63 @@
 /* This file is part of chareditor.com
  * Refer to index.html for full license. */
- 
-function showThisOption (astr) {
-  hideAllOptions();
-  var thisOption = getFirstToken(astr);
-  var showOption = "options-bar__options__" + thisOption;
-  var myOption = document.getElementById(showOption);
-  myOption.hidden = false;
+
+
+/******************************
+        Show Option Content
+*******************************/
+function showThisOption (optionIcon) {
+  /* Sets the icon to active and shows the corresponding option menu */
+  deactivatePreviousOptionIcon();
+  activateOptionIcon(optionIcon);
+
+  hidePreviousOptionMenu();
+  showOptionMenu(optionIcon);
 }
 
-function hideAllOptions () {
-  /* Hides all options */
-  var options = document.getElementsByClassName("options-bar__options");
-  for (var i = 0; i < options.length; i++) options[i].hidden = true;
+function deactivatePreviousOptionIcon () {
+  /* Removes the active class name from the previous icon */
+  var previousIcon = document.getElementsByClassName("active")[0];
+  previousIcon.className = null;
+  optionIconUnHovered(previousIcon);
 }
 
-function getFirstToken (myString) {
-  var tokens = myString.split("-");
-  var firstToken = tokens[0]
-  return firstToken;
+function activateOptionIcon (optionIcon) {
+  /* Sets the active class name for this icon */
+  optionIcon.className = "active";
+}
+
+function hidePreviousOptionMenu () {
+  /* Hides and removes the shown class name of the previous option menu */
+  var previousMenu = document.getElementsByClassName("shown")[0];
+  previousMenu.hidden = true;
+  previousMenu.className = null;
+}
+
+function showOptionMenu (optionIcon) {
+  /* Shows and sets the shown class name to option menu of the icon */
+  var thisOptionName = (optionIcon.id).split("-")[0];
+  var showOption = "options-bar__options__" + thisOptionName;
+  showOption = document.getElementById(showOption);
+  showOption.hidden = false;
+  showOption.className = "shown";
+}
+
+
+/******************************
+        Option Icons
+*******************************/
+function optionIconHovered(optionIcon){
+  /* Changes image when hovered */
+  if (optionIcon.className != "active") {
+    var hoveredImage = "images/editor-icons/" + optionIcon.id + "__hovered.png";
+    optionIcon.src = hoveredImage
+  }
+}
+
+function optionIconUnHovered(optionIcon){
+  /* Changes image when stoped hovered */
+  if (optionIcon.className != "active") {
+    var unHoveredImage = "images/editor-icons/" + optionIcon.id + ".png";
+    optionIcon.src = unHoveredImage;
+  }
 }

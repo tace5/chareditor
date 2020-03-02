@@ -9,12 +9,7 @@ Refer to index.html for full license. -->
   <title>Character Editor</title>
   <link rel="shortcut icon" type="image/ico" href="images/favicon.ico"/>
   <!-- CSS imports -->
-  <link href="styles/page-editor.css" rel="stylesheet" type="text/css" />
-  <link href="styles/header.css" rel="stylesheet" type="text/css" />
-  <link href="styles/footer.css" rel="stylesheet" type="text/css" />
-  <link href="styles/alignment.css" rel="stylesheet" type="text/css" />
-  <link href="styles/background.css" rel="stylesheet" type="text/css" />
-  <link href="styles/editor/options-navigation.css" rel="stylesheet" type="text/css" />
+  <link href="styles/editor.css" rel="stylesheet" type="text/css" />
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans:600&display=swap" rel="stylesheet"> 
 </head>
@@ -25,17 +20,16 @@ Refer to index.html for full license. -->
     <div class="box-title">Code</div>
       <textarea id="code-box__code" readonly></textarea>
     </div>
-  
-  
+ 
   <div id="options-bar">
     <div id="option-navigation-bar">
-      <img id="editor-options-icon" src="images/editor-icons/editor-options-icon.png" title="Editor options" onclick="showThisOption(this.id);" onmouseover="iconHovered(this);" onmouseout="iconUnHovered(this);">
-      <img id="code-options-icon" src="images/editor-icons/code-options-icon.png" title="Code options" onclick="showThisOption(this.id);" onmouseover="iconHovered(this);" onmouseout="iconUnHovered(this);">
+      <img id="editor-options-icon" class="active" src="images/editor-icons/editor-options-icon__hovered.png" title="Editor options" onclick="showThisOption(this);" onmouseover="optionIconHovered(this);" onmouseout="optionIconUnHovered(this);">
+      <img id="code-options-icon" src="images/editor-icons/code-options-icon.png" title="Code options" onclick="showThisOption(this);" onmouseover="optionIconHovered(this);" onmouseout="optionIconUnHovered(this);">
       <a href="https://chareditor.com" target="_blank"><img id="option-navigation-bar__logo" src="images/logo.png"></a>
     </div>
     
-    <div id="options-bar__options__editor" class="options-bar__options">
-      <div class="box-title">Editor Options</div>
+    <div id="options-bar__options__editor" class="shown">
+      <div class="options-bar__title">Editor Options</div>
       <img id="clear-icon"  src="images/editor-icons/clear-icon.png" title="Clear" onclick="clearPixels();" onmouseover="iconHovered(this);" onmouseout="iconUnHovered(this);">
       <img id="invert-icon" src="images/editor-icons/invert-icon.png" title="Invert" onclick="invertPixels();" onmouseover="iconHovered(this);" onmouseout="iconUnHovered(this);">
       <img id="mirror-icon" src="images/editor-icons/mirror-icon.png" title="Mirror" onclick="mirrorPixels();" onmouseover="iconHovered(this);" onmouseout="iconUnHovered(this);">
@@ -50,8 +44,8 @@ Refer to index.html for full license. -->
       </map>
     </div>
     
-    <div id="options-bar__options__code" class="options-bar__options" hidden="true">
-        <div class="box-title">Code Options</div>
+    <div id="options-bar__options__code" class="" hidden="true">
+        <div class="options-bar__title">Code Options</div>
         <input id="autocopy" class="code-option-box__checkbox" type="checkbox" onclick="updateCode();">Automatic copy <br>
         <input id="include-define" class="code-option-box__checkbox" type="checkbox" onclick="updateCode();">Include #define <br>
         <input id="hex-data-type" class="code-option-box__checkbox" type="checkbox" onclick="updateCode();">Hex datatype
