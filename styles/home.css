@@ -1,0 +1,121 @@
+/* This file is part of chareditor.com 
+ * Refer to index.html for full license. */
+
+
+/******************************
+        Page Background
+*******************************/
+html {
+  height: 100%;
+  background-color: #0f1113;
+  background-image: linear-gradient(#0f1113, #062340);
+}
+
+body {
+  height: 100%;
+  padding: 0px;
+  margin: 0px;
+}
+
+
+/******************************
+          Page Header
+*******************************/ 
+header {
+  position: relative;
+  top: 2%;
+  margin-left: 5%;
+  margin-bottom: 15%;
+}
+
+  #page-logo {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background-color: white;
+    float: left;
+    margin-right: 5%;
+  }
+
+  #page-options a {
+    padding: 0px 15px;
+    font-size: 15px;
+    text-decoration: none;
+    font-family: 'Open Sans', 'Arial';
+    color: white;
+    user-select: none;
+  }
+
+
+/******************************
+          Page Text
+*******************************/
+#page-description {
+  width: 100%;
+  text-align: center;
+  display: inline-block;
+  color: white;
+}
+
+  a {
+    text-decoration: none;
+  }
+
+  #page-description__title {
+    font-family: 'Open Sans', 'Arial';
+    font-size: 50px;
+  }
+
+  #page-description__subtitle {
+    font-size: 20px;
+    font-weight: none;
+    font-family: 'Lato', 'Arial';
+  }
+
+  #page-description__button {
+    border: 0px;
+    border-radius: 7px;
+    transition: background-color .7s ease;
+    background-color: #51c7ca;
+    color: white;
+    margin-top: 2%;
+    height: 50px;
+    font-family: 'Open Sans', 'Arial';
+  }
+  
+
+  #page-description__button:hover{
+    transition: background-color .7s ease;
+    background-color: #36e9ef;
+  }
+
+/******************************
+          Page Footer
+*******************************/
+#copyright-text {
+  color: white;
+  opacity: 0.7;
+  width: 100%;
+  text-align: center;
+  text-decoration: none;
+  font-family: 'Open Sans', 'Arial';
+  font-size: 10px;
+  user-select: none;
+}
+
+/******************************
+          Alignment
+*******************************/
+.center {
+  margin: 0;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.bottom {
+  position: fixed;
+  bottom: 2%;
+}
