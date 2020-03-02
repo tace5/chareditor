@@ -77,6 +77,7 @@ function saveProgress() {
 }
 
 function onKeyDown(e) {
+  /* Handler for when the user presses a key. Meant to listen for when the user uses keyboard shortcuts. */
   if (e.ctrlKey || e.metaKey) {
     switch (e.key) {
       case "s":
