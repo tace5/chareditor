@@ -9,7 +9,7 @@ function showThisOption (optionIcon) {
   /* Sets the icon to active and shows the corresponding option menu */
   deactivatePreviousOptionIcon();
   activateOptionIcon(optionIcon);
-
+  
   hidePreviousOptionMenu();
   showOptionMenu(optionIcon);
 }
@@ -23,6 +23,7 @@ function deactivatePreviousOptionIcon () {
 
 function activateOptionIcon (optionIcon) {
   /* Sets the active class name for this icon */
+  optionIconHovered(optionIcon);
   optionIcon.className = "active";
 }
 

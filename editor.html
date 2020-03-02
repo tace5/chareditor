@@ -16,11 +16,6 @@ Refer to index.html for full license. -->
 
 <body onload="updateCode();">
 
-  <div id="code-box">
-    <div class="box-title">Code</div>
-      <textarea id="code-box__code" readonly></textarea>
-    </div>
- 
   <div id="options-bar">
     <div id="option-navigation-bar">
       <img id="editor-options-icon" class="active" src="images/editor-icons/editor-options-icon__hovered.png" title="Editor options" onclick="showThisOption(this);" onmouseover="optionIconHovered(this);" onmouseout="optionIconUnHovered(this);">
@@ -31,16 +26,16 @@ Refer to index.html for full license. -->
     <div id="options-bar__options__editor" class="shown">
       <div class="options-bar__title">Editor Options</div>
       <img id="clear-icon"  src="images/editor-icons/clear-icon.png" title="Clear" onclick="clearPixels();" onmouseover="iconHovered(this);" onmouseout="iconUnHovered(this);">
-      <img id="invert-icon" src="images/editor-icons/invert-icon.png" title="Invert" onclick="invertPixels();" onmouseover="iconHovered(this);" onmouseout="iconUnHovered(this);">
-      <img id="mirror-icon" src="images/editor-icons/mirror-icon.png" title="Mirror" onclick="mirrorPixels();" onmouseover="iconHovered(this);" onmouseout="iconUnHovered(this);">
-      <img id="copy-icon" src="images/editor-icons/copy-icon.png" title="Copy" onclick="copyToPixelClipboard();" onmouseover="iconHovered(this);" onmouseout="iconUnHovered(this);">
-      <img id="paste-icon" src="images/editor-icons/paste-icon.png" title="Paste" onclick="pasteToPixelEditor();" onmouseover="iconHovered(this);" onmouseout="iconUnHovered(this);">
+      <img id="invert-icon" src="images/editor-icons/invert-icon.png" title="Invert (Shift+I)" onclick="invertPixels();" onmouseover="iconHovered(this);" onmouseout="iconUnHovered(this);">
+      <img id="mirror-icon" src="images/editor-icons/mirror-icon.png" title="Mirror (Shift+M)" onclick="mirrorPixels();" onmouseover="iconHovered(this);" onmouseout="iconUnHovered(this);">
+      <img id="copy-icon" src="images/editor-icons/copy-icon.png" title="Copy (Shift+C)" onclick="copyToPixelClipboard();" onmouseover="iconHovered(this);" onmouseout="iconUnHovered(this);">
+      <img id="paste-icon" src="images/editor-icons/paste-icon.png" title="Paste (Shift+V)" onclick="pasteToPixelEditor();" onmouseover="iconHovered(this);" onmouseout="iconUnHovered(this);">
       <img id="shift-icon" src="images/editor-icons/shift-icon.png" width="40" height="40" usemap="#shiftmap">
       <map name="shiftmap">
-        <area id="shift-icon-up" shape="rect" coords="11, 0, 29, 11" onclick="shiftUp();" title="Shift upwards" onmouseover="iconHovered(this, document.getElementById('shift-icon'));" onmouseout="iconUnHovered(document.getElementById('shift-icon'));">
-        <area id="shift-icon-down" shape="rect" coords="12, 29, 28, 39" onclick="shiftDown();" title="Shift downwards" onmouseover="iconHovered(this, document.getElementById('shift-icon'));" onmouseout="iconUnHovered(document.getElementById('shift-icon'));">
-        <area id="shift-icon-left" shape="rect" coords="0, 12, 11, 28" onclick="shiftLeft();" title="Shift leftwards" onmouseover="iconHovered(this, document.getElementById('shift-icon'));" onmouseout="iconUnHovered(document.getElementById('shift-icon'));">
-        <area id="shift-icon-right" shape="rect" coords="28, 12, 39, 28" onclick="shiftRight();" title="Shift rightwards" onmouseover="iconHovered(this, document.getElementById('shift-icon'));" onmouseout="iconUnHovered(document.getElementById('shift-icon'));">
+        <area id="shift-icon-up" shape="rect" coords="11, 0, 29, 11" onclick="shiftUp();" title="Shift upwards (Shift+Up)" onmouseover="iconHovered(this, document.getElementById('shift-icon'));" onmouseout="iconUnHovered(document.getElementById('shift-icon'));">
+        <area id="shift-icon-down" shape="rect" coords="12, 29, 28, 39" onclick="shiftDown();" title="Shift downwards (Shift+Down)" onmouseover="iconHovered(this, document.getElementById('shift-icon'));" onmouseout="iconUnHovered(document.getElementById('shift-icon'));">
+        <area id="shift-icon-left" shape="rect" coords="0, 12, 11, 28" onclick="shiftLeft();" title="Shift leftwards (Shift+Left)" onmouseover="iconHovered(this, document.getElementById('shift-icon'));" onmouseout="iconUnHovered(document.getElementById('shift-icon'));">
+        <area id="shift-icon-right" shape="rect" coords="28, 12, 39, 28" onclick="shiftRight();" title="Shift rightwards (Shift+Right)" onmouseover="iconHovered(this, document.getElementById('shift-icon'));" onmouseout="iconUnHovered(document.getElementById('shift-icon'));">
       </map>
     </div>
     
@@ -52,7 +47,7 @@ Refer to index.html for full license. -->
     </div>
   </div>
   
-  <div id="pixel-editor" hidden="true">
+  <div id="pixel-editor">
     <input type="text-area" id="pixel-editor__charname" value="charName" oninput="updateCode();"/> <br>
 
     <div id="pixel-0x0" class="pixel-off" onclick="togglePixel(this)"> </div>
@@ -104,19 +99,19 @@ Refer to index.html for full license. -->
     <div id="pixel-7x4" class="pixel-off" onclick="togglePixel(this)"> </div>
   </div>
   
-<table id="pixel-editor__clipboard">
-  <tr> <td id="clipboard-0x0"></td><td id="clipboard-0x1"></td><td id="clipboard-0x2"></td><td id="clipboard-0x3"></td><td id="clipboard-0x4"></td> </tr>
-  <tr> <td id="clipboard-1x0"></td><td id="clipboard-1x1"></td><td id="clipboard-1x2"></td><td id="clipboard-1x3"></td><td id="clipboard-1x4"></td> </tr>
-  <tr> <td id="clipboard-2x0"></td><td id="clipboard-2x1"></td><td id="clipboard-2x2"></td><td id="clipboard-2x3"></td><td id="clipboard-2x4"></td> </tr>
-  <tr> <td id="clipboard-3x0"></td><td id="clipboard-3x1"></td><td id="clipboard-3x2"></td><td id="clipboard-3x3"></td><td id="clipboard-3x4"></td> </tr>
-  <tr> <td id="clipboard-4x0"></td><td id="clipboard-4x1"></td><td id="clipboard-4x2"></td><td id="clipboard-4x3"></td><td id="clipboard-4x4"></td> </tr>
-  <tr> <td id="clipboard-5x0"></td><td id="clipboard-5x1"></td><td id="clipboard-5x2"></td><td id="clipboard-5x3"></td><td id="clipboard-5x4"></td> </tr>
-  <tr> <td id="clipboard-6x0"></td><td id="clipboard-6x1"></td><td id="clipboard-6x2"></td><td id="clipboard-6x3"></td><td id="clipboard-6x4"></td> </tr>
-  <tr> <td id="clipboard-7x0"></td><td id="clipboard-7x1"></td><td id="clipboard-7x2"></td><td id="clipboard-7x3"></td><td id="clipboard-7x4"></td> </tr>
-</table>
+  <table id="pixel-editor__clipboard">
+    <tr> <td id="clipboard-0x0"></td><td id="clipboard-0x1"></td><td id="clipboard-0x2"></td><td id="clipboard-0x3"></td><td id="clipboard-0x4"></td> </tr>
+    <tr> <td id="clipboard-1x0"></td><td id="clipboard-1x1"></td><td id="clipboard-1x2"></td><td id="clipboard-1x3"></td><td id="clipboard-1x4"></td> </tr>
+    <tr> <td id="clipboard-2x0"></td><td id="clipboard-2x1"></td><td id="clipboard-2x2"></td><td id="clipboard-2x3"></td><td id="clipboard-2x4"></td> </tr>
+    <tr> <td id="clipboard-3x0"></td><td id="clipboard-3x1"></td><td id="clipboard-3x2"></td><td id="clipboard-3x3"></td><td id="clipboard-3x4"></td> </tr>
+    <tr> <td id="clipboard-4x0"></td><td id="clipboard-4x1"></td><td id="clipboard-4x2"></td><td id="clipboard-4x3"></td><td id="clipboard-4x4"></td> </tr>
+    <tr> <td id="clipboard-5x0"></td><td id="clipboard-5x1"></td><td id="clipboard-5x2"></td><td id="clipboard-5x3"></td><td id="clipboard-5x4"></td> </tr>
+    <tr> <td id="clipboard-6x0"></td><td id="clipboard-6x1"></td><td id="clipboard-6x2"></td><td id="clipboard-6x3"></td><td id="clipboard-6x4"></td> </tr>
+    <tr> <td id="clipboard-7x0"></td><td id="clipboard-7x1"></td><td id="clipboard-7x2"></td><td id="clipboard-7x3"></td><td id="clipboard-7x4"></td> </tr>
+  </table>
   
-<div id="preview-box">
-  <div class="box-title">LCD 16x2 Preview</div>
+  <div id="preview-box">
+    <div class="box-title">LCD 16x2 Preview</div>
     <table id="lcd-0x0" class="lcd-pixel__selected" onclick="selectLCD(this);">
       <tr> <td id="lcd-0x0-0x0"></td><td id="lcd-0x0-0x1"></td><td id="lcd-0x0-0x2"></td><td id="lcd-0x0-0x3"></td><td id="lcd-0x0-0x4"></td> </tr>
       <tr> <td id="lcd-0x0-1x0"></td><td id="lcd-0x0-1x1"></td><td id="lcd-0x0-1x2"></td><td id="lcd-0x0-1x3"></td><td id="lcd-0x0-1x4"></td> </tr>
@@ -438,11 +433,18 @@ Refer to index.html for full license. -->
       <tr> <td id="lcd-1x15-6x0"></td><td id="lcd-1x15-6x1"></td><td id="lcd-1x15-6x2"></td><td id="lcd-1x15-6x3"></td><td id="lcd-1x15-6x4"></td> </tr>
       <tr> <td id="lcd-1x15-7x0"></td><td id="lcd-1x15-7x1"></td><td id="lcd-1x15-7x2"></td><td id="lcd-1x15-7x3"></td><td id="lcd-1x15-7x4"></td> </tr>
     </table>
-  </div>		
+   </div>
+  
+  <div id="code-box">
+    <div class="box-title">Code</div>
+    <textarea id="code-box__code" readonly></textarea>
+   </div>
 	
   <footer>
-  <a id="copyright-text" class="bottom" href="https://github.com/alestiago" target="_blank">&copy; Open Source Web Tool by alestiago</a>
+  <a id="copyright-text" href="https://github.com/alestiago" target="_blank">&copy; Open Source Web Tool by alestiago</a>
   </footer>
+  
+  <!-- Scripts -->
   <script src="scripts/editor/functions.js"></script>
   <script src="scripts/editor/hovering-icons.js"></script>
   <script src="scripts/editor/options-navigation.js"></script> 
