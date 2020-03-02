@@ -355,12 +355,11 @@ function copyToClipboard () {
   copyText.setSelectionRange(0, 0);  // Unselect all text
 };
 
-/* Key Listeners */
 
+/* KEY LISTENERS */
 document.addEventListener("keydown", function (event) {
   /* Event listener looking for key presses */
-
-  event.preventDefault();   // * Overrides default browser hotkeys
+  //This causes issue with CharName input event.preventDefault();   // * Overrides default browser hotkeys
 
   if (event.ctrlKey) {
     switch (event.code) {
