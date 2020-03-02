@@ -361,7 +361,7 @@ document.addEventListener("keydown", function (event) {
   /* Event listener looking for key presses */
   //This causes issue with CharName input event.preventDefault();   // * Overrides default browser hotkeys
 
-  if (event.ctrlKey) {
+  if (event.shiftKey) {
     switch (event.code) {
       // * All Ctrl key combinations go here
 
