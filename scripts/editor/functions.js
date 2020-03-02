@@ -360,6 +360,8 @@ function copyToClipboard () {
 document.addEventListener("keydown", function (event) {
   /* Event listener looking for key presses */
 
+  event.preventDefault();   // * Overrides default browser hotkeys
+
   if (event.ctrlKey) {
     switch (event.code) {
       // * All Ctrl key combinations go here
@@ -374,18 +376,15 @@ document.addEventListener("keydown", function (event) {
       case "ArrowRight":  shiftRight();
         break;
 
-      /* 
-      ! These following keys may have conflicts with the browsers' hotkeys 
-      ! You can (should) change it to whatever feels best
-      */
-      case "KeyI":        invertPixels();         // ! Ctrl+I opens bookmarks on Firefox
+      // Other function hotkeys
+      case "KeyI":        invertPixels();
         break;
-      case "KeyM":        mirrorPixels();         // ! Ctrl+M mutes tab on Firefox
+      case "KeyM":        mirrorPixels();
         break;
-      case "KeyC":        copyToPixelClipboard(); // ? may conflict if a selection exists
+      case "KeyC":        copyToPixelClipboard();
         copyToClipboard();
         break;
-      case "KeyV":        pasteToPixelEditor();   // ? may conflict if a text box is selected
+      case "KeyV":        pasteToPixelEditor();
         break;
     }
   }
