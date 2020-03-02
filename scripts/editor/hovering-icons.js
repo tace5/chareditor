@@ -1,5 +1,9 @@
 /* This file is part of chareditor.com
  * Refer to index.html for full license. */
+ 
+/******************************
+  Handle hovering over icons
+*******************************/
 function iconHovered(icon, target){
   /* Changes image when hovered */
   if (target === undefined) target = icon;
