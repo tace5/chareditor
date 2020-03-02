@@ -74,6 +74,20 @@ function saveProgress() {
         break;
     }
   }
+
+  addStatusMsg("Saved!");
+}
+
+function addStatusMsg(msg) {
+  /* Function to display status messages in the top left corner */
+  $("#status-msg-box").append('<div class="status-msg">' + msg + '</div>');
+
+  var statusMsgs = $(".status-msg").filter(function () {
+    return $(this).css('opacity') === "1";
+  });
+  statusMsgs.first().fadeOut(1000, function () {
+    statusMsgs.first().remove();
+  });
 }
 
 function onKeyDown(e) {

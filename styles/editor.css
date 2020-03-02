@@ -44,6 +44,20 @@ header {
   user-select: none;
 }
 
+#status-msg-box {
+  position: fixed;
+  left: 0;
+}
+
+.status-msg {
+  color: #006468;
+  background-color: #97d1d3;
+  margin: 8px 0 0 16px;
+  font-family: 'Arial', Calibri, Dejavu Sans;
+  padding: 8px;
+  border-radius: 7px;
+}
+
 #header-subtitle {
   position: relative;
   top: -35px;
