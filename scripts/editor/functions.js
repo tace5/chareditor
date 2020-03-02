@@ -354,3 +354,38 @@ function copyToClipboard () {
   
   copyText.setSelectionRange(0, 0);  // Unselect all text
 };
+
+/* Key Listeners */
+
+document.addEventListener("keydown", function (event) {
+  /* Event listener looking for key presses */
+
+  event.preventDefault();   // * Overrides default browser hotkeys
+
+  if (event.ctrlKey) {
+    switch (event.code) {
+      // * All Ctrl key combinations go here
+
+      // Shifts every pixel when Ctrl and arrow keys are pressed.
+      case "ArrowUp":     shiftUp();
+        break;
+      case "ArrowDown":   shiftDown();
+        break;
+      case "ArrowLeft":   shiftLeft();
+        break;
+      case "ArrowRight":  shiftRight();
+        break;
+
+      // Other function hotkeys
+      case "KeyI":        invertPixels();
+        break;
+      case "KeyM":        mirrorPixels();
+        break;
+      case "KeyC":        copyToPixelClipboard();
+        copyToClipboard();
+        break;
+      case "KeyV":        pasteToPixelEditor();
+        break;
+    }
+  }
+});
