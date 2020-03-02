@@ -358,12 +358,13 @@ function copyToClipboard () {
 /* Key Listeners */
 
 document.addEventListener("keydown", function (event) {
-  /* Shifts every pixel when Ctrl and arrow keys are pressed. */
+  /* Event listener looking for key presses */
 
   if (event.ctrlKey) {
-    /* All Ctrl key combinations go here */
-
     switch (event.code) {
+      // * All Ctrl key combinations go here
+
+      // Shifts every pixel when Ctrl and arrow keys are pressed.
       case "ArrowUp":     shiftUp();
         break;
       case "ArrowDown":   shiftDown();
@@ -371,6 +372,20 @@ document.addEventListener("keydown", function (event) {
       case "ArrowLeft":   shiftLeft();
         break;
       case "ArrowRight":  shiftRight();
+        break;
+
+      /* 
+      ! These following keys may have conflicts with the browsers' hotkeys 
+      ! You can (should) change it to whatever feels best
+      */
+      case "KeyI":        invertPixels();         // ! Ctrl+I opens bookmarks on Firefox
+        break;
+      case "KeyM":        mirrorPixels();         // ! Ctrl+M mutes tab on Firefox
+        break;
+      case "KeyC":        copyToPixelClipboard(); // ? may conflict if a selection exists
+        copyToClipboard();
+        break;
+      case "KeyV":        pasteToPixelEditor();   // ? may conflict if a text box is selected
         break;
     }
   }
