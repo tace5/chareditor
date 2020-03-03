@@ -200,8 +200,7 @@ td {
 *******************************/
 #code-box {
   float: left;
-  width: 40%;
-  min-width: 470px;
+  width: 470px;
   height: 40%;
   min-height: 140px;
 }
@@ -213,6 +212,11 @@ td {
     background-color: transparent;
     border: none;
     color: white;
+  }
+  
+  #copy-to-clipboard-icon {
+    float: right;
+    cursor: pointer;
   }
 
 .code-option-box__checkbox {
