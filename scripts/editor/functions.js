@@ -90,22 +90,8 @@ function addStatusMsg(msg) {
   });
 }
 
-function onKeyDown(e) {
-  /* Handler for when the user presses a key. Meant to listen for when the user uses keyboard shortcuts. */
-  if (e.ctrlKey || e.metaKey) {
-    switch (e.key) {
-      case "s":
-        e.preventDefault();
-        saveProgress();
-        break;
-      default:
-    }
-  }
-}
-
 function onBodyLoad() {
   /* Handler for when page has loaded */
-  document.addEventListener('keydown', onKeyDown);
   updateCode();
   loadSavedData();
 }
@@ -443,8 +429,9 @@ document.addEventListener("keydown", function (event) {
   /* Event listener looking for key presses */
   //This causes issue with CharName input event.preventDefault();   // * Overrides default browser hotkeys
 
-  if (event.shiftKey) {
-    switch (event.code) {
+  if (event.ctrlKey || event.metaKey) {
+    event.preventDefault();
+    switch (event.key) {
       // * All Ctrl key combinations go here
 
       // Shifts every pixel when Ctrl and arrow keys are pressed.
@@ -458,14 +445,20 @@ document.addEventListener("keydown", function (event) {
         break;
 
       // Other function hotkeys
-      case "KeyI":        invertPixels();
+      case "i":        invertPixels();
         break;
-      case "KeyM":        mirrorPixels();
+      case "m":        mirrorPixels();
         break;
-      case "KeyC":        copyToPixelClipboard();
+      case "c":
+        copyToPixelClipboard();
         copyToClipboard();
+        addStatusMsg("Copied!");
         break;
-      case "KeyV":        pasteToPixelEditor();
+      case "v":        pasteToPixelEditor();
+        break;
+      case "s":
+        saveProgress();
+        addStatusMsg("Saved!");
         break;
     }
   }
