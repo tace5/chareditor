@@ -84,6 +84,7 @@ body {
         Pixel Editor
 *******************************/
 #pixel-editor {
+  position: relative;
   width: 250px;
   height: 390px;
   float: left;
@@ -102,6 +103,17 @@ body {
   border: none;
   margin-top: 17px;
   margin-bottom: 20px;
+}
+
+#status-msg-box {
+  position: absolute;
+}
+
+.status-msg {
+  color: white;
+  background-color: #232C38;
+  padding: 8px;
+  border-radius: 3px;
 }
 
 #pixel-editor__clipboard {
