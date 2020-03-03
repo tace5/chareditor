@@ -379,32 +379,41 @@ function copyToClipboard () {
 
 /* KEY LISTENERS */
 document.addEventListener("keydown", function (event) {
-  /* Event listener looking for key presses */
-  //This causes issue with CharName input event.preventDefault();   // * Overrides default browser hotkeys
+  /* Event listener looking for key presses */ 
 
-  if (event.shiftKey) {
-    switch (event.code) {
+  if (event.ctrlKey || event.metaKey) {
+    event.preventDefault();  // Overrides default browser hotkeys
+    switch (event.key) {
       // * All Ctrl key combinations go here
-
-      // Shifts every pixel when Ctrl and arrow keys are pressed.
-      case "ArrowUp":     shiftUp();
+      
+      // Shifts every pixel when Ctrl and arrow keys are pressed
+      case "ArrowUp":
+        shiftUp();
         break;
-      case "ArrowDown":   shiftDown();
+      case "ArrowDown":
+        shiftDown();
         break;
-      case "ArrowLeft":   shiftLeft();
+      case "ArrowLeft":
+        shiftLeft();
         break;
-      case "ArrowRight":  shiftRight();
+      case "ArrowRight":
+        shiftRight();
         break;
 
       // Other function hotkeys
-      case "KeyI":        invertPixels();
+      case "i":
+        invertPixels();
         break;
-      case "KeyM":        mirrorPixels();
+      case "m":
+        mirrorVertPixels();
         break;
-      case "KeyC":        copyToPixelClipboard();
-        copyToClipboard();
+      case "k":
+        mirrorHoriPixels();      
+      case "c":
+        copyToPixelClipboard();
         break;
-      case "KeyV":        pasteToPixelEditor();
+      case "v":
+        pasteToPixelEditor();
         break;
     }
   }
