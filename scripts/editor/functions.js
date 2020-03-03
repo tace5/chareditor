@@ -74,8 +74,6 @@ function saveProgress() {
         break;
     }
   }
-
-  addStatusMsg("Saved!");
 }
 
 function addStatusMsg(msg) {
