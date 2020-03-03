@@ -132,21 +132,42 @@ function invertPixels () {
   updateCode();
 }
 
-function mirrorPixels () {
+function mirrorVertPixels () {
   /* Mirrors vertically all pixels' state */
   for (var row = 0; row < 8; row++) {
     for (var col = 0; col < 2; col++) {
-      var leftpixelID = "pixel-" + row + "x" + col;
-      var leftpixel = document.getElementById(leftpixelID);
-      var leftpixelState = leftpixel.className;
+      var leftPixelID = "pixel-" + row + "x" + col;
+      var leftPixel = document.getElementById(leftPixelID);
+      var leftPixelState = leftPixel.className;
       
-      var rightpixelID = "pixel-" + row + "x" + (4 - col);
-      var rightpixel = document.getElementById(rightpixelID);
-      var rightpixelState = rightpixel.className;
+      var rightPixelID = "pixel-" + row + "x" + (4 - col);
+      var rightPixel = document.getElementById(rightPixelID);
+      var rightPixelState = rightPixel.className;
       
       // Swap
-      leftpixel.className = rightpixelState;
-      rightpixel.className = leftpixelState;
+      leftPixel.className = rightPixelState;
+      rightPixel.className = leftPixelState;
+    }
+  }
+  updateCode();
+  updateLCD();
+}
+
+function mirrorHoriPixels () {
+  /* Mirrors horizontally all pixels' state */
+  for (var col = 0; col < 5; col++) {
+    for (var row = 0; row < 4; row++) {
+      var upperPixelID = "pixel-" + row + "x" + col;
+      var upperPixel = document.getElementById(upperPixelID);
+      var upperPixelState = upperPixel.className;
+      
+      var lowerPixelID = "pixel-" + (7 - row) + "x" + col;
+      var lowerPixel = document.getElementById(lowerPixelID);
+      var lowerPixelState = lowerPixel.className;
+      
+      // Swap
+      upperPixel.className = lowerPixelState;
+      lowerPixel.className = upperPixelState;
     }
   }
   updateCode();
