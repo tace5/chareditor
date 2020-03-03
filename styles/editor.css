@@ -1,288 +1,161 @@
-/*
-{{ Chareditor.com }}
-Copyright (C) {{ 2020 }}  {{ alestiago }}
+/* This file is part of chareditor.com
+ * Refer to index.html for full license. */
 
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
 
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>. 
-*/
+/******************************
+        Page Background
+*******************************/
+html {
+  height: 100%;
+  background: linear-gradient(to right, #1a212a 0%, #1a212a 60px, #232c38 0%, #232c38 235px, #062340 0%, #1a212a 100%);
+  min-width: 745px;
+}
 
 body {
+  height: 100%;
   padding: 0px;
   margin: 0px;
+  color: white;
+  font-family: 'Lato', 'Arial', Calibri, Dejavu Sans;
 }
 
 
-/* Header */
-header {
-  position: fixed;
-  background-color: #fafafa;
-  width: 100%;
-  height: 60px;
-  padding-bottom: 7px;
-  padding-top: 7px;
-  border-bottom: solid;
-  border-color: #d9d9d9;
-  border-width: thin;
-}
-	
-#header-title {
-  position: relative;
-  top: -15px;
-  font-size: 30px;
-  text-align: center;
-  font-family: 'Arial', Calibri, Dejavu Sans;
-  user-select: none;
-}
-
-#header-subtitle {
-  position: relative;
-  top: -35px;
-  font-size: 12px;
-  font-weight: normal;
-  text-align: center;
-  font-family: 'Arial', Calibri, Dejavu Sans;
-  user-select: none;
-}
-
-
-/* Footer */
-footer {
-  position: fixed;
-  top: 95%;
-  width: 100%;
+/******************************
+     Option Navigation Bar
+*******************************/
+#options-bar {
   height: 100%;
-  background-color: #fafafa;
+  width: 25%;
+  min-width: 235px;
+  float: left;
+  display: inline-block;
+}
+
+  #option-navigation-bar {
+    width: 60px;
+    height: 100%;
+    float: left;
+    display: inline-block;
+    background-color: #1a212a;
+    text-align: center;
+    box-sizing: border-box;
+  }
+  
+    #editor-options-icon,
+    #code-options-icon,
+    .options-bar__icon {
+      width: 40px;
+      padding: 10px;
+      margin-left: 3px;
+    }
+  
+    .active {
+      background-color: #232c38;
+      border-radius: 25px 0px 0px 25px;
+    }
+    
+    #option-navigation-bar__logo {
+      margin-top: 150%;
+      opacity: 0.5;
+    }
+
+  #options-bar__options__editor,
+  #options-bar__options__code,
+  .options-bar__options {
+    width: 70%;
+    min-width: 138px;
+    float: left;
+    padding-left: 10px;
+    height: 100%;
+    border: none;
+    background-color: #232c38;
+  }
+
+  .options-bar__title {
+    margin: 5px;
+    font-size: 19px;
+    color: white;
+    user-select: none;
+  }
+
+
+/******************************
+        Pixel Editor
+*******************************/
+#pixel-editor {
+  width: 250px; 
+  height: 390px;
+  float: left;
+  border-radius: 5px;
+  margin: 30px 10px 0px 10px;
+  background-color: #2c415e;
   text-align: center;
-  padding: 10px;
-}
-
-
-#donate-form {
-  display: inline;
-}
-
-#donate-form__text,
-a {
-  font-family: 'Arial', Calibri, Dejavu Sans;
-  color: #7cb5f0;
-  font-size: 14px;
-  text-decoration: underline;
-}
-
-#donate-form__text {
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-}
-
-
-#copyright-text {
-  position: absolute;
-  top: 10px;
-  left: 20px;
-  color: #7cb5f0;
-  font-family: 'Arial', Calibri, Dejavu Sans;
-  font-size: 10px;
   user-select: none;
 }
 
-#copyright-text__link {
-  color: #7cb5f0;
-  font-family: 'Arial', Calibri, Dejavu Sans;
-  font-size: 10px;
-}
+  #pixel-editor__charname {
+    text-align: center;
+    font-family: 'Open Sans', Calibri, Dejavu Sans;
+    font-weight: bold;
+    border-radius: 4px;
+    border: none;
+    margin-top: 17px;
+    margin-bottom: 20px;
+  }
 
+  #pixel-editor__clipboard {
+    position: absolute;
+    display: none;
+  }
 
-/*************
-Main page body 
-*************/
-#page-content {
-  position: fixed;
-  left: 23%;
-  top: 100px;
-  background-color: blue;
-  margin:0 auto;
-}
+  .pixel-on {
+    width: 32px;
+    height: 32px;
+    margin: 2px;
+    box-sizing: border-box;
+    background-color: white;
+    border: white 1px solid;
+    display: inline-block;
+  }
 
-/* Box shape */
-#editor-options-box,
+  .pixel-off {
+    width: 32px;
+    height: 32px;
+    margin: 2px;
+    box-sizing: border-box;
+    border: #000 1px solid;
+    background-color: transparent;
+    display: inline-block;
+  }
+  
+  
+/******************************
+         Box Style
+*******************************/
 #code-box,
-#code-option-box,
-#about-box,
 #preview-box,
 .box {
-  margin: 8px;
-  padding: 8px;
-  background-color: #f5f2f0;
-  border-radius: 7px;
+  background-color: #2a405c;
+  border-radius: 3px;
+  margin: 30px 10px 0px 10px;
+  padding: 10px;
   user-select: none;
 }
 
 .box-title {
-  font-family: 'Arial', Calibri, Dejavu Sans;
+  font-family: 'Open Sans', 'Arial', Calibri, Dejavu Sans;
+  margin-left: 5px;
   margin-bottom: 5px;
+  color: white;
   user-select: none;
 }
 
 
-/* Editor Options */
-#editor-options-box {
-  position: absolute;
-  top: 0px;
-  width: 40px;
-  height: 375px;
-  background-color: #97d1d3; 
-}
-
-
-#shift-up-icon {
-  position: relative;
-  top: 4px;
-}
-
-#shift-down-icon {
-  position: relative;
-  top: -7px;
-}
-
-/* Share */
-#share-box {
-  position: absolute;
-  top: 400px;
-  left: 60px;
-  width: 235px;
-  height: 75px;
-}
-
-
-/* Code */
-#code-box {
-  position: absolute;
-  left: 320px;
-  top: 141px;
-  width: 298px;
-  height: 234px;
-}
-
-#code-box__code {
-  width: 298px;
-  height: 200px;
-  resize: none;
-  background-color: transparent;
-  border: black;
-}
-
-#code-option-box {
-  position: absolute;
-  top: 141px;
-  left: 640px;
-  width: 150px;
-  height: 234px;
-}
-
-.code-option-box__checkbox {
-  position: relative;
-  top: 2px;
-}
-
-
-/* About */
-#about-box {
-  position: absolute;
-  top: 400px;
-  left: 320px;
-  width: 470px;
-  height: 150px;
-  font-size: 14px;
-}
-
-#donate-form__link {
-  position: relative;
-  top: -14px;
-  left: -8px;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  font-style: italic;
-  text-decoration: underline;
-  display: inline;
-}
-
-#donate-form__link,
-#about-box__link {
-  font-size: 13px;
-  font-style: italic;
-  text-decoration: underline;
-  color: black;
-}
-
-
-/* Pixel editor */
-#pixel-editor {
-  position: absolute;
-  left: 60px;
-  top: 0px;
-  width: 250px; 
-  height: 390px;
-  margin: 8px;
-  float: center;
-  border-radius: 10px;
-  background-color: #4db7bb;
-  text-align: center;
-  user-select: none;
-}
-
-#pixel-editor__charname {
-  text-align: center;
-  font-family: 'Arial', Calibri, Dejavu Sans;
-  font-weight: bold;
-  border-radius: 4px;
-  border: none;
-  margin-top: 17px;
-  margin-bottom: 20px;
-}
-
-#pixel-editor__clipboard {
-  position: absolute;
-  display: none;
-}
-
-.pixel-on {
-  width: 32px;
-  height: 32px;
-  margin: 2px;
-  box-sizing: border-box;
-  background-color: #006468;
-  border: #006468 1px solid;
-  display: inline-block;
-}
-
-.pixel-off {
-  width: 32px;
-  height: 32px;
-  margin: 2px;
-  box-sizing: border-box;
-  border: #000 1px solid;
-  background-color: transparent;
-  display: inline-block;
-}
-
-
-/* Preview */
+/******************************
+         Preview Box
+*******************************/
 #preview-box {
-  position: absolute;
-  left: 320px;
-  top: 0px;
+  float: left;
   width: 470px;
   height: 115px;
 }
@@ -291,7 +164,6 @@ Main page body
   width: 25px;
   height: 40px;
   box-sizing: border-box;
-  border: 1px solid black;
   border-collapse: collapse;
   table-layout: fixed;
   margin: 2px;
@@ -302,7 +174,7 @@ td {
   width: 4px;
   height: 4px;
   box-sizing: border-box;
-  border: 1px solid black;
+  border: 1px solid #22262c;
   border-collapse: collapse;
 }
 
@@ -318,5 +190,65 @@ td {
 }
 
 .lcd-pixel__on{
-  background-color: black;
+  background-color: white;
+}
+
+
+/******************************
+          Code Box
+*******************************/
+#code-box {
+  float: left;
+  width: 40%;
+  min-width: 470px;
+  height: 40%;
+  min-height: 140px;
+}
+
+  #code-box__code {
+    width: 100%;
+    height: 85%;
+    resize: none;
+    background-color: transparent;
+    border: none;
+    color: white;
+  }
+
+.code-option-box__checkbox {
+  position: relative;
+  top: 2px;
+}
+
+
+/******************************
+          Page Footer
+*******************************/
+#copyright-text {
+  color: white;
+  opacity: 0.7;
+  width: 100%;
+  text-align: center;
+  text-decoration: none;
+  font-family: 'Open Sans', 'Arial';
+  font-size: 10px;
+  user-select: none;
+}
+
+
+/******************************
+          Alignment
+*******************************/
+#copyright-text,
+.horizontal-center {
+  margin: 0;
+  position: fixed;
+  left: 50%;
+  -ms-transform: translateX(-50%);
+  transform: translatex(-50%);
+}
+
+#copyright-text,
+.bottom {
+  position: fixed;
+  bottom: 2%;
 }

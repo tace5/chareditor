@@ -395,17 +395,36 @@ function copyToClipboard () {
   copyText.setSelectionRange(0, 0);  // Unselect all text
 };
 
-/* IMAGES functions */
 
-function iconHovered(icon, target){
-  /* Changes image when hovered */
-  if (target === undefined) target = icon;
-  var hoveredImage = "images/editor-icons/" + icon.id + "__hovered.png";
-  target.src = hoveredImage
-}
+/* KEY LISTENERS */
+document.addEventListener("keydown", function (event) {
+  /* Event listener looking for key presses */
+  //This causes issue with CharName input event.preventDefault();   // * Overrides default browser hotkeys
 
-function iconUnHovered(icon){
-  /* Changes image when stoped hovered */
-  var unHoveredImage = "images/editor-icons/" + icon.id + ".png";
-  icon.src = unHoveredImage;
-}
+  if (event.shiftKey) {
+    switch (event.code) {
+      // * All Ctrl key combinations go here
+
+      // Shifts every pixel when Ctrl and arrow keys are pressed.
+      case "ArrowUp":     shiftUp();
+        break;
+      case "ArrowDown":   shiftDown();
+        break;
+      case "ArrowLeft":   shiftLeft();
+        break;
+      case "ArrowRight":  shiftRight();
+        break;
+
+      // Other function hotkeys
+      case "KeyI":        invertPixels();
+        break;
+      case "KeyM":        mirrorPixels();
+        break;
+      case "KeyC":        copyToPixelClipboard();
+        copyToClipboard();
+        break;
+      case "KeyV":        pasteToPixelEditor();
+        break;
+    }
+  }
+});
