@@ -20,6 +20,7 @@ pixel editor. Code options are available at the left of the *code box*. Some opt
 Here a list of the people that have contributed with this project in any form. If you wish to be part of this project refer to the contributing file.
 
 * **Alejandro Santiago** - *Initial work* - [alestiago](https://github.com/alestiago)
+* **Ruben Hume** - *Features* - [tace5](https://github.com/tace5)
 
 ## License
 This project is described to be open source, collective collaboration is encouraged. This project is currently under the GPL-3.0 license. Refer to LICENSE.md for more details.
