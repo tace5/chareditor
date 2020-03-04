@@ -42,17 +42,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <div id="options-bar__options__editor" class="shown">
       <div class="options-bar__title">Editor Options</div>
       <img id="clear-icon"  src="images/editor-icons/clear-icon.png" title="Clear" onclick="clearPixels();" onmouseover="iconHovered(this);" onmouseout="iconUnHovered(this);">
-      <img id="invert-icon" src="images/editor-icons/invert-icon.png" title="Invert (Shift+I)" onclick="invertPixels();" onmouseover="iconHovered(this);" onmouseout="iconUnHovered(this);">
-      <img id="mirror-vertical-icon" src="images/editor-icons/mirror-vertical-icon.png" title="Mirror Vertical (Shift+M)" onclick="mirrorVertPixels();" onmouseover="iconHovered(this);" onmouseout="iconUnHovered(this);">
-      <img id="mirror-horizontal-icon" src="images/editor-icons/mirror-horizontal-icon.png" title="Mirror Horizontal (Shift+N)" onclick="mirrorHoriPixels();" onmouseover="iconHovered(this);" onmouseout="iconUnHovered(this);">
-      <img id="copy-icon" src="images/editor-icons/copy-icon.png" title="Copy (Shift+C)" onclick="copyToPixelClipboard();" onmouseover="iconHovered(this);" onmouseout="iconUnHovered(this);">
-      <img id="paste-icon" src="images/editor-icons/paste-icon.png" title="Paste (Shift+V)" onclick="pasteToPixelEditor();" onmouseover="iconHovered(this);" onmouseout="iconUnHovered(this);">
+      <img id="invert-icon" src="images/editor-icons/invert-icon.png" title="Invert (Ctrl+I)" onclick="invertPixels();" onmouseover="iconHovered(this);" onmouseout="iconUnHovered(this);">
+      <img id="mirror-vertical-icon" src="images/editor-icons/mirror-vertical-icon.png" title="Mirror Vertical (Ctrl+M)" onclick="mirrorVertPixels();" onmouseover="iconHovered(this);" onmouseout="iconUnHovered(this);">
+      <img id="mirror-horizontal-icon" src="images/editor-icons/mirror-horizontal-icon.png" title="Mirror Horizontal (Ctrl+N)" onclick="mirrorHoriPixels();" onmouseover="iconHovered(this);" onmouseout="iconUnHovered(this);">
+      <img id="copy-icon" src="images/editor-icons/copy-icon.png" title="Copy (Ctrl+C)" onclick="copyToPixelClipboard();" onmouseover="iconHovered(this);" onmouseout="iconUnHovered(this);">
+      <img id="paste-icon" src="images/editor-icons/paste-icon.png" title="Paste (Ctrl+V)" onclick="pasteToPixelEditor();" onmouseover="iconHovered(this);" onmouseout="iconUnHovered(this);">
       <img id="shift-icon" src="images/editor-icons/shift-icon.png" width="40" height="40" usemap="#shiftmap">
       <map name="shiftmap">
-        <area id="shift-icon-up" shape="rect" coords="11, 0, 29, 11" onclick="shiftUp();" title="Shift upwards (Shift+Up)" onmouseover="iconHovered(this, document.getElementById('shift-icon'));" onmouseout="iconUnHovered(document.getElementById('shift-icon'));">
-        <area id="shift-icon-down" shape="rect" coords="12, 29, 28, 39" onclick="shiftDown();" title="Shift downwards (Shift+Down)" onmouseover="iconHovered(this, document.getElementById('shift-icon'));" onmouseout="iconUnHovered(document.getElementById('shift-icon'));">
-        <area id="shift-icon-left" shape="rect" coords="0, 12, 11, 28" onclick="shiftLeft();" title="Shift leftwards (Shift+Left)" onmouseover="iconHovered(this, document.getElementById('shift-icon'));" onmouseout="iconUnHovered(document.getElementById('shift-icon'));">
-        <area id="shift-icon-right" shape="rect" coords="28, 12, 39, 28" onclick="shiftRight();" title="Shift rightwards (Shift+Right)" onmouseover="iconHovered(this, document.getElementById('shift-icon'));" onmouseout="iconUnHovered(document.getElementById('shift-icon'));">
+        <area id="shift-icon-up" shape="rect" coords="11, 0, 29, 11" onclick="shiftUp();" title="Shift upwards (Ctrl+Up)" onmouseover="iconHovered(this, document.getElementById('shift-icon'));" onmouseout="iconUnHovered(document.getElementById('shift-icon'));">
+        <area id="shift-icon-down" shape="rect" coords="12, 29, 28, 39" onclick="shiftDown();" title="Shift downwards (Ctrl+Down)" onmouseover="iconHovered(this, document.getElementById('shift-icon'));" onmouseout="iconUnHovered(document.getElementById('shift-icon'));">
+        <area id="shift-icon-left" shape="rect" coords="0, 12, 11, 28" onclick="shiftLeft();" title="Shift leftwards (Ctrl+Left)" onmouseover="iconHovered(this, document.getElementById('shift-icon'));" onmouseout="iconUnHovered(document.getElementById('shift-icon'));">
+        <area id="shift-icon-right" shape="rect" coords="28, 12, 39, 28" onclick="shiftRight();" title="Shift rightwards (Ctrl+Right)" onmouseover="iconHovered(this, document.getElementById('shift-icon'));" onmouseout="iconUnHovered(document.getElementById('shift-icon'));">
       </map>
     </div>
 
