@@ -26,15 +26,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   <!-- CSS imports -->
   <link href="styles/editor.css" rel="stylesheet" type="text/css" />
   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans:600&display=swap" rel="stylesheet"> 
+  <link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans:600&display=swap" rel="stylesheet">
 </head>
 
-<body onload="updateCode();">
+<body onload="onBodyLoad();">
 
   <div id="options-bar">
     <div id="option-navigation-bar">
       <img id="editor-options-icon" class="active" src="images/editor-icons/editor-options-icon__hovered.png" title="Editor options" onclick="showThisOption(this);" onmouseover="optionIconHovered(this);" onmouseout="optionIconUnHovered(this);">
       <img id="code-options-icon" src="images/editor-icons/code-options-icon.png" title="Code options" onclick="showThisOption(this);" onmouseover="optionIconHovered(this);" onmouseout="optionIconUnHovered(this);">
+      <img id="save-icon" src="images/editor-icons/save-icon.png" title="Save progress to browser" onclick="saveProgress();" onmouseover="iconHovered(this)" onmouseout="iconUnHovered(this)">
       <a href="https://chareditor.com" target="_blank"><img id="option-navigation-bar__logo" src="images/logo.png"></a>
     </div>
     
@@ -54,7 +55,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <area id="shift-icon-right" shape="rect" coords="28, 12, 39, 28" onclick="shiftRight();" title="Shift rightwards (Shift+Right)" onmouseover="iconHovered(this, document.getElementById('shift-icon'));" onmouseout="iconUnHovered(document.getElementById('shift-icon'));">
       </map>
     </div>
-    
+
     <div id="options-bar__options__code" class="" hidden="true">
         <div class="options-bar__title">Code Options</div>
         <input id="autocopy" class="code-option-box__checkbox" type="checkbox" onclick="updateCode();">Automatic copy <br>
@@ -62,60 +63,62 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <input id="hex-data-type" class="code-option-box__checkbox" type="checkbox" onclick="updateCode();">Hex datatype
     </div>
   </div>
-  
   <div id="pixel-editor">
-    <input type="text-area" id="pixel-editor__charname" value="charName" oninput="updateCode();"/> <br>
+    <input type="text-area" id="pixel-editor__charname" value="charName" oninput="updateCode();" data-saveable/> <br>
+    <div id="status-msg-box" class="horizontal-center"></div>
 
-    <div id="pixel-0x0" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <div id="pixel-0x1" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <div id="pixel-0x2" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <div id="pixel-0x3" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <div id="pixel-0x4" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <br>
-    <div id="pixel-1x0" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <div id="pixel-1x1" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <div id="pixel-1x2" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <div id="pixel-1x3" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <div id="pixel-1x4" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <br>
-    <div id="pixel-2x0" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <div id="pixel-2x1" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <div id="pixel-2x2" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <div id="pixel-2x3" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <div id="pixel-2x4" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <br>
-    <div id="pixel-3x0" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <div id="pixel-3x1" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <div id="pixel-3x2" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <div id="pixel-3x3" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <div id="pixel-3x4" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <br>
-    <div id="pixel-4x0" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <div id="pixel-4x1" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <div id="pixel-4x2" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <div id="pixel-4x3" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <div id="pixel-4x4" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <br>
-    <div id="pixel-5x0" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <div id="pixel-5x1" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <div id="pixel-5x2" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <div id="pixel-5x3" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <div id="pixel-5x4" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <br>
-    <div id="pixel-6x0" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <div id="pixel-6x1" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <div id="pixel-6x2" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <div id="pixel-6x3" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <div id="pixel-6x4" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <br>
-    <div id="pixel-7x0" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <div id="pixel-7x1" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <div id="pixel-7x2" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <div id="pixel-7x3" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <div id="pixel-7x4" class="pixel-off" onclick="togglePixel(this)"> </div>
+    <div id="pixels" data-saveable>
+      <div id="pixel-0x0" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <div id="pixel-0x1" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <div id="pixel-0x2" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <div id="pixel-0x3" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <div id="pixel-0x4" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <br>
+      <div id="pixel-1x0" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <div id="pixel-1x1" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <div id="pixel-1x2" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <div id="pixel-1x3" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <div id="pixel-1x4" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <br>
+      <div id="pixel-2x0" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <div id="pixel-2x1" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <div id="pixel-2x2" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <div id="pixel-2x3" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <div id="pixel-2x4" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <br>
+      <div id="pixel-3x0" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <div id="pixel-3x1" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <div id="pixel-3x2" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <div id="pixel-3x3" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <div id="pixel-3x4" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <br>
+      <div id="pixel-4x0" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <div id="pixel-4x1" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <div id="pixel-4x2" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <div id="pixel-4x3" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <div id="pixel-4x4" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <br>
+      <div id="pixel-5x0" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <div id="pixel-5x1" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <div id="pixel-5x2" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <div id="pixel-5x3" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <div id="pixel-5x4" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <br>
+      <div id="pixel-6x0" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <div id="pixel-6x1" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <div id="pixel-6x2" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <div id="pixel-6x3" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <div id="pixel-6x4" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <br>
+      <div id="pixel-7x0" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <div id="pixel-7x1" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <div id="pixel-7x2" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <div id="pixel-7x3" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <div id="pixel-7x4" class="pixel-off" onclick="togglePixel(this)"> </div>
+    </div>
   </div>
-  
-  <table id="pixel-editor__clipboard">
+    
+  <table id="pixel-editor__clipboard" data-saveable>
     <tr> <td id="clipboard-0x0"></td><td id="clipboard-0x1"></td><td id="clipboard-0x2"></td><td id="clipboard-0x3"></td><td id="clipboard-0x4"></td> </tr>
     <tr> <td id="clipboard-1x0"></td><td id="clipboard-1x1"></td><td id="clipboard-1x2"></td><td id="clipboard-1x3"></td><td id="clipboard-1x4"></td> </tr>
     <tr> <td id="clipboard-2x0"></td><td id="clipboard-2x1"></td><td id="clipboard-2x2"></td><td id="clipboard-2x3"></td><td id="clipboard-2x4"></td> </tr>
@@ -125,8 +128,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <tr> <td id="clipboard-6x0"></td><td id="clipboard-6x1"></td><td id="clipboard-6x2"></td><td id="clipboard-6x3"></td><td id="clipboard-6x4"></td> </tr>
     <tr> <td id="clipboard-7x0"></td><td id="clipboard-7x1"></td><td id="clipboard-7x2"></td><td id="clipboard-7x3"></td><td id="clipboard-7x4"></td> </tr>
   </table>
-  
-  <div id="preview-box">
+    
+  <div id="preview-box" data-saveable>
     <div class="box-title">LCD 16x2 Preview</div>
     <table id="lcd-0x0" class="lcd-pixel__selected" onclick="selectLCD(this);">
       <tr> <td id="lcd-0x0-0x0"></td><td id="lcd-0x0-0x1"></td><td id="lcd-0x0-0x2"></td><td id="lcd-0x0-0x3"></td><td id="lcd-0x0-0x4"></td> </tr>
@@ -458,11 +461,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
    </div>
 	
   <footer>
-  <a id="copyright-text" href="https://github.com/alestiago/chareditor" target="_blank">&copy; Chareditor - Open Source Web Tool</a>
+    <a id="copyright-text" href="https://github.com/alestiago/chareditor" target="_blank">&copy; Chareditor - Open Source Web Tool</a>
   </footer>
   
   <!-- Scripts -->
+  <script src="scripts/jquery.min.js"></script>
   <script src="scripts/editor/functions.js"></script>
   <script src="scripts/editor/hovering-icons.js"></script>
-  <script src="scripts/editor/options-navigation.js"></script> 
+  <script src="scripts/editor/options-navigation.js"></script>
 </body>

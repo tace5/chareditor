@@ -27,6 +27,74 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  
 /* global selectedLCD */
 
+/* Functions for saving and loading app state */
+function loadSavedData() {
+  /* Loads data stored in the browser memory */
+  var elements = document.querySelectorAll('[data-saveable]');
+
+  for (var i = 0; i < elements.length; i++) {
+    var element = elements.item(i);
+
+    if (localStorage.getItem(element.id)) {
+      switch (element.tagName) {
+        case "TEXTAREA":
+        case "INPUT":
+          if (element.type === "checkbox") {
+            element.checked = (localStorage.getItem(element.id) === "true");
+            break;
+          }
+          element.value = localStorage.getItem(element.id);
+          break;
+        default:
+          element.innerHTML = localStorage.getItem(element.id);
+          break;
+      }
+    }
+  }
+}
+
+function saveProgress() {
+  /* Saves the current app state to browser memory */
+  var elements = document.querySelectorAll('[data-saveable]');
+
+  for (var i = 0; i < elements.length; i++) {
+    var element = elements.item(i);
+
+    switch (element.tagName) {
+      case "TEXTAREA":
+      case "INPUT":
+        if (element.type === "checkbox") {
+          localStorage.setItem(element.id, element.checked);
+          break;
+        }
+        localStorage.setItem(element.id, element.value);
+        break;
+      default:
+        localStorage.setItem(element.id, element.innerHTML);
+        break;
+    }
+  }
+
+  addStatusMsg("Saved!");
+}
+
+function addStatusMsg(msg) {
+  /* Function to display status messages in the top left corner */
+  $("#status-msg-box").append('<div class="status-msg">' + msg + '</div>');
+
+  var statusMsgs = $(".status-msg").filter(function () {
+    return $(this).css('opacity') === "1";
+  });
+  statusMsgs.first().fadeOut(1000, function () {
+    statusMsgs.first().remove();
+  });
+}
+
+function onBodyLoad() {
+  /* Handler for when page has loaded */
+  updateCode();
+  loadSavedData();
+}
 
 /* CODE Functions */
 function updateCode (){
@@ -187,6 +255,7 @@ function copyToPixelClipboard () {
       else clipboardPixel.className = "lcd-pixel__on"; 
     }
   }
+  addStatusMsg("Copied!");
 }
 
 function pasteToPixelEditor () {
@@ -415,6 +484,9 @@ document.addEventListener("keydown", function (event) {
         break;
       case "v":
         pasteToPixelEditor();
+        break;
+      case "s":
+        saveProgress();
         break;
     }
   }
