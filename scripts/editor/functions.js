@@ -74,6 +74,8 @@ function saveProgress() {
         break;
     }
   }
+
+  addStatusMsg("Saved!");
 }
 
 function addStatusMsg(msg) {
@@ -456,7 +458,6 @@ document.addEventListener("keydown", function (event) {
         break;
       case "s":
         saveProgress();
-        addStatusMsg("Saved!");
         break;
     }
   }
