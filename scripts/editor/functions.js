@@ -408,7 +408,8 @@ document.addEventListener("keydown", function (event) {
         mirrorVertPixels();
         break;
       case "k":
-        mirrorHoriPixels();      
+        mirrorHoriPixels();
+        break;
       case "c":
         copyToPixelClipboard();
         break;
