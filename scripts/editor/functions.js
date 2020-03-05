@@ -170,8 +170,10 @@ function addDefineCode(charname){
 /* PIXEL EDITOR functions */
 function togglePixel (pixel) {
   /* Toggles state of specified pixel */
+
   if (pixel.className === "pixel-off") pixel.className = "pixel-on";
   else pixel.className = "pixel-off";
+
   updateCode();
   toggleLCDPixel(pixel);
 }
@@ -498,40 +500,56 @@ function onKeyDown(event) {
   }
 }
 
-function onMouseDown(event, deselect = false) {
+function onMouseDown(event) {
   var clickX = event.pageX;
   var clickY = event.pageY;
 
-  const removeSelection = () => $("#pixel-selection").remove();
   $(this).mouseup(() => removeSelection());
   $(this).mouseleave(() => removeSelection());
 
   $(this).append('<div id="pixel-selection"></div>')
-  $(this).mousemove(function(mouseDragEvent) {
-    const dragX = mouseDragEvent.pageX;
-    const dragY = mouseDragEvent.pageY;
+  $(this).mousemove((e) => createSelection(e, clickX, clickY, event.ctrlKey || event.metaKey));
+}
 
-    // This if statement is needed because the mouseleave event doesn't trigger when creating
-    // a selection where the cursor is inside the selection.
-    if (dragX < $(this)[0].offsetLeft || dragY < $(this)[0].offsetTop) {
-      removeSelection();
-    }
+function createSelection(mouseDragEvent, clickX, clickY, deselect) {
+  const dragX = mouseDragEvent.pageX;
+  const dragY = mouseDragEvent.pageY;
 
-    const selectionX = dragX > clickX ? clickX : dragX;
-    const selectionY = dragY > clickY ? clickY : dragY;
+  // This if statement is needed because the mouseleave event doesn't trigger when creating
+  // a selection where the cursor is inside the selection.
+  if (dragX < $(this)[0].offsetLeft || dragY < $(this)[0].offsetTop) {
+    removeSelection();
+  }
 
-    const selectionW = dragX > clickX
-        ? dragX - clickX
-        : clickX - dragX;
-    const selectionH = dragY > clickY
-        ? dragY - clickY
-        : clickY - dragY;
+  const selectionX = dragX > clickX ? clickX : dragX;
+  const selectionY = dragY > clickY ? clickY : dragY;
 
-    $("#pixel-selection").css({
-      "width": selectionW,
-      "height": selectionH,
-      "left": selectionX,
-      "top": selectionY
-    });
+  const selectionW = dragX > clickX
+      ? dragX - clickX
+      : clickX - dragX;
+  const selectionH = dragY > clickY
+      ? dragY - clickY
+      : clickY - dragY;
+
+  $("#pixel-selection").css({
+    "width": selectionW,
+    "height": selectionH,
+    "left": selectionX,
+    "top": selectionY
   });
+
+  $(deselect ? ".pixel-on" : ".pixel-off").each((idx, element) => {
+    const insideSelection = $(element).offset().left > selectionX
+        && $(element).offset().left < (selectionX + selectionW)
+        && $(element).offset().top > selectionY
+        && $(element).offset().top < (selectionY + selectionH)
+    if (insideSelection) {
+      togglePixel(element);
+    }
+  });
+}
+
+function removeSelection() {
+  $("#pixel-selection").remove();
+  $("#pixel-editor").off("mousemove");
 }
