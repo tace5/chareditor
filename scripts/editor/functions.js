@@ -490,47 +490,11 @@ function shiftChar (shiftRowBy, shiftColumnBy) {
 document.addEventListener("keydown", function (event) {
   /* Event listener looking for key presses */ 
 
-  if (event.ctrlKey || event.metaKey) {
-    event.preventDefault();  // Overrides default browser hotkeys
-    switch (event.key) {
-      // * All Ctrl key combinations go here
-      
-      // Shifts every pixel when Ctrl and arrow keys are pressed
-      case "ArrowUp":
-        shiftUp();
-        break;
-      case "ArrowDown":
-        shiftDown();
-        break;
-      case "ArrowLeft":
-        shiftLeft();
-        break;
-      case "ArrowRight":
-        shiftRight();
-        break;
+  if (!event.shiftKey) {    // ! Shift key is unused as it interferes with text selection
+    
+    if (event.altKey && (event.ctrlKey || event.metaKey)) {
+      event.preventDefault();  // Overrides default browser hotkeys
 
-      // Other function hotkeys
-      case "i":
-        invertPixels();
-        break;
-      case "m":
-        mirrorVertPixels();
-        break;
-      case "k":
-        mirrorHoriPixels();
-        break;
-      case "c":
-        copyToPixelClipboard();
-        break;
-      case "v":
-        pasteToPixelEditor();
-        break;
-      case "s":
-        saveProgress();
-        break;
-    }
-
-    if (event.shiftKey) {
       switch (event.code) {
         // * All Ctrl+Shift key combinations go here
 
@@ -543,6 +507,46 @@ document.addEventListener("keydown", function (event) {
           break;
         case "ArrowRight":  shiftChar(0, 1);
       }
+
+    } else if (event.ctrlKey || event.metaKey) {
+      event.preventDefault();  // Overrides default browser hotkeys
+      switch (event.key) {
+        // * All Ctrl key combinations go here
+        
+        // Shifts every pixel when Ctrl and arrow keys are pressed
+        case "ArrowUp":
+          shiftUp();
+          break;
+        case "ArrowDown":
+          shiftDown();
+          break;
+        case "ArrowLeft":
+          shiftLeft();
+          break;
+        case "ArrowRight":
+          shiftRight();
+          break;
+
+        // Other function hotkeys
+        case "i":
+          invertPixels();
+          break;
+        case "m":
+          mirrorVertPixels();
+          break;
+        case "k":
+          mirrorHoriPixels();
+          break;
+        case "c":
+          copyToPixelClipboard();
+          break;
+        case "v":
+          pasteToPixelEditor();
+          break;
+        case "s":
+          saveProgress();
+          break;
+      } 
     }
   }
 });
