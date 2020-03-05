@@ -36,18 +36,12 @@ function loadSavedData() {
     var element = elements.item(i);
 
     if (localStorage.getItem(element.id)) {
-      switch (element.tagName) {
-        case "TEXTAREA":
-        case "INPUT":
-          if (element.type === "checkbox") {
-            element.checked = (localStorage.getItem(element.id) === "true");
-            break;
-          }
-          element.value = localStorage.getItem(element.id);
-          break;
-        default:
-          element.innerHTML = localStorage.getItem(element.id);
-          break;
+      if (element.tagName === "INPUT" && element.type === "checkbox") {
+        element.checked = (localStorage.getItem(element.id) === "true");
+      } else if (element.tagName === "INPUT" || element.tagName === "TEXTAREA") {
+        element.value = localStorage.getItem(element.id)
+      } else if (element.hasChildNodes()) {
+        element.innerHTML = localStorage.getItem(element.id);
       }
     }
   }
@@ -60,18 +54,12 @@ function saveProgress() {
   for (var i = 0; i < elements.length; i++) {
     var element = elements.item(i);
 
-    switch (element.tagName) {
-      case "TEXTAREA":
-      case "INPUT":
-        if (element.type === "checkbox") {
-          localStorage.setItem(element.id, element.checked);
-          break;
-        }
-        localStorage.setItem(element.id, element.value);
-        break;
-      default:
-        localStorage.setItem(element.id, element.innerHTML);
-        break;
+    if (element.tagName === "INPUT" && element.type === "checkbox") {
+      localStorage.setItem(element.id, element.checked);
+    } else if (element.tagName === "INPUT" || element.tagName === "TEXTAREA") {
+      localStorage.setItem(element.id, element.value);
+    } else if (element.hasChildNodes()) {
+      localStorage.setItem(element.id, element.innerHTML);
     }
   }
 
