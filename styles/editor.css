@@ -95,6 +95,13 @@ body {
   user-select: none;
 }
 
+#pixel-selection {
+  position: fixed;
+  background-color: #7AB9FF;
+  border: #375A80 2px solid;
+  opacity: 0.5;
+}
+
 #pixel-editor__charname {
   text-align: center;
   font-family: 'Open Sans', Calibri, Dejavu Sans;

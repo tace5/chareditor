@@ -445,17 +445,23 @@ function copyToClipboard () {
   copyText.setSelectionRange(0, 0);  // Unselect all text
 };
 
+/* Wait for DOM to load before adding event listeners */
+$(document).ready(addEventListeners);
+function addEventListeners() {
+  $(document).keydown(onKeyDown);
+  $("#pixel-editor").mousedown(onMouseDown);
+}
 
 /* KEY LISTENERS */
-document.addEventListener("keydown", function (event) {
-  /* Event listener looking for key presses */ 
+function onKeyDown(event) {
+  /* Event listener looking for key presses */
 
   if (event.ctrlKey || event.metaKey) {
     event.preventDefault();  // Overrides default browser hotkeys
     switch (event.key) {
-      // * All Ctrl key combinations go here
-      
-      // Shifts every pixel when Ctrl and arrow keys are pressed
+        // * All Ctrl key combinations go here
+
+        // Shifts every pixel when Ctrl and arrow keys are pressed
       case "ArrowUp":
         shiftUp();
         break;
@@ -469,7 +475,7 @@ document.addEventListener("keydown", function (event) {
         shiftRight();
         break;
 
-      // Other function hotkeys
+        // Other function hotkeys
       case "i":
         invertPixels();
         break;
@@ -490,4 +496,42 @@ document.addEventListener("keydown", function (event) {
         break;
     }
   }
-});
+}
+
+function onMouseDown(event, deselect = false) {
+  var clickX = event.pageX;
+  var clickY = event.pageY;
+
+  const removeSelection = () => $("#pixel-selection").remove();
+  $(this).mouseup(() => removeSelection());
+  $(this).mouseleave(() => removeSelection());
+
+  $(this).append('<div id="pixel-selection"></div>')
+  $(this).mousemove(function(mouseDragEvent) {
+    const dragX = mouseDragEvent.pageX;
+    const dragY = mouseDragEvent.pageY;
+
+    // This if statement is needed because the mouseleave event doesn't trigger when creating
+    // a selection where the cursor is inside the selection.
+    if (dragX < $(this)[0].offsetLeft || dragY < $(this)[0].offsetTop) {
+      removeSelection();
+    }
+
+    const selectionX = dragX > clickX ? clickX : dragX;
+    const selectionY = dragY > clickY ? clickY : dragY;
+
+    const selectionW = dragX > clickX
+        ? dragX - clickX
+        : clickX - dragX;
+    const selectionH = dragY > clickY
+        ? dragY - clickY
+        : clickY - dragY;
+
+    $("#pixel-selection").css({
+      "width": selectionW,
+      "height": selectionH,
+      "left": selectionX,
+      "top": selectionY
+    });
+  });
+}
