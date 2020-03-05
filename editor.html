@@ -1,6 +1,21 @@
 <!DOCTYPE html>
-<!-- This file is part of chareditor.com
-Refer to index.html for full license. -->
+<!-- 
+{{ Chareditor.com }}
+Copyright (C) {{ 2020 }}  {{ alestiago }}
+
+Chareditor is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Chareditor is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>. 
+-->
 
 <html>
 <head>
@@ -11,39 +26,36 @@ Refer to index.html for full license. -->
   <!-- CSS imports -->
   <link href="styles/editor.css" rel="stylesheet" type="text/css" />
   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans:600&display=swap" rel="stylesheet"> 
+  <link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans:600&display=swap" rel="stylesheet">
 </head>
 
-<body onload="updateCode();">
+<body onload="onBodyLoad();">
 
-  <div id="code-box">
-    <div class="box-title">Code</div>
-      <textarea id="code-box__code" readonly></textarea>
-    </div>
- 
   <div id="options-bar">
     <div id="option-navigation-bar">
       <img id="editor-options-icon" class="active" src="images/editor-icons/editor-options-icon__hovered.png" title="Editor options" onclick="showThisOption(this);" onmouseover="optionIconHovered(this);" onmouseout="optionIconUnHovered(this);">
       <img id="code-options-icon" src="images/editor-icons/code-options-icon.png" title="Code options" onclick="showThisOption(this);" onmouseover="optionIconHovered(this);" onmouseout="optionIconUnHovered(this);">
+      <img id="save-icon" src="images/editor-icons/save-icon.png" title="Save progress to browser" onclick="saveProgress();" onmouseover="iconHovered(this)" onmouseout="iconUnHovered(this)">
       <a href="https://chareditor.com" target="_blank"><img id="option-navigation-bar__logo" src="images/logo.png"></a>
     </div>
     
     <div id="options-bar__options__editor" class="shown">
       <div class="options-bar__title">Editor Options</div>
       <img id="clear-icon"  src="images/editor-icons/clear-icon.png" title="Clear" onclick="clearPixels();" onmouseover="iconHovered(this);" onmouseout="iconUnHovered(this);">
-      <img id="invert-icon" src="images/editor-icons/invert-icon.png" title="Invert" onclick="invertPixels();" onmouseover="iconHovered(this);" onmouseout="iconUnHovered(this);">
-      <img id="mirror-icon" src="images/editor-icons/mirror-icon.png" title="Mirror" onclick="mirrorPixels();" onmouseover="iconHovered(this);" onmouseout="iconUnHovered(this);">
-      <img id="copy-icon" src="images/editor-icons/copy-icon.png" title="Copy" onclick="copyToPixelClipboard();" onmouseover="iconHovered(this);" onmouseout="iconUnHovered(this);">
-      <img id="paste-icon" src="images/editor-icons/paste-icon.png" title="Paste" onclick="pasteToPixelEditor();" onmouseover="iconHovered(this);" onmouseout="iconUnHovered(this);">
+      <img id="invert-icon" src="images/editor-icons/invert-icon.png" title="Invert (Ctrl+I)" onclick="invertPixels();" onmouseover="iconHovered(this);" onmouseout="iconUnHovered(this);">
+      <img id="mirror-vertical-icon" src="images/editor-icons/mirror-vertical-icon.png" title="Mirror Vertical (Ctrl+M)" onclick="mirrorVertPixels();" onmouseover="iconHovered(this);" onmouseout="iconUnHovered(this);">
+      <img id="mirror-horizontal-icon" src="images/editor-icons/mirror-horizontal-icon.png" title="Mirror Horizontal (Ctrl+N)" onclick="mirrorHoriPixels();" onmouseover="iconHovered(this);" onmouseout="iconUnHovered(this);">
+      <img id="copy-icon" src="images/editor-icons/copy-icon.png" title="Copy (Ctrl+C)" onclick="copyToPixelClipboard();" onmouseover="iconHovered(this);" onmouseout="iconUnHovered(this);">
+      <img id="paste-icon" src="images/editor-icons/paste-icon.png" title="Paste (Ctrl+V)" onclick="pasteToPixelEditor();" onmouseover="iconHovered(this);" onmouseout="iconUnHovered(this);">
       <img id="shift-icon" src="images/editor-icons/shift-icon.png" width="40" height="40" usemap="#shiftmap">
       <map name="shiftmap">
-        <area id="shift-icon-up" shape="rect" coords="11, 0, 29, 11" onclick="shiftUp();" title="Shift upwards" onmouseover="iconHovered(this, document.getElementById('shift-icon'));" onmouseout="iconUnHovered(document.getElementById('shift-icon'));">
-        <area id="shift-icon-down" shape="rect" coords="12, 29, 28, 39" onclick="shiftDown();" title="Shift downwards" onmouseover="iconHovered(this, document.getElementById('shift-icon'));" onmouseout="iconUnHovered(document.getElementById('shift-icon'));">
-        <area id="shift-icon-left" shape="rect" coords="0, 12, 11, 28" onclick="shiftLeft();" title="Shift leftwards" onmouseover="iconHovered(this, document.getElementById('shift-icon'));" onmouseout="iconUnHovered(document.getElementById('shift-icon'));">
-        <area id="shift-icon-right" shape="rect" coords="28, 12, 39, 28" onclick="shiftRight();" title="Shift rightwards" onmouseover="iconHovered(this, document.getElementById('shift-icon'));" onmouseout="iconUnHovered(document.getElementById('shift-icon'));">
+        <area id="shift-icon-up" shape="rect" coords="11, 0, 29, 11" onclick="shiftUp();" title="Shift upwards (Ctrl+Up)" onmouseover="iconHovered(this, document.getElementById('shift-icon'));" onmouseout="iconUnHovered(document.getElementById('shift-icon'));">
+        <area id="shift-icon-down" shape="rect" coords="12, 29, 28, 39" onclick="shiftDown();" title="Shift downwards (Ctrl+Down)" onmouseover="iconHovered(this, document.getElementById('shift-icon'));" onmouseout="iconUnHovered(document.getElementById('shift-icon'));">
+        <area id="shift-icon-left" shape="rect" coords="0, 12, 11, 28" onclick="shiftLeft();" title="Shift leftwards (Ctrl+Left)" onmouseover="iconHovered(this, document.getElementById('shift-icon'));" onmouseout="iconUnHovered(document.getElementById('shift-icon'));">
+        <area id="shift-icon-right" shape="rect" coords="28, 12, 39, 28" onclick="shiftRight();" title="Shift rightwards (Ctrl+Right)" onmouseover="iconHovered(this, document.getElementById('shift-icon'));" onmouseout="iconUnHovered(document.getElementById('shift-icon'));">
       </map>
     </div>
-    
+
     <div id="options-bar__options__code" class="" hidden="true">
         <div class="options-bar__title">Code Options</div>
         <input id="autocopy" class="code-option-box__checkbox" type="checkbox" onclick="updateCode();">Automatic copy <br>
@@ -51,73 +63,75 @@ Refer to index.html for full license. -->
         <input id="hex-data-type" class="code-option-box__checkbox" type="checkbox" onclick="updateCode();">Hex datatype
     </div>
   </div>
-  
-  <div id="pixel-editor" hidden="true">
-    <input type="text-area" id="pixel-editor__charname" value="charName" oninput="updateCode();"/> <br>
+  <div id="pixel-editor">
+    <input type="text-area" id="pixel-editor__charname" value="charName" oninput="updateCode();" data-saveable/> <br>
+    <div id="status-msg-box" class="horizontal-center"></div>
 
-    <div id="pixel-0x0" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <div id="pixel-0x1" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <div id="pixel-0x2" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <div id="pixel-0x3" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <div id="pixel-0x4" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <br>
-    <div id="pixel-1x0" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <div id="pixel-1x1" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <div id="pixel-1x2" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <div id="pixel-1x3" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <div id="pixel-1x4" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <br>
-    <div id="pixel-2x0" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <div id="pixel-2x1" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <div id="pixel-2x2" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <div id="pixel-2x3" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <div id="pixel-2x4" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <br>
-    <div id="pixel-3x0" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <div id="pixel-3x1" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <div id="pixel-3x2" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <div id="pixel-3x3" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <div id="pixel-3x4" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <br>
-    <div id="pixel-4x0" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <div id="pixel-4x1" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <div id="pixel-4x2" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <div id="pixel-4x3" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <div id="pixel-4x4" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <br>
-    <div id="pixel-5x0" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <div id="pixel-5x1" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <div id="pixel-5x2" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <div id="pixel-5x3" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <div id="pixel-5x4" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <br>
-    <div id="pixel-6x0" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <div id="pixel-6x1" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <div id="pixel-6x2" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <div id="pixel-6x3" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <div id="pixel-6x4" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <br>
-    <div id="pixel-7x0" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <div id="pixel-7x1" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <div id="pixel-7x2" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <div id="pixel-7x3" class="pixel-off" onclick="togglePixel(this)"> </div>
-    <div id="pixel-7x4" class="pixel-off" onclick="togglePixel(this)"> </div>
+    <div id="pixels" data-saveable>
+      <div id="pixel-0x0" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <div id="pixel-0x1" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <div id="pixel-0x2" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <div id="pixel-0x3" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <div id="pixel-0x4" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <br>
+      <div id="pixel-1x0" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <div id="pixel-1x1" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <div id="pixel-1x2" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <div id="pixel-1x3" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <div id="pixel-1x4" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <br>
+      <div id="pixel-2x0" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <div id="pixel-2x1" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <div id="pixel-2x2" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <div id="pixel-2x3" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <div id="pixel-2x4" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <br>
+      <div id="pixel-3x0" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <div id="pixel-3x1" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <div id="pixel-3x2" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <div id="pixel-3x3" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <div id="pixel-3x4" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <br>
+      <div id="pixel-4x0" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <div id="pixel-4x1" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <div id="pixel-4x2" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <div id="pixel-4x3" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <div id="pixel-4x4" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <br>
+      <div id="pixel-5x0" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <div id="pixel-5x1" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <div id="pixel-5x2" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <div id="pixel-5x3" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <div id="pixel-5x4" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <br>
+      <div id="pixel-6x0" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <div id="pixel-6x1" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <div id="pixel-6x2" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <div id="pixel-6x3" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <div id="pixel-6x4" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <br>
+      <div id="pixel-7x0" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <div id="pixel-7x1" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <div id="pixel-7x2" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <div id="pixel-7x3" class="pixel-off" onclick="togglePixel(this)"> </div>
+      <div id="pixel-7x4" class="pixel-off" onclick="togglePixel(this)"> </div>
+    </div>
   </div>
-  
-<table id="pixel-editor__clipboard">
-  <tr> <td id="clipboard-0x0"></td><td id="clipboard-0x1"></td><td id="clipboard-0x2"></td><td id="clipboard-0x3"></td><td id="clipboard-0x4"></td> </tr>
-  <tr> <td id="clipboard-1x0"></td><td id="clipboard-1x1"></td><td id="clipboard-1x2"></td><td id="clipboard-1x3"></td><td id="clipboard-1x4"></td> </tr>
-  <tr> <td id="clipboard-2x0"></td><td id="clipboard-2x1"></td><td id="clipboard-2x2"></td><td id="clipboard-2x3"></td><td id="clipboard-2x4"></td> </tr>
-  <tr> <td id="clipboard-3x0"></td><td id="clipboard-3x1"></td><td id="clipboard-3x2"></td><td id="clipboard-3x3"></td><td id="clipboard-3x4"></td> </tr>
-  <tr> <td id="clipboard-4x0"></td><td id="clipboard-4x1"></td><td id="clipboard-4x2"></td><td id="clipboard-4x3"></td><td id="clipboard-4x4"></td> </tr>
-  <tr> <td id="clipboard-5x0"></td><td id="clipboard-5x1"></td><td id="clipboard-5x2"></td><td id="clipboard-5x3"></td><td id="clipboard-5x4"></td> </tr>
-  <tr> <td id="clipboard-6x0"></td><td id="clipboard-6x1"></td><td id="clipboard-6x2"></td><td id="clipboard-6x3"></td><td id="clipboard-6x4"></td> </tr>
-  <tr> <td id="clipboard-7x0"></td><td id="clipboard-7x1"></td><td id="clipboard-7x2"></td><td id="clipboard-7x3"></td><td id="clipboard-7x4"></td> </tr>
-</table>
-  
-<div id="preview-box">
-  <div class="box-title">LCD 16x2 Preview</div>
-    <table id="lcd-0x0" class="lcd-pixel__selected" onclick="selectLCD(this);">
+    
+  <table id="pixel-editor__clipboard" data-saveable>
+    <tr> <td id="clipboard-0x0"></td><td id="clipboard-0x1"></td><td id="clipboard-0x2"></td><td id="clipboard-0x3"></td><td id="clipboard-0x4"></td> </tr>
+    <tr> <td id="clipboard-1x0"></td><td id="clipboard-1x1"></td><td id="clipboard-1x2"></td><td id="clipboard-1x3"></td><td id="clipboard-1x4"></td> </tr>
+    <tr> <td id="clipboard-2x0"></td><td id="clipboard-2x1"></td><td id="clipboard-2x2"></td><td id="clipboard-2x3"></td><td id="clipboard-2x4"></td> </tr>
+    <tr> <td id="clipboard-3x0"></td><td id="clipboard-3x1"></td><td id="clipboard-3x2"></td><td id="clipboard-3x3"></td><td id="clipboard-3x4"></td> </tr>
+    <tr> <td id="clipboard-4x0"></td><td id="clipboard-4x1"></td><td id="clipboard-4x2"></td><td id="clipboard-4x3"></td><td id="clipboard-4x4"></td> </tr>
+    <tr> <td id="clipboard-5x0"></td><td id="clipboard-5x1"></td><td id="clipboard-5x2"></td><td id="clipboard-5x3"></td><td id="clipboard-5x4"></td> </tr>
+    <tr> <td id="clipboard-6x0"></td><td id="clipboard-6x1"></td><td id="clipboard-6x2"></td><td id="clipboard-6x3"></td><td id="clipboard-6x4"></td> </tr>
+    <tr> <td id="clipboard-7x0"></td><td id="clipboard-7x1"></td><td id="clipboard-7x2"></td><td id="clipboard-7x3"></td><td id="clipboard-7x4"></td> </tr>
+  </table>
+    
+  <div id="preview-box">
+    <div class="box-title">LCD 16x2 Preview</div>
+    <table id="lcd-0x0" class="lcd-pixel__selected" onclick="selectLCD(this);" data-saveable>
       <tr> <td id="lcd-0x0-0x0"></td><td id="lcd-0x0-0x1"></td><td id="lcd-0x0-0x2"></td><td id="lcd-0x0-0x3"></td><td id="lcd-0x0-0x4"></td> </tr>
       <tr> <td id="lcd-0x0-1x0"></td><td id="lcd-0x0-1x1"></td><td id="lcd-0x0-1x2"></td><td id="lcd-0x0-1x3"></td><td id="lcd-0x0-1x4"></td> </tr>
       <tr> <td id="lcd-0x0-2x0"></td><td id="lcd-0x0-2x1"></td><td id="lcd-0x0-2x2"></td><td id="lcd-0x0-2x3"></td><td id="lcd-0x0-2x4"></td> </tr>
@@ -127,7 +141,7 @@ Refer to index.html for full license. -->
       <tr> <td id="lcd-0x0-6x0"></td><td id="lcd-0x0-6x1"></td><td id="lcd-0x0-6x2"></td><td id="lcd-0x0-6x3"></td><td id="lcd-0x0-6x4"></td> </tr>
       <tr> <td id="lcd-0x0-7x0"></td><td id="lcd-0x0-7x1"></td><td id="lcd-0x0-7x2"></td><td id="lcd-0x0-7x3"></td><td id="lcd-0x0-7x4"></td> </tr>
     </table>
-    <table id="lcd-0x1" class="lcd-pixel" onclick="selectLCD(this);">
+    <table id="lcd-0x1" class="lcd-pixel" onclick="selectLCD(this);" data-saveable>
       <tr> <td id="lcd-0x1-0x0"></td><td id="lcd-0x1-0x1"></td><td id="lcd-0x1-0x2"></td><td id="lcd-0x1-0x3"></td><td id="lcd-0x1-0x4"></td> </tr>
       <tr> <td id="lcd-0x1-1x0"></td><td id="lcd-0x1-1x1"></td><td id="lcd-0x1-1x2"></td><td id="lcd-0x1-1x3"></td><td id="lcd-0x1-1x4"></td> </tr>
       <tr> <td id="lcd-0x1-2x0"></td><td id="lcd-0x1-2x1"></td><td id="lcd-0x1-2x2"></td><td id="lcd-0x1-2x3"></td><td id="lcd-0x1-2x4"></td> </tr>
@@ -137,7 +151,7 @@ Refer to index.html for full license. -->
       <tr> <td id="lcd-0x1-6x0"></td><td id="lcd-0x1-6x1"></td><td id="lcd-0x1-6x2"></td><td id="lcd-0x1-6x3"></td><td id="lcd-0x1-6x4"></td> </tr>
       <tr> <td id="lcd-0x1-7x0"></td><td id="lcd-0x1-7x1"></td><td id="lcd-0x1-7x2"></td><td id="lcd-0x1-7x3"></td><td id="lcd-0x1-7x4"></td> </tr>
     </table>
-    <table id="lcd-0x2" class="lcd-pixel" onclick="selectLCD(this);">
+    <table id="lcd-0x2" class="lcd-pixel" onclick="selectLCD(this);" data-saveable>
       <tr> <td id="lcd-0x2-0x0"></td><td id="lcd-0x2-0x1"></td><td id="lcd-0x2-0x2"></td><td id="lcd-0x2-0x3"></td><td id="lcd-0x2-0x4"></td> </tr>
       <tr> <td id="lcd-0x2-1x0"></td><td id="lcd-0x2-1x1"></td><td id="lcd-0x2-1x2"></td><td id="lcd-0x2-1x3"></td><td id="lcd-0x2-1x4"></td> </tr>
       <tr> <td id="lcd-0x2-2x0"></td><td id="lcd-0x2-2x1"></td><td id="lcd-0x2-2x2"></td><td id="lcd-0x2-2x3"></td><td id="lcd-0x2-2x4"></td> </tr>
@@ -147,7 +161,7 @@ Refer to index.html for full license. -->
       <tr> <td id="lcd-0x2-6x0"></td><td id="lcd-0x2-6x1"></td><td id="lcd-0x2-6x2"></td><td id="lcd-0x2-6x3"></td><td id="lcd-0x2-6x4"></td> </tr>
       <tr> <td id="lcd-0x2-7x0"></td><td id="lcd-0x2-7x1"></td><td id="lcd-0x2-7x2"></td><td id="lcd-0x2-7x3"></td><td id="lcd-0x2-7x4"></td> </tr>
     </table>
-    <table id="lcd-0x3" class="lcd-pixel" onclick="selectLCD(this);">
+    <table id="lcd-0x3" class="lcd-pixel" onclick="selectLCD(this);" data-saveable>
       <tr> <td id="lcd-0x3-0x0"></td><td id="lcd-0x3-0x1"></td><td id="lcd-0x3-0x2"></td><td id="lcd-0x3-0x3"></td><td id="lcd-0x3-0x4"></td> </tr>
       <tr> <td id="lcd-0x3-1x0"></td><td id="lcd-0x3-1x1"></td><td id="lcd-0x3-1x2"></td><td id="lcd-0x3-1x3"></td><td id="lcd-0x3-1x4"></td> </tr>
       <tr> <td id="lcd-0x3-2x0"></td><td id="lcd-0x3-2x1"></td><td id="lcd-0x3-2x2"></td><td id="lcd-0x3-2x3"></td><td id="lcd-0x3-2x4"></td> </tr>
@@ -157,7 +171,7 @@ Refer to index.html for full license. -->
       <tr> <td id="lcd-0x3-6x0"></td><td id="lcd-0x3-6x1"></td><td id="lcd-0x3-6x2"></td><td id="lcd-0x3-6x3"></td><td id="lcd-0x3-6x4"></td> </tr>
       <tr> <td id="lcd-0x3-7x0"></td><td id="lcd-0x3-7x1"></td><td id="lcd-0x3-7x2"></td><td id="lcd-0x3-7x3"></td><td id="lcd-0x3-7x4"></td> </tr>
     </table>
-    <table id="lcd-0x4" class="lcd-pixel" onclick="selectLCD(this);">
+    <table id="lcd-0x4" class="lcd-pixel" onclick="selectLCD(this);" data-saveable>
       <tr> <td id="lcd-0x4-0x0"></td><td id="lcd-0x4-0x1"></td><td id="lcd-0x4-0x2"></td><td id="lcd-0x4-0x3"></td><td id="lcd-0x4-0x4"></td> </tr>
       <tr> <td id="lcd-0x4-1x0"></td><td id="lcd-0x4-1x1"></td><td id="lcd-0x4-1x2"></td><td id="lcd-0x4-1x3"></td><td id="lcd-0x4-1x4"></td> </tr>
       <tr> <td id="lcd-0x4-2x0"></td><td id="lcd-0x4-2x1"></td><td id="lcd-0x4-2x2"></td><td id="lcd-0x4-2x3"></td><td id="lcd-0x4-2x4"></td> </tr>
@@ -167,7 +181,7 @@ Refer to index.html for full license. -->
       <tr> <td id="lcd-0x4-6x0"></td><td id="lcd-0x4-6x1"></td><td id="lcd-0x4-6x2"></td><td id="lcd-0x4-6x3"></td><td id="lcd-0x4-6x4"></td> </tr>
       <tr> <td id="lcd-0x4-7x0"></td><td id="lcd-0x4-7x1"></td><td id="lcd-0x4-7x2"></td><td id="lcd-0x4-7x3"></td><td id="lcd-0x4-7x4"></td> </tr>
     </table>
-    <table id="lcd-0x5" class="lcd-pixel" onclick="selectLCD(this);">
+    <table id="lcd-0x5" class="lcd-pixel" onclick="selectLCD(this);" data-saveable>
       <tr> <td id="lcd-0x5-0x0"></td><td id="lcd-0x5-0x1"></td><td id="lcd-0x5-0x2"></td><td id="lcd-0x5-0x3"></td><td id="lcd-0x5-0x4"></td> </tr>
       <tr> <td id="lcd-0x5-1x0"></td><td id="lcd-0x5-1x1"></td><td id="lcd-0x5-1x2"></td><td id="lcd-0x5-1x3"></td><td id="lcd-0x5-1x4"></td> </tr>
       <tr> <td id="lcd-0x5-2x0"></td><td id="lcd-0x5-2x1"></td><td id="lcd-0x5-2x2"></td><td id="lcd-0x5-2x3"></td><td id="lcd-0x5-2x4"></td> </tr>
@@ -177,7 +191,7 @@ Refer to index.html for full license. -->
       <tr> <td id="lcd-0x5-6x0"></td><td id="lcd-0x5-6x1"></td><td id="lcd-0x5-6x2"></td><td id="lcd-0x5-6x3"></td><td id="lcd-0x5-6x4"></td> </tr>
       <tr> <td id="lcd-0x5-7x0"></td><td id="lcd-0x5-7x1"></td><td id="lcd-0x5-7x2"></td><td id="lcd-0x5-7x3"></td><td id="lcd-0x5-7x4"></td> </tr>
     </table>
-    <table id="lcd-0x6" class="lcd-pixel" onclick="selectLCD(this);">
+    <table id="lcd-0x6" class="lcd-pixel" onclick="selectLCD(this);" data-saveable>
       <tr> <td id="lcd-0x6-0x0"></td><td id="lcd-0x6-0x1"></td><td id="lcd-0x6-0x2"></td><td id="lcd-0x6-0x3"></td><td id="lcd-0x6-0x4"></td> </tr>
       <tr> <td id="lcd-0x6-1x0"></td><td id="lcd-0x6-1x1"></td><td id="lcd-0x6-1x2"></td><td id="lcd-0x6-1x3"></td><td id="lcd-0x6-1x4"></td> </tr>
       <tr> <td id="lcd-0x6-2x0"></td><td id="lcd-0x6-2x1"></td><td id="lcd-0x6-2x2"></td><td id="lcd-0x6-2x3"></td><td id="lcd-0x6-2x4"></td> </tr>
@@ -187,7 +201,7 @@ Refer to index.html for full license. -->
       <tr> <td id="lcd-0x6-6x0"></td><td id="lcd-0x6-6x1"></td><td id="lcd-0x6-6x2"></td><td id="lcd-0x6-6x3"></td><td id="lcd-0x6-6x4"></td> </tr>
       <tr> <td id="lcd-0x6-7x0"></td><td id="lcd-0x6-7x1"></td><td id="lcd-0x6-7x2"></td><td id="lcd-0x6-7x3"></td><td id="lcd-0x6-7x4"></td> </tr>
     </table>
-    <table id="lcd-0x7" class="lcd-pixel" onclick="selectLCD(this);">
+    <table id="lcd-0x7" class="lcd-pixel" onclick="selectLCD(this);" data-saveable>
       <tr> <td id="lcd-0x7-0x0"></td><td id="lcd-0x7-0x1"></td><td id="lcd-0x7-0x2"></td><td id="lcd-0x7-0x3"></td><td id="lcd-0x7-0x4"></td> </tr>
       <tr> <td id="lcd-0x7-1x0"></td><td id="lcd-0x7-1x1"></td><td id="lcd-0x7-1x2"></td><td id="lcd-0x7-1x3"></td><td id="lcd-0x7-1x4"></td> </tr>
       <tr> <td id="lcd-0x7-2x0"></td><td id="lcd-0x7-2x1"></td><td id="lcd-0x7-2x2"></td><td id="lcd-0x7-2x3"></td><td id="lcd-0x7-2x4"></td> </tr>
@@ -197,7 +211,7 @@ Refer to index.html for full license. -->
       <tr> <td id="lcd-0x7-6x0"></td><td id="lcd-0x7-6x1"></td><td id="lcd-0x7-6x2"></td><td id="lcd-0x7-6x3"></td><td id="lcd-0x7-6x4"></td> </tr>
       <tr> <td id="lcd-0x7-7x0"></td><td id="lcd-0x7-7x1"></td><td id="lcd-0x7-7x2"></td><td id="lcd-0x7-7x3"></td><td id="lcd-0x7-7x4"></td> </tr>
     </table>
-    <table id="lcd-0x8" class="lcd-pixel" onclick="selectLCD(this);">
+    <table id="lcd-0x8" class="lcd-pixel" onclick="selectLCD(this);" data-saveable>
       <tr> <td id="lcd-0x8-0x0"></td><td id="lcd-0x8-0x1"></td><td id="lcd-0x8-0x2"></td><td id="lcd-0x8-0x3"></td><td id="lcd-0x8-0x4"></td> </tr>
       <tr> <td id="lcd-0x8-1x0"></td><td id="lcd-0x8-1x1"></td><td id="lcd-0x8-1x2"></td><td id="lcd-0x8-1x3"></td><td id="lcd-0x8-1x4"></td> </tr>
       <tr> <td id="lcd-0x8-2x0"></td><td id="lcd-0x8-2x1"></td><td id="lcd-0x8-2x2"></td><td id="lcd-0x8-2x3"></td><td id="lcd-0x8-2x4"></td> </tr>
@@ -207,7 +221,7 @@ Refer to index.html for full license. -->
       <tr> <td id="lcd-0x8-6x0"></td><td id="lcd-0x8-6x1"></td><td id="lcd-0x8-6x2"></td><td id="lcd-0x8-6x3"></td><td id="lcd-0x8-6x4"></td> </tr>
       <tr> <td id="lcd-0x8-7x0"></td><td id="lcd-0x8-7x1"></td><td id="lcd-0x8-7x2"></td><td id="lcd-0x8-7x3"></td><td id="lcd-0x8-7x4"></td> </tr>
     </table>
-    <table id="lcd-0x9" class="lcd-pixel" onclick="selectLCD(this);">
+    <table id="lcd-0x9" class="lcd-pixel" onclick="selectLCD(this);" data-saveable>
       <tr> <td id="lcd-0x9-0x0"></td><td id="lcd-0x9-0x1"></td><td id="lcd-0x9-0x2"></td><td id="lcd-0x9-0x3"></td><td id="lcd-0x9-0x4"></td> </tr>
       <tr> <td id="lcd-0x9-1x0"></td><td id="lcd-0x9-1x1"></td><td id="lcd-0x9-1x2"></td><td id="lcd-0x9-1x3"></td><td id="lcd-0x9-1x4"></td> </tr>
       <tr> <td id="lcd-0x9-2x0"></td><td id="lcd-0x9-2x1"></td><td id="lcd-0x9-2x2"></td><td id="lcd-0x9-2x3"></td><td id="lcd-0x9-2x4"></td> </tr>
@@ -217,7 +231,7 @@ Refer to index.html for full license. -->
       <tr> <td id="lcd-0x9-6x0"></td><td id="lcd-0x9-6x1"></td><td id="lcd-0x9-6x2"></td><td id="lcd-0x9-6x3"></td><td id="lcd-0x9-6x4"></td> </tr>
       <tr> <td id="lcd-0x9-7x0"></td><td id="lcd-0x9-7x1"></td><td id="lcd-0x9-7x2"></td><td id="lcd-0x9-7x3"></td><td id="lcd-0x9-7x4"></td> </tr>
     </table>
-    <table id="lcd-0x10" class="lcd-pixel" onclick="selectLCD(this);">
+    <table id="lcd-0x10" class="lcd-pixel" onclick="selectLCD(this);" data-saveable>
       <tr> <td id="lcd-0x10-0x0"></td><td id="lcd-0x10-0x1"></td><td id="lcd-0x10-0x2"></td><td id="lcd-0x10-0x3"></td><td id="lcd-0x10-0x4"></td> </tr>
       <tr> <td id="lcd-0x10-1x0"></td><td id="lcd-0x10-1x1"></td><td id="lcd-0x10-1x2"></td><td id="lcd-0x10-1x3"></td><td id="lcd-0x10-1x4"></td> </tr>
       <tr> <td id="lcd-0x10-2x0"></td><td id="lcd-0x10-2x1"></td><td id="lcd-0x10-2x2"></td><td id="lcd-0x10-2x3"></td><td id="lcd-0x10-2x4"></td> </tr>
@@ -227,7 +241,7 @@ Refer to index.html for full license. -->
       <tr> <td id="lcd-0x10-6x0"></td><td id="lcd-0x10-6x1"></td><td id="lcd-0x10-6x2"></td><td id="lcd-0x10-6x3"></td><td id="lcd-0x10-6x4"></td> </tr>
       <tr> <td id="lcd-0x10-7x0"></td><td id="lcd-0x10-7x1"></td><td id="lcd-0x10-7x2"></td><td id="lcd-0x10-7x3"></td><td id="lcd-0x10-7x4"></td> </tr>
     </table>
-    <table id="lcd-0x11" class="lcd-pixel" onclick="selectLCD(this);">
+    <table id="lcd-0x11" class="lcd-pixel" onclick="selectLCD(this);" data-saveable>
       <tr> <td id="lcd-0x11-0x0"></td><td id="lcd-0x11-0x1"></td><td id="lcd-0x11-0x2"></td><td id="lcd-0x11-0x3"></td><td id="lcd-0x11-0x4"></td> </tr>
       <tr> <td id="lcd-0x11-1x0"></td><td id="lcd-0x11-1x1"></td><td id="lcd-0x11-1x2"></td><td id="lcd-0x11-1x3"></td><td id="lcd-0x11-1x4"></td> </tr>
       <tr> <td id="lcd-0x11-2x0"></td><td id="lcd-0x11-2x1"></td><td id="lcd-0x11-2x2"></td><td id="lcd-0x11-2x3"></td><td id="lcd-0x11-2x4"></td> </tr>
@@ -237,7 +251,7 @@ Refer to index.html for full license. -->
       <tr> <td id="lcd-0x11-6x0"></td><td id="lcd-0x11-6x1"></td><td id="lcd-0x11-6x2"></td><td id="lcd-0x11-6x3"></td><td id="lcd-0x11-6x4"></td> </tr>
       <tr> <td id="lcd-0x11-7x0"></td><td id="lcd-0x11-7x1"></td><td id="lcd-0x11-7x2"></td><td id="lcd-0x11-7x3"></td><td id="lcd-0x11-7x4"></td> </tr>
     </table>
-    <table id="lcd-0x12" class="lcd-pixel" onclick="selectLCD(this);">
+    <table id="lcd-0x12" class="lcd-pixel" onclick="selectLCD(this);" data-saveable>
       <tr> <td id="lcd-0x12-0x0"></td><td id="lcd-0x12-0x1"></td><td id="lcd-0x12-0x2"></td><td id="lcd-0x12-0x3"></td><td id="lcd-0x12-0x4"></td> </tr>
       <tr> <td id="lcd-0x12-1x0"></td><td id="lcd-0x12-1x1"></td><td id="lcd-0x12-1x2"></td><td id="lcd-0x12-1x3"></td><td id="lcd-0x12-1x4"></td> </tr>
       <tr> <td id="lcd-0x12-2x0"></td><td id="lcd-0x12-2x1"></td><td id="lcd-0x12-2x2"></td><td id="lcd-0x12-2x3"></td><td id="lcd-0x12-2x4"></td> </tr>
@@ -247,7 +261,7 @@ Refer to index.html for full license. -->
       <tr> <td id="lcd-0x12-6x0"></td><td id="lcd-0x12-6x1"></td><td id="lcd-0x12-6x2"></td><td id="lcd-0x12-6x3"></td><td id="lcd-0x12-6x4"></td> </tr>
       <tr> <td id="lcd-0x12-7x0"></td><td id="lcd-0x12-7x1"></td><td id="lcd-0x12-7x2"></td><td id="lcd-0x12-7x3"></td><td id="lcd-0x12-7x4"></td> </tr>
     </table>
-    <table id="lcd-0x13" class="lcd-pixel" onclick="selectLCD(this);">
+    <table id="lcd-0x13" class="lcd-pixel" onclick="selectLCD(this);" data-saveable>
       <tr> <td id="lcd-0x13-0x0"></td><td id="lcd-0x13-0x1"></td><td id="lcd-0x13-0x2"></td><td id="lcd-0x13-0x3"></td><td id="lcd-0x13-0x4"></td> </tr>
       <tr> <td id="lcd-0x13-1x0"></td><td id="lcd-0x13-1x1"></td><td id="lcd-0x13-1x2"></td><td id="lcd-0x13-1x3"></td><td id="lcd-0x13-1x4"></td> </tr>
       <tr> <td id="lcd-0x13-2x0"></td><td id="lcd-0x13-2x1"></td><td id="lcd-0x13-2x2"></td><td id="lcd-0x13-2x3"></td><td id="lcd-0x13-2x4"></td> </tr>
@@ -257,7 +271,7 @@ Refer to index.html for full license. -->
       <tr> <td id="lcd-0x13-6x0"></td><td id="lcd-0x13-6x1"></td><td id="lcd-0x13-6x2"></td><td id="lcd-0x13-6x3"></td><td id="lcd-0x13-6x4"></td> </tr>
       <tr> <td id="lcd-0x13-7x0"></td><td id="lcd-0x13-7x1"></td><td id="lcd-0x13-7x2"></td><td id="lcd-0x13-7x3"></td><td id="lcd-0x13-7x4"></td> </tr>
     </table>
-    <table id="lcd-0x14" class="lcd-pixel" onclick="selectLCD(this);">
+    <table id="lcd-0x14" class="lcd-pixel" onclick="selectLCD(this);" data-saveable>
       <tr> <td id="lcd-0x14-0x0"></td><td id="lcd-0x14-0x1"></td><td id="lcd-0x14-0x2"></td><td id="lcd-0x14-0x3"></td><td id="lcd-0x14-0x4"></td> </tr>
       <tr> <td id="lcd-0x14-1x0"></td><td id="lcd-0x14-1x1"></td><td id="lcd-0x14-1x2"></td><td id="lcd-0x14-1x3"></td><td id="lcd-0x14-1x4"></td> </tr>
       <tr> <td id="lcd-0x14-2x0"></td><td id="lcd-0x14-2x1"></td><td id="lcd-0x14-2x2"></td><td id="lcd-0x14-2x3"></td><td id="lcd-0x14-2x4"></td> </tr>
@@ -267,7 +281,7 @@ Refer to index.html for full license. -->
       <tr> <td id="lcd-0x14-6x0"></td><td id="lcd-0x14-6x1"></td><td id="lcd-0x14-6x2"></td><td id="lcd-0x14-6x3"></td><td id="lcd-0x14-6x4"></td> </tr>
       <tr> <td id="lcd-0x14-7x0"></td><td id="lcd-0x14-7x1"></td><td id="lcd-0x14-7x2"></td><td id="lcd-0x14-7x3"></td><td id="lcd-0x14-7x4"></td> </tr>
     </table>
-    <table id="lcd-0x15" class="lcd-pixel" onclick="selectLCD(this);">
+    <table id="lcd-0x15" class="lcd-pixel" onclick="selectLCD(this);" data-saveable>
       <tr> <td id="lcd-0x15-0x0"></td><td id="lcd-0x15-0x1"></td><td id="lcd-0x15-0x2"></td><td id="lcd-0x15-0x3"></td><td id="lcd-0x15-0x4"></td> </tr>
       <tr> <td id="lcd-0x15-1x0"></td><td id="lcd-0x15-1x1"></td><td id="lcd-0x15-1x2"></td><td id="lcd-0x15-1x3"></td><td id="lcd-0x15-1x4"></td> </tr>
       <tr> <td id="lcd-0x15-2x0"></td><td id="lcd-0x15-2x1"></td><td id="lcd-0x15-2x2"></td><td id="lcd-0x15-2x3"></td><td id="lcd-0x15-2x4"></td> </tr>
@@ -278,7 +292,7 @@ Refer to index.html for full license. -->
       <tr> <td id="lcd-0x15-7x0"></td><td id="lcd-0x15-7x1"></td><td id="lcd-0x15-7x2"></td><td id="lcd-0x15-7x3"></td><td id="lcd-0x15-7x4"></td> </tr>
     </table>
     <br>
-    <table id="lcd-1x0" class="lcd-pixel" onclick="selectLCD(this);">
+    <table id="lcd-1x0" class="lcd-pixel" onclick="selectLCD(this);" data-saveable>
       <tr> <td id="lcd-1x0-0x0"></td><td id="lcd-1x0-0x1"></td><td id="lcd-1x0-0x2"></td><td id="lcd-1x0-0x3"></td><td id="lcd-1x0-0x4"></td> </tr>
       <tr> <td id="lcd-1x0-1x0"></td><td id="lcd-1x0-1x1"></td><td id="lcd-1x0-1x2"></td><td id="lcd-1x0-1x3"></td><td id="lcd-1x0-1x4"></td> </tr>
       <tr> <td id="lcd-1x0-2x0"></td><td id="lcd-1x0-2x1"></td><td id="lcd-1x0-2x2"></td><td id="lcd-1x0-2x3"></td><td id="lcd-1x0-2x4"></td> </tr>
@@ -288,7 +302,7 @@ Refer to index.html for full license. -->
       <tr> <td id="lcd-1x0-6x0"></td><td id="lcd-1x0-6x1"></td><td id="lcd-1x0-6x2"></td><td id="lcd-1x0-6x3"></td><td id="lcd-1x0-6x4"></td> </tr>
       <tr> <td id="lcd-1x0-7x0"></td><td id="lcd-1x0-7x1"></td><td id="lcd-1x0-7x2"></td><td id="lcd-1x0-7x3"></td><td id="lcd-1x0-7x4"></td> </tr>
     </table>
-    <table id="lcd-1x1" class="lcd-pixel" onclick="selectLCD(this);">
+    <table id="lcd-1x1" class="lcd-pixel" onclick="selectLCD(this);" data-saveable>
       <tr> <td id="lcd-1x1-0x0"></td><td id="lcd-1x1-0x1"></td><td id="lcd-1x1-0x2"></td><td id="lcd-1x1-0x3"></td><td id="lcd-1x1-0x4"></td> </tr>
       <tr> <td id="lcd-1x1-1x0"></td><td id="lcd-1x1-1x1"></td><td id="lcd-1x1-1x2"></td><td id="lcd-1x1-1x3"></td><td id="lcd-1x1-1x4"></td> </tr>
       <tr> <td id="lcd-1x1-2x0"></td><td id="lcd-1x1-2x1"></td><td id="lcd-1x1-2x2"></td><td id="lcd-1x1-2x3"></td><td id="lcd-1x1-2x4"></td> </tr>
@@ -298,7 +312,7 @@ Refer to index.html for full license. -->
       <tr> <td id="lcd-1x1-6x0"></td><td id="lcd-1x1-6x1"></td><td id="lcd-1x1-6x2"></td><td id="lcd-1x1-6x3"></td><td id="lcd-1x1-6x4"></td> </tr>
       <tr> <td id="lcd-1x1-7x0"></td><td id="lcd-1x1-7x1"></td><td id="lcd-1x1-7x2"></td><td id="lcd-1x1-7x3"></td><td id="lcd-1x1-7x4"></td> </tr>
     </table>
-    <table id="lcd-1x2" class="lcd-pixel" onclick="selectLCD(this);">
+    <table id="lcd-1x2" class="lcd-pixel" onclick="selectLCD(this);" data-saveable>
       <tr> <td id="lcd-1x2-0x0"></td><td id="lcd-1x2-0x1"></td><td id="lcd-1x2-0x2"></td><td id="lcd-1x2-0x3"></td><td id="lcd-1x2-0x4"></td> </tr>
       <tr> <td id="lcd-1x2-1x0"></td><td id="lcd-1x2-1x1"></td><td id="lcd-1x2-1x2"></td><td id="lcd-1x2-1x3"></td><td id="lcd-1x2-1x4"></td> </tr>
       <tr> <td id="lcd-1x2-2x0"></td><td id="lcd-1x2-2x1"></td><td id="lcd-1x2-2x2"></td><td id="lcd-1x2-2x3"></td><td id="lcd-1x2-2x4"></td> </tr>
@@ -308,7 +322,7 @@ Refer to index.html for full license. -->
       <tr> <td id="lcd-1x2-6x0"></td><td id="lcd-1x2-6x1"></td><td id="lcd-1x2-6x2"></td><td id="lcd-1x2-6x3"></td><td id="lcd-1x2-6x4"></td> </tr>
       <tr> <td id="lcd-1x2-7x0"></td><td id="lcd-1x2-7x1"></td><td id="lcd-1x2-7x2"></td><td id="lcd-1x2-7x3"></td><td id="lcd-1x2-7x4"></td> </tr>
     </table>
-    <table id="lcd-1x3" class="lcd-pixel" onclick="selectLCD(this);">
+    <table id="lcd-1x3" class="lcd-pixel" onclick="selectLCD(this);" data-saveable>
       <tr> <td id="lcd-1x3-0x0"></td><td id="lcd-1x3-0x1"></td><td id="lcd-1x3-0x2"></td><td id="lcd-1x3-0x3"></td><td id="lcd-1x3-0x4"></td> </tr>
       <tr> <td id="lcd-1x3-1x0"></td><td id="lcd-1x3-1x1"></td><td id="lcd-1x3-1x2"></td><td id="lcd-1x3-1x3"></td><td id="lcd-1x3-1x4"></td> </tr>
       <tr> <td id="lcd-1x3-2x0"></td><td id="lcd-1x3-2x1"></td><td id="lcd-1x3-2x2"></td><td id="lcd-1x3-2x3"></td><td id="lcd-1x3-2x4"></td> </tr>
@@ -318,7 +332,7 @@ Refer to index.html for full license. -->
       <tr> <td id="lcd-1x3-6x0"></td><td id="lcd-1x3-6x1"></td><td id="lcd-1x3-6x2"></td><td id="lcd-1x3-6x3"></td><td id="lcd-1x3-6x4"></td> </tr>
       <tr> <td id="lcd-1x3-7x0"></td><td id="lcd-1x3-7x1"></td><td id="lcd-1x3-7x2"></td><td id="lcd-1x3-7x3"></td><td id="lcd-1x3-7x4"></td> </tr>
     </table>
-    <table id="lcd-1x4" class="lcd-pixel" onclick="selectLCD(this);">
+    <table id="lcd-1x4" class="lcd-pixel" onclick="selectLCD(this);" data-saveable>
       <tr> <td id="lcd-1x4-0x0"></td><td id="lcd-1x4-0x1"></td><td id="lcd-1x4-0x2"></td><td id="lcd-1x4-0x3"></td><td id="lcd-1x4-0x4"></td> </tr>
       <tr> <td id="lcd-1x4-1x0"></td><td id="lcd-1x4-1x1"></td><td id="lcd-1x4-1x2"></td><td id="lcd-1x4-1x3"></td><td id="lcd-1x4-1x4"></td> </tr>
       <tr> <td id="lcd-1x4-2x0"></td><td id="lcd-1x4-2x1"></td><td id="lcd-1x4-2x2"></td><td id="lcd-1x4-2x3"></td><td id="lcd-1x4-2x4"></td> </tr>
@@ -328,7 +342,7 @@ Refer to index.html for full license. -->
       <tr> <td id="lcd-1x4-6x0"></td><td id="lcd-1x4-6x1"></td><td id="lcd-1x4-6x2"></td><td id="lcd-1x4-6x3"></td><td id="lcd-1x4-6x4"></td> </tr>
       <tr> <td id="lcd-1x4-7x0"></td><td id="lcd-1x4-7x1"></td><td id="lcd-1x4-7x2"></td><td id="lcd-1x4-7x3"></td><td id="lcd-1x4-7x4"></td> </tr>
     </table>
-    <table id="lcd-1x5" class="lcd-pixel" onclick="selectLCD(this);">
+    <table id="lcd-1x5" class="lcd-pixel" onclick="selectLCD(this);" data-saveable>
       <tr> <td id="lcd-1x5-0x0"></td><td id="lcd-1x5-0x1"></td><td id="lcd-1x5-0x2"></td><td id="lcd-1x5-0x3"></td><td id="lcd-1x5-0x4"></td> </tr>
       <tr> <td id="lcd-1x5-1x0"></td><td id="lcd-1x5-1x1"></td><td id="lcd-1x5-1x2"></td><td id="lcd-1x5-1x3"></td><td id="lcd-1x5-1x4"></td> </tr>
       <tr> <td id="lcd-1x5-2x0"></td><td id="lcd-1x5-2x1"></td><td id="lcd-1x5-2x2"></td><td id="lcd-1x5-2x3"></td><td id="lcd-1x5-2x4"></td> </tr>
@@ -338,7 +352,7 @@ Refer to index.html for full license. -->
       <tr> <td id="lcd-1x5-6x0"></td><td id="lcd-1x5-6x1"></td><td id="lcd-1x5-6x2"></td><td id="lcd-1x5-6x3"></td><td id="lcd-1x5-6x4"></td> </tr>
       <tr> <td id="lcd-1x5-7x0"></td><td id="lcd-1x5-7x1"></td><td id="lcd-1x5-7x2"></td><td id="lcd-1x5-7x3"></td><td id="lcd-1x5-7x4"></td> </tr>
     </table>
-    <table id="lcd-1x6" class="lcd-pixel" onclick="selectLCD(this);">
+    <table id="lcd-1x6" class="lcd-pixel" onclick="selectLCD(this);" data-saveable>
       <tr> <td id="lcd-1x6-0x0"></td><td id="lcd-1x6-0x1"></td><td id="lcd-1x6-0x2"></td><td id="lcd-1x6-0x3"></td><td id="lcd-1x6-0x4"></td> </tr>
       <tr> <td id="lcd-1x6-1x0"></td><td id="lcd-1x6-1x1"></td><td id="lcd-1x6-1x2"></td><td id="lcd-1x6-1x3"></td><td id="lcd-1x6-1x4"></td> </tr>
       <tr> <td id="lcd-1x6-2x0"></td><td id="lcd-1x6-2x1"></td><td id="lcd-1x6-2x2"></td><td id="lcd-1x6-2x3"></td><td id="lcd-1x6-2x4"></td> </tr>
@@ -348,7 +362,7 @@ Refer to index.html for full license. -->
       <tr> <td id="lcd-1x6-6x0"></td><td id="lcd-1x6-6x1"></td><td id="lcd-1x6-6x2"></td><td id="lcd-1x6-6x3"></td><td id="lcd-1x6-6x4"></td> </tr>
       <tr> <td id="lcd-1x6-7x0"></td><td id="lcd-1x6-7x1"></td><td id="lcd-1x6-7x2"></td><td id="lcd-1x6-7x3"></td><td id="lcd-1x6-7x4"></td> </tr>
     </table>
-    <table id="lcd-1x7" class="lcd-pixel" onclick="selectLCD(this);">
+    <table id="lcd-1x7" class="lcd-pixel" onclick="selectLCD(this);" data-saveable>
       <tr> <td id="lcd-1x7-0x0"></td><td id="lcd-1x7-0x1"></td><td id="lcd-1x7-0x2"></td><td id="lcd-1x7-0x3"></td><td id="lcd-1x7-0x4"></td> </tr>
       <tr> <td id="lcd-1x7-1x0"></td><td id="lcd-1x7-1x1"></td><td id="lcd-1x7-1x2"></td><td id="lcd-1x7-1x3"></td><td id="lcd-1x7-1x4"></td> </tr>
       <tr> <td id="lcd-1x7-2x0"></td><td id="lcd-1x7-2x1"></td><td id="lcd-1x7-2x2"></td><td id="lcd-1x7-2x3"></td><td id="lcd-1x7-2x4"></td> </tr>
@@ -358,7 +372,7 @@ Refer to index.html for full license. -->
       <tr> <td id="lcd-1x7-6x0"></td><td id="lcd-1x7-6x1"></td><td id="lcd-1x7-6x2"></td><td id="lcd-1x7-6x3"></td><td id="lcd-1x7-6x4"></td> </tr>
       <tr> <td id="lcd-1x7-7x0"></td><td id="lcd-1x7-7x1"></td><td id="lcd-1x7-7x2"></td><td id="lcd-1x7-7x3"></td><td id="lcd-1x7-7x4"></td> </tr>
     </table>
-    <table id="lcd-1x8" class="lcd-pixel" onclick="selectLCD(this);">
+    <table id="lcd-1x8" class="lcd-pixel" onclick="selectLCD(this);" data-saveable>
       <tr> <td id="lcd-1x8-0x0"></td><td id="lcd-1x8-0x1"></td><td id="lcd-1x8-0x2"></td><td id="lcd-1x8-0x3"></td><td id="lcd-1x8-0x4"></td> </tr>
       <tr> <td id="lcd-1x8-1x0"></td><td id="lcd-1x8-1x1"></td><td id="lcd-1x8-1x2"></td><td id="lcd-1x8-1x3"></td><td id="lcd-1x8-1x4"></td> </tr>
       <tr> <td id="lcd-1x8-2x0"></td><td id="lcd-1x8-2x1"></td><td id="lcd-1x8-2x2"></td><td id="lcd-1x8-2x3"></td><td id="lcd-1x8-2x4"></td> </tr>
@@ -368,7 +382,7 @@ Refer to index.html for full license. -->
       <tr> <td id="lcd-1x8-6x0"></td><td id="lcd-1x8-6x1"></td><td id="lcd-1x8-6x2"></td><td id="lcd-1x8-6x3"></td><td id="lcd-1x8-6x4"></td> </tr>
       <tr> <td id="lcd-1x8-7x0"></td><td id="lcd-1x8-7x1"></td><td id="lcd-1x8-7x2"></td><td id="lcd-1x8-7x3"></td><td id="lcd-1x8-7x4"></td> </tr>
     </table>
-    <table id="lcd-1x9" class="lcd-pixel" onclick="selectLCD(this);">
+    <table id="lcd-1x9" class="lcd-pixel" onclick="selectLCD(this);" data-saveable>
       <tr> <td id="lcd-1x9-0x0"></td><td id="lcd-1x9-0x1"></td><td id="lcd-1x9-0x2"></td><td id="lcd-1x9-0x3"></td><td id="lcd-1x9-0x4"></td> </tr>
       <tr> <td id="lcd-1x9-1x0"></td><td id="lcd-1x9-1x1"></td><td id="lcd-1x9-1x2"></td><td id="lcd-1x9-1x3"></td><td id="lcd-1x9-1x4"></td> </tr>
       <tr> <td id="lcd-1x9-2x0"></td><td id="lcd-1x9-2x1"></td><td id="lcd-1x9-2x2"></td><td id="lcd-1x9-2x3"></td><td id="lcd-1x9-2x4"></td> </tr>
@@ -378,7 +392,7 @@ Refer to index.html for full license. -->
       <tr> <td id="lcd-1x9-6x0"></td><td id="lcd-1x9-6x1"></td><td id="lcd-1x9-6x2"></td><td id="lcd-1x9-6x3"></td><td id="lcd-1x9-6x4"></td> </tr>
       <tr> <td id="lcd-1x9-7x0"></td><td id="lcd-1x9-7x1"></td><td id="lcd-1x9-7x2"></td><td id="lcd-1x9-7x3"></td><td id="lcd-1x9-7x4"></td> </tr>
     </table>
-    <table id="lcd-1x10" class="lcd-pixel" onclick="selectLCD(this);">
+    <table id="lcd-1x10" class="lcd-pixel" onclick="selectLCD(this);" data-saveable>
       <tr> <td id="lcd-1x10-0x0"></td><td id="lcd-1x10-0x1"></td><td id="lcd-1x10-0x2"></td><td id="lcd-1x10-0x3"></td><td id="lcd-1x10-0x4"></td> </tr>
       <tr> <td id="lcd-1x10-1x0"></td><td id="lcd-1x10-1x1"></td><td id="lcd-1x10-1x2"></td><td id="lcd-1x10-1x3"></td><td id="lcd-1x10-1x4"></td> </tr>
       <tr> <td id="lcd-1x10-2x0"></td><td id="lcd-1x10-2x1"></td><td id="lcd-1x10-2x2"></td><td id="lcd-1x10-2x3"></td><td id="lcd-1x10-2x4"></td> </tr>
@@ -388,7 +402,7 @@ Refer to index.html for full license. -->
       <tr> <td id="lcd-1x10-6x0"></td><td id="lcd-1x10-6x1"></td><td id="lcd-1x10-6x2"></td><td id="lcd-1x10-6x3"></td><td id="lcd-1x10-6x4"></td> </tr>
       <tr> <td id="lcd-1x10-7x0"></td><td id="lcd-1x10-7x1"></td><td id="lcd-1x10-7x2"></td><td id="lcd-1x10-7x3"></td><td id="lcd-1x10-7x4"></td> </tr>
     </table>
-    <table id="lcd-1x11" class="lcd-pixel" onclick="selectLCD(this);">
+    <table id="lcd-1x11" class="lcd-pixel" onclick="selectLCD(this);" data-saveable>
       <tr> <td id="lcd-1x11-0x0"></td><td id="lcd-1x11-0x1"></td><td id="lcd-1x11-0x2"></td><td id="lcd-1x11-0x3"></td><td id="lcd-1x11-0x4"></td> </tr>
       <tr> <td id="lcd-1x11-1x0"></td><td id="lcd-1x11-1x1"></td><td id="lcd-1x11-1x2"></td><td id="lcd-1x11-1x3"></td><td id="lcd-1x11-1x4"></td> </tr>
       <tr> <td id="lcd-1x11-2x0"></td><td id="lcd-1x11-2x1"></td><td id="lcd-1x11-2x2"></td><td id="lcd-1x11-2x3"></td><td id="lcd-1x11-2x4"></td> </tr>
@@ -398,7 +412,7 @@ Refer to index.html for full license. -->
       <tr> <td id="lcd-1x11-6x0"></td><td id="lcd-1x11-6x1"></td><td id="lcd-1x11-6x2"></td><td id="lcd-1x11-6x3"></td><td id="lcd-1x11-6x4"></td> </tr>
       <tr> <td id="lcd-1x11-7x0"></td><td id="lcd-1x11-7x1"></td><td id="lcd-1x11-7x2"></td><td id="lcd-1x11-7x3"></td><td id="lcd-1x11-7x4"></td> </tr>
     </table>
-    <table id="lcd-1x12" class="lcd-pixel" onclick="selectLCD(this);">
+    <table id="lcd-1x12" class="lcd-pixel" onclick="selectLCD(this);" data-saveable>
       <tr> <td id="lcd-1x12-0x0"></td><td id="lcd-1x12-0x1"></td><td id="lcd-1x12-0x2"></td><td id="lcd-1x12-0x3"></td><td id="lcd-1x12-0x4"></td> </tr>
       <tr> <td id="lcd-1x12-1x0"></td><td id="lcd-1x12-1x1"></td><td id="lcd-1x12-1x2"></td><td id="lcd-1x12-1x3"></td><td id="lcd-1x12-1x4"></td> </tr>
       <tr> <td id="lcd-1x12-2x0"></td><td id="lcd-1x12-2x1"></td><td id="lcd-1x12-2x2"></td><td id="lcd-1x12-2x3"></td><td id="lcd-1x12-2x4"></td> </tr>
@@ -408,7 +422,7 @@ Refer to index.html for full license. -->
       <tr> <td id="lcd-1x12-6x0"></td><td id="lcd-1x12-6x1"></td><td id="lcd-1x12-6x2"></td><td id="lcd-1x12-6x3"></td><td id="lcd-1x12-6x4"></td> </tr>
       <tr> <td id="lcd-1x12-7x0"></td><td id="lcd-1x12-7x1"></td><td id="lcd-1x12-7x2"></td><td id="lcd-1x12-7x3"></td><td id="lcd-1x12-7x4"></td> </tr>
     </table>
-    <table id="lcd-1x13" class="lcd-pixel" onclick="selectLCD(this);">
+    <table id="lcd-1x13" class="lcd-pixel" onclick="selectLCD(this);" data-saveable>
       <tr> <td id="lcd-1x13-0x0"></td><td id="lcd-1x13-0x1"></td><td id="lcd-1x13-0x2"></td><td id="lcd-1x13-0x3"></td><td id="lcd-1x13-0x4"></td> </tr>
       <tr> <td id="lcd-1x13-1x0"></td><td id="lcd-1x13-1x1"></td><td id="lcd-1x13-1x2"></td><td id="lcd-1x13-1x3"></td><td id="lcd-1x13-1x4"></td> </tr>
       <tr> <td id="lcd-1x13-2x0"></td><td id="lcd-1x13-2x1"></td><td id="lcd-1x13-2x2"></td><td id="lcd-1x13-2x3"></td><td id="lcd-1x13-2x4"></td> </tr>
@@ -418,7 +432,7 @@ Refer to index.html for full license. -->
       <tr> <td id="lcd-1x13-6x0"></td><td id="lcd-1x13-6x1"></td><td id="lcd-1x13-6x2"></td><td id="lcd-1x13-6x3"></td><td id="lcd-1x13-6x4"></td> </tr>
       <tr> <td id="lcd-1x13-7x0"></td><td id="lcd-1x13-7x1"></td><td id="lcd-1x13-7x2"></td><td id="lcd-1x13-7x3"></td><td id="lcd-1x13-7x4"></td> </tr>
     </table>
-    <table id="lcd-1x14" class="lcd-pixel" onclick="selectLCD(this);">
+    <table id="lcd-1x14" class="lcd-pixel" onclick="selectLCD(this);" data-saveable>
       <tr> <td id="lcd-1x14-0x0"></td><td id="lcd-1x14-0x1"></td><td id="lcd-1x14-0x2"></td><td id="lcd-1x14-0x3"></td><td id="lcd-1x14-0x4"></td> </tr>
       <tr> <td id="lcd-1x14-1x0"></td><td id="lcd-1x14-1x1"></td><td id="lcd-1x14-1x2"></td><td id="lcd-1x14-1x3"></td><td id="lcd-1x14-1x4"></td> </tr>
       <tr> <td id="lcd-1x14-2x0"></td><td id="lcd-1x14-2x1"></td><td id="lcd-1x14-2x2"></td><td id="lcd-1x14-2x3"></td><td id="lcd-1x14-2x4"></td> </tr>
@@ -428,7 +442,7 @@ Refer to index.html for full license. -->
       <tr> <td id="lcd-1x14-6x0"></td><td id="lcd-1x14-6x1"></td><td id="lcd-1x14-6x2"></td><td id="lcd-1x14-6x3"></td><td id="lcd-1x14-6x4"></td> </tr>
       <tr> <td id="lcd-1x14-7x0"></td><td id="lcd-1x14-7x1"></td><td id="lcd-1x14-7x2"></td><td id="lcd-1x14-7x3"></td><td id="lcd-1x14-7x4"></td> </tr>
     </table>
-    <table id="lcd-1x15" class="lcd-pixel" onclick="selectLCD(this);">
+    <table id="lcd-1x15" class="lcd-pixel" onclick="selectLCD(this);" data-saveable>
       <tr> <td id="lcd-1x15-0x0"></td><td id="lcd-1x15-0x1"></td><td id="lcd-1x15-0x2"></td><td id="lcd-1x15-0x3"></td><td id="lcd-1x15-0x4"></td> </tr>
       <tr> <td id="lcd-1x15-1x0"></td><td id="lcd-1x15-1x1"></td><td id="lcd-1x15-1x2"></td><td id="lcd-1x15-1x3"></td><td id="lcd-1x15-1x4"></td> </tr>
       <tr> <td id="lcd-1x15-2x0"></td><td id="lcd-1x15-2x1"></td><td id="lcd-1x15-2x2"></td><td id="lcd-1x15-2x3"></td><td id="lcd-1x15-2x4"></td> </tr>
@@ -438,12 +452,21 @@ Refer to index.html for full license. -->
       <tr> <td id="lcd-1x15-6x0"></td><td id="lcd-1x15-6x1"></td><td id="lcd-1x15-6x2"></td><td id="lcd-1x15-6x3"></td><td id="lcd-1x15-6x4"></td> </tr>
       <tr> <td id="lcd-1x15-7x0"></td><td id="lcd-1x15-7x1"></td><td id="lcd-1x15-7x2"></td><td id="lcd-1x15-7x3"></td><td id="lcd-1x15-7x4"></td> </tr>
     </table>
-  </div>		
+   </div>
+  
+  <div id="code-box">
+    <img id="copy-to-clipboard-icon"  src="images/editor-icons/copy-to-clipboard-icon.png" title="Copy to clipboard" onclick="copyToClipboard();" onmouseover="iconHovered(this);" onmouseout="iconUnHovered(this);">
+    <div class="box-title">Code</div>
+    <textarea id="code-box__code" readonly></textarea>
+   </div>
 	
   <footer>
-  <a id="copyright-text" class="bottom" href="https://github.com/alestiago" target="_blank">&copy; Open Source Web Tool by alestiago</a>
+    <a id="copyright-text" href="https://github.com/alestiago/chareditor" target="_blank">&copy; Chareditor - Open Source Web Tool</a>
   </footer>
+  
+  <!-- Scripts -->
+  <script src="scripts/jquery.min.js"></script>
   <script src="scripts/editor/functions.js"></script>
   <script src="scripts/editor/hovering-icons.js"></script>
-  <script src="scripts/editor/options-navigation.js"></script> 
+  <script src="scripts/editor/options-navigation.js"></script>
 </body>

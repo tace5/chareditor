@@ -1,13 +1,14 @@
 /* This file is part of chareditor.com
  * Refer to index.html for full license. */
 
+
 /******************************
         Page Background
 *******************************/
 html {
   height: 100%;
-  background-color: #0f1113;
-  background-image: linear-gradient(#0f1113, #062340);
+  background: linear-gradient(to right, #1a212a 0%, #1a212a 60px, #232c38 0%, #232c38 235px, #062340 0%, #1a212a 100%);
+  min-width: 745px;
 }
 
 body {
@@ -24,135 +25,95 @@ body {
 *******************************/
 #options-bar {
   height: 100%;
-  width: 40%;
-  min-width: 290px;
+  width: 25%;
+  min-width: 235px;
+  float: left;
+  display: inline-block;
 }
 
-  #option-navigation-bar {
-    width: 60px;
-    height: 100%;
-    float: left;
-    display: inline-block;
-    background-color: #1a212a;
-    text-align: center;
-    box-sizing: border-box;
-  }
-  
-    #editor-options-icon,
-    #code-options-icon,
-    .options-bar__icon {
-      width: 40px;
-      padding: 10px;
-      margin-left: 3px;
-    }
-  
-    .active {
-      background-color: #232c38;
-      border-radius: 25px 0px 0px 25px;
-    }
-    
-    #option-navigation-bar__logo {
-      margin-top: 150%;
-      opacity: 0.5;
-    }
+#option-navigation-bar {
+  width: 60px;
+  height: 100%;
+  float: left;
+  display: inline-block;
+  background-color: #1a212a;
+  text-align: center;
+  box-sizing: border-box;
+}
 
-  #options-bar__options__editor,
-  #options-bar__options__code,
-  .options-bar__options {
-    width: 50%;
-    max-width: 280px;
-    min-width: 140px;
-    padding-left: 10px;
-    height: 100%;
-    float: left;
-    border: solid 1px none;
-    background-color: #232c38;
-  }
+#editor-options-icon,
+#code-options-icon,
+.options-bar__icon {
+  width: 40px;
+  padding: 10px;
+  margin-left: 3px;
+}
 
-  .options-bar__title {
-    margin: 5px;
-    font-size: 19px;
-    color: white;
-    user-select: none;
-  }
+.active {
+  background-color: #232c38;
+  border-radius: 25px 0px 0px 25px;
+}
+
+#option-navigation-bar__logo {
+  margin-top: 150%;
+  opacity: 0.5;
+}
+
+#options-bar__options__editor,
+#options-bar__options__code,
+.options-bar__options {
+  width: 70%;
+  min-width: 138px;
+  float: left;
+  padding-left: 10px;
+  height: 100%;
+  float: left;
+  border: solid 1px none;
+  background-color: #232c38;
+}
+
+.options-bar__title {
+  margin: 5px;
+  font-size: 19px;
+  color: white;
+  user-select: none;
+}
+
 
 /******************************
-          Whatever
+        Pixel Editor
 *******************************/
-#editor-options-box,
-#code-box,
-#code-option-box,
-#about-box,
-#preview-box,
-.box {
-  background-color: #1e5181;
-  border-radius: 3px;
-  user-select: none;
-}
-
-.box-title {
-  font-family: 'Open Sans', 'Arial', Calibri, Dejavu Sans;
-  margin-left: 5px;
-  margin-bottom: 5px;
-  color: white;
-  user-select: none;
-}
-
-/* Code */
-#code-box {
-  position: absolute;
-  left: 320px;
-  top: 141px;
-  width: 298px;
-  height: 234px;
-}
-
-#code-box__code {
-  width: 298px;
-  height: 200px;
-  resize: none;
-  background-color: transparent;
-  border: none;
-  color: white;
-}
-
-#code-option-box {
-  position: absolute;
-  top: 141px;
-  left: 640px;
-  width: 150px;
-  height: 234px;
-}
-
-.code-option-box__checkbox {
-  position: relative;
-  top: 2px;
-}
-
-
-/* Pixel editor */
 #pixel-editor {
-  position: absolute;
-  left: 60px;
-  top: 0px;
-  width: 250px; 
+  position: relative;
+  width: 250px;
   height: 390px;
-  margin: 8px;
-  float: center;
-  border-radius: 10px;
-  background-color: #1c548a;
+  float: left;
+  border-radius: 5px;
+  margin: 30px 10px 0px 10px;
+  background-color: #2c415e;
   text-align: center;
   user-select: none;
 }
 
 #pixel-editor__charname {
   text-align: center;
-  font-family: 'Arial', Calibri, Dejavu Sans;
+  font-family: 'Open Sans', Calibri, Dejavu Sans;
   font-weight: bold;
   border-radius: 4px;
   border: none;
   margin-top: 17px;
   margin-bottom: 20px;
+}
+
+#status-msg-box {
+  position: absolute;
+}
+
+.status-msg {
+  color: white;
+  background-color: #232C38;
+  padding: 8px;
+  border-radius: 3px;
 }
 
 #pixel-editor__clipboard {
@@ -181,11 +142,33 @@ body {
 }
 
 
-/* Preview */
+/******************************
+         Box Style
+*******************************/
+#code-box,
+#preview-box,
+.box {
+  background-color: #2a405c;
+  border-radius: 3px;
+  margin: 30px 10px 0px 10px;
+  padding: 10px;
+  user-select: none;
+}
+
+.box-title {
+  font-family: 'Open Sans', 'Arial', Calibri, Dejavu Sans;
+  margin-left: 5px;
+  margin-bottom: 5px;
+  color: white;
+  user-select: none;
+}
+
+
+/******************************
+         Preview Box
+*******************************/
 #preview-box {
-  position: absolute;
-  left: 320px;
-  top: 0px;
+  float: left;
   width: 470px;
   height: 115px;
 }
@@ -194,7 +177,6 @@ body {
   width: 25px;
   height: 40px;
   box-sizing: border-box;
-  border: 1px solid black;
   border-collapse: collapse;
   table-layout: fixed;
   margin: 2px;
@@ -205,7 +187,7 @@ td {
   width: 4px;
   height: 4px;
   box-sizing: border-box;
-  border: 1px solid black;
+  border: 1px solid #22262c;
   border-collapse: collapse;
 }
 
@@ -224,6 +206,37 @@ td {
   background-color: white;
 }
 
+
+/******************************
+          Code Box
+*******************************/
+#code-box {
+  float: left;
+  width: 470px;
+  height: 40%;
+  min-height: 140px;
+}
+
+  #code-box__code {
+    width: 100%;
+    height: 85%;
+    resize: none;
+    background-color: transparent;
+    border: none;
+    color: white;
+  }
+  
+  #copy-to-clipboard-icon {
+    float: right;
+    cursor: pointer;
+  }
+
+.code-option-box__checkbox {
+  position: relative;
+  top: 2px;
+}
+
+
 /******************************
           Page Footer
 *******************************/
@@ -238,18 +251,20 @@ td {
   user-select: none;
 }
 
+
 /******************************
           Alignment
 *******************************/
-.center {
+#copyright-text,
+.horizontal-center {
   margin: 0;
-  position: relative;
-  top: 50%;
+  position: fixed;
   left: 50%;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+  -ms-transform: translateX(-50%);
+  transform: translatex(-50%);
 }
 
+#copyright-text,
 .bottom {
   position: fixed;
   bottom: 2%;

@@ -27,6 +27,74 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  
 /* global selectedLCD */
 
+/* Functions for saving and loading app state */
+function loadSavedData() {
+  /* Loads data stored in the browser memory */
+  var elements = document.querySelectorAll('[data-saveable]');
+
+  for (var i = 0; i < elements.length; i++) {
+    var element = elements.item(i);
+
+    if (localStorage.getItem(element.id)) {
+      switch (element.tagName) {
+        case "TEXTAREA":
+        case "INPUT":
+          if (element.type === "checkbox") {
+            element.checked = (localStorage.getItem(element.id) === "true");
+            break;
+          }
+          element.value = localStorage.getItem(element.id);
+          break;
+        default:
+          element.innerHTML = localStorage.getItem(element.id);
+          break;
+      }
+    }
+  }
+}
+
+function saveProgress() {
+  /* Saves the current app state to browser memory */
+  var elements = document.querySelectorAll('[data-saveable]');
+
+  for (var i = 0; i < elements.length; i++) {
+    var element = elements.item(i);
+
+    switch (element.tagName) {
+      case "TEXTAREA":
+      case "INPUT":
+        if (element.type === "checkbox") {
+          localStorage.setItem(element.id, element.checked);
+          break;
+        }
+        localStorage.setItem(element.id, element.value);
+        break;
+      default:
+        localStorage.setItem(element.id, element.innerHTML);
+        break;
+    }
+  }
+
+  addStatusMsg("Saved!");
+}
+
+function addStatusMsg(msg) {
+  /* Function to display status messages in the top left corner */
+  $("#status-msg-box").append('<div class="status-msg">' + msg + '</div>');
+
+  var statusMsgs = $(".status-msg").filter(function () {
+    return $(this).css('opacity') === "1";
+  });
+  statusMsgs.first().fadeOut(1000, function () {
+    statusMsgs.first().remove();
+  });
+}
+
+function onBodyLoad() {
+  /* Handler for when page has loaded */
+  updateCode();
+  loadSavedData();
+}
 
 /* CODE Functions */
 function updateCode (){
@@ -132,21 +200,42 @@ function invertPixels () {
   updateCode();
 }
 
-function mirrorPixels () {
+function mirrorVertPixels () {
   /* Mirrors vertically all pixels' state */
   for (var row = 0; row < 8; row++) {
     for (var col = 0; col < 2; col++) {
-      var leftpixelID = "pixel-" + row + "x" + col;
-      var leftpixel = document.getElementById(leftpixelID);
-      var leftpixelState = leftpixel.className;
+      var leftPixelID = "pixel-" + row + "x" + col;
+      var leftPixel = document.getElementById(leftPixelID);
+      var leftPixelState = leftPixel.className;
       
-      var rightpixelID = "pixel-" + row + "x" + (4 - col);
-      var rightpixel = document.getElementById(rightpixelID);
-      var rightpixelState = rightpixel.className;
+      var rightPixelID = "pixel-" + row + "x" + (4 - col);
+      var rightPixel = document.getElementById(rightPixelID);
+      var rightPixelState = rightPixel.className;
       
       // Swap
-      leftpixel.className = rightpixelState;
-      rightpixel.className = leftpixelState;
+      leftPixel.className = rightPixelState;
+      rightPixel.className = leftPixelState;
+    }
+  }
+  updateCode();
+  updateLCD();
+}
+
+function mirrorHoriPixels () {
+  /* Mirrors horizontally all pixels' state */
+  for (var col = 0; col < 5; col++) {
+    for (var row = 0; row < 4; row++) {
+      var upperPixelID = "pixel-" + row + "x" + col;
+      var upperPixel = document.getElementById(upperPixelID);
+      var upperPixelState = upperPixel.className;
+      
+      var lowerPixelID = "pixel-" + (7 - row) + "x" + col;
+      var lowerPixel = document.getElementById(lowerPixelID);
+      var lowerPixelState = lowerPixel.className;
+      
+      // Swap
+      upperPixel.className = lowerPixelState;
+      lowerPixel.className = upperPixelState;
     }
   }
   updateCode();
@@ -166,6 +255,7 @@ function copyToPixelClipboard () {
       else clipboardPixel.className = "lcd-pixel__on"; 
     }
   }
+  addStatusMsg("Copied!");
 }
 
 function pasteToPixelEditor () {
@@ -398,32 +488,45 @@ function shiftChar (shiftRowBy, shiftColumnBy) {
 
 /* KEY LISTENERS */
 document.addEventListener("keydown", function (event) {
-  /* Event listener looking for key presses */
-  //This causes issue with CharName input event.preventDefault();   // * Overrides default browser hotkeys
+  /* Event listener looking for key presses */ 
 
-  if (event.ctrlKey) {
-    switch (event.code) {
+  if (event.ctrlKey || event.metaKey) {
+    event.preventDefault();  // Overrides default browser hotkeys
+    switch (event.key) {
       // * All Ctrl key combinations go here
-
-      // Shifts every pixel when Ctrl and arrow keys are pressed.
-      case "ArrowUp":     shiftUp();
+      
+      // Shifts every pixel when Ctrl and arrow keys are pressed
+      case "ArrowUp":
+        shiftUp();
         break;
-      case "ArrowDown":   shiftDown();
+      case "ArrowDown":
+        shiftDown();
         break;
-      case "ArrowLeft":   shiftLeft();
+      case "ArrowLeft":
+        shiftLeft();
         break;
-      case "ArrowRight":  shiftRight();
+      case "ArrowRight":
+        shiftRight();
         break;
 
       // Other function hotkeys
-      case "KeyI":        invertPixels();
+      case "i":
+        invertPixels();
         break;
-      case "KeyM":        mirrorPixels();
+      case "m":
+        mirrorVertPixels();
         break;
-      case "KeyC":        copyToPixelClipboard();
-        copyToClipboard();
+      case "k":
+        mirrorHoriPixels();
         break;
-      case "KeyV":        pasteToPixelEditor();
+      case "c":
+        copyToPixelClipboard();
+        break;
+      case "v":
+        pasteToPixelEditor();
+        break;
+      case "s":
+        saveProgress();
         break;
     }
 
