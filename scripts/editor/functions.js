@@ -531,10 +531,15 @@ function createSelection(mouseDragEvent, clickX, clickY, deselect) {
   });
 
   $(deselect ? ".pixel-on" : ".pixel-off").each((idx, element) => {
-    const insideSelection = $(element).offset().left > selectionX
-        && $(element).offset().left < (selectionX + selectionW)
-        && $(element).offset().top > selectionY
-        && $(element).offset().top < (selectionY + selectionH)
+    const leftOffset = $(element).offset().left;
+    const topOffset = $(element).offset().top;
+    const w = $(element).outerWidth();
+    const h = $(element).outerHeight();
+
+    const insideSelection = leftOffset > selectionX
+        && (leftOffset + w) < (selectionX + selectionW)
+        && topOffset > selectionY
+        && (topOffset + h) < (selectionY + selectionH)
     if (insideSelection) {
       togglePixel(element);
     }
