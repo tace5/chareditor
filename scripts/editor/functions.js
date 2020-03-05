@@ -26,6 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
  
 /* global selectedLCD */
+var selectedLCD = document.getElementById("lcd-0x0");
 
 /* Functions for saving and loading app state */
 function loadSavedData() {
@@ -45,6 +46,9 @@ function loadSavedData() {
       }
     }
   }
+
+  if (localStorage.getItem("selectedLCD"))
+    selectLCD(document.getElementById(localStorage.getItem("selectedLCD")))
 }
 
 function saveProgress() {
@@ -62,6 +66,8 @@ function saveProgress() {
       localStorage.setItem(element.id, element.innerHTML);
     }
   }
+
+  localStorage.setItem("selectedLCD", selectedLCD.id);
 
   addStatusMsg("Saved!");
 }
@@ -358,8 +364,6 @@ function shiftRight () {
 }
 
 /* PREVIEW Functions */
-var selectedLCD = document.getElementById("lcd-0x0");
-
 function updateLCD () {
   /* Updates all editor pixels states to selected LCD */
   for (var row = 0; row < 8; row++) {
