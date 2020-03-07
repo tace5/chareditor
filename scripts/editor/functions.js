@@ -443,7 +443,8 @@ function copyToClipboard () {
 $(document).ready(addEventListeners);
 function addEventListeners() {
   $(document).keydown(onKeyDown);
-  $("#pixel-editor").mousedown(onMouseDown);
+  $("[class^=lcd-pixel]").mousedown(e => selectLCD(e.currentTarget));
+  $("body").mousedown(onMouseDown);
 }
 
 /* KEY LISTENERS */
@@ -493,6 +494,9 @@ function onKeyDown(event) {
 }
 
 function onMouseDown(event) {
+  if (event.target.className === "lcd-pixel") {
+    selectLCD(event.target);
+  }
   var clickX = event.pageX;
   var clickY = event.pageY;
 
@@ -548,5 +552,5 @@ function createSelection(mouseDragEvent, clickX, clickY, deselect) {
 
 function removeSelection() {
   $("#pixel-selection").remove();
-  $("#pixel-editor").off("mousemove");
+  $("body").off("mousemove");
 }
