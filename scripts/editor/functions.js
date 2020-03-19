@@ -29,7 +29,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 /* Functions for saving and loading app state */
 function loadSavedData() {
-  /* Loads data stored in the browser memory */
+  /**
+    * Loads data stored in the browser memory
+  */
   var elements = document.querySelectorAll('[data-saveable]');
 
   for (var i = 0; i < elements.length; i++) {
@@ -54,7 +56,9 @@ function loadSavedData() {
 }
 
 function saveProgress() {
-  /* Saves the current app state to browser memory */
+  /**
+    * Saves the current app state to browser memory
+  */
   var elements = document.querySelectorAll('[data-saveable]');
 
   for (var i = 0; i < elements.length; i++) {
@@ -79,7 +83,10 @@ function saveProgress() {
 }
 
 function addStatusMsg(msg) {
-  /* Function to display status messages in the top left corner */
+  /**
+    * Function to display status messages in the top left corner
+    * @param {string} message to be displayed inside box
+  */
   $("#status-msg-box").append('<div class="status-msg">' + msg + '</div>');
 
   var statusMsgs = $(".status-msg").filter(function () {
@@ -91,14 +98,18 @@ function addStatusMsg(msg) {
 }
 
 function onBodyLoad() {
-  /* Handler for when page has loaded */
+  /**
+    * Handler for when page has loaded
+  */
   updateCode();
   loadSavedData();
 }
 
 /* CODE Functions */
 function updateCode (){
-  /* Updates the code according to editor */
+  /**
+    * Updates the code according to editor
+  */
   var charname = document.getElementById("pixel-editor__charname").value;
   var code_header = "byte " + charname + "[] = {";
   var code_body;
@@ -119,7 +130,10 @@ function updateCode (){
 }
 
 function getBinaryCode () {
-  /* Returns binary code according to pixels state */
+  /**
+    * Returns binary code according to pixels state
+    * @returns {string} code in binary
+  */
   var code_body = "";
   for (var row = 0; row < 8; row++) {
     code_body += "    B";
@@ -138,7 +152,10 @@ function getBinaryCode () {
 }
 
 function getHexCode () {
-  /* Returns hexadecimal code according to pixels state */
+  /**
+    * Returns hexadecimal code according to pixels state
+    * @returns {string} code in hexadecimal
+  */
   var code_body = "";
   for (var row = 0; row < 8; row++) {
     code_body += "    0x";
@@ -161,15 +178,21 @@ function getHexCode () {
   return code_body
 }
 
-function addDefineCode(charname){
-  /* Returns a #define text according to the name */
-  var defineCode = "#define " + charname.toUpperCase() + "_CHAR 0";
+function addDefineCode(charName){
+  /**
+    * Returns a #define text according to the name
+    * @param {string} charName
+    * @returns {string} #define text for the given character name
+   */
+  var defineCode = "#define " + charName.toUpperCase() + "_CHAR 0";
   return defineCode;
 }
 
 /* PIXEL EDITOR functions */
 function togglePixel (pixel) {
-  /* Toggles state of specified pixel */
+  /**
+    * Toggles state of specified pixel
+  */
   if (pixel.className === "pixel-off") pixel.className = "pixel-on";
   else pixel.className = "pixel-off";
   updateCode();
@@ -177,7 +200,9 @@ function togglePixel (pixel) {
 }
 
 function clearPixels () {
-  /* Sets off all pixels' state of selected LCD */
+  /**
+    * Sets off all pixels' state of selected LCD
+  */
   for (var row = 0; row < 8; row++) {
     for (var col = 0; col < 5; col++) {
       var pixelID = "pixel-" + row + "x" + col;
@@ -190,7 +215,9 @@ function clearPixels () {
 }
 
 function invertPixels () {
-  /* Inverts all pixels' state of selected LCD */
+  /**
+    * Inverts all pixels' state of selected LCD
+  */
   for (var row = 0; row < 8; row++) {
     for (var col = 0; col < 5; col++) {
       var pixelID = "pixel-" + row + "x" + col;
@@ -201,7 +228,9 @@ function invertPixels () {
 }
 
 function mirrorVertPixels () {
-  /* Mirrors vertically all pixels' state */
+  /**
+    * Mirrors vertically all pixels' state
+  */
   for (var row = 0; row < 8; row++) {
     for (var col = 0; col < 2; col++) {
       var leftPixelID = "pixel-" + row + "x" + col;
@@ -222,7 +251,9 @@ function mirrorVertPixels () {
 }
 
 function mirrorHoriPixels () {
-  /* Mirrors horizontally all pixels' state */
+  /**
+    * Mirrors horizontally all pixels' state
+  */
   for (var col = 0; col < 5; col++) {
     for (var row = 0; row < 4; row++) {
       var upperPixelID = "pixel-" + row + "x" + col;
@@ -243,7 +274,9 @@ function mirrorHoriPixels () {
 }
 
 function copyToPixelClipboard () {
-  /* Copies current state of editor to the clipboard */
+  /**
+    * Copies current state of editor to the clipboard
+  */
   for (var row = 0; row < 8; row++) {
     for (var col = 0; col < 5; col++) {
       var pixelID = "pixel-" + row + "x" + col;
@@ -259,7 +292,9 @@ function copyToPixelClipboard () {
 }
 
 function pasteToPixelEditor () {
-  /* Paste current state of clipboard to editor */
+  /**
+    * Paste current state of clipboard to editor
+  */
   for (var row = 0; row < 8; row++) {
     for (var col = 0; col < 5; col++) {
       var clipboardPixelID = "clipboard-" + row + "x" + col;
@@ -276,7 +311,9 @@ function pasteToPixelEditor () {
 }
 
 function shiftUp () {
-  /* Shifts every pixel upwards */
+  /**
+    * Shifts every pixel upwards
+  */
   for (var row = 0; row < 7; row++) {
     for (var col = 0; col < 5; col++) {
       var pixelID = "pixel-" + row + "x" + col;
@@ -299,7 +336,9 @@ function shiftUp () {
 }
 
 function shiftDown () {
-  /* Shift every pixel downwards */
+  /**
+    * Shift every pixel in editor downwards
+  */
   for (var row = 7; row > 0; row--) {
     for (var col = 0; col < 5; col++) {
       var pixelID = "pixel-" + row + "x" + col;
@@ -322,7 +361,9 @@ function shiftDown () {
 }
 
 function shiftLeft () {
-  /* Shifts every pixel leftwards */
+  /**
+    * Shifts every pixel in editor leftwards
+  */
   for (var row = 0; row < 8; row++) {
     for (var col = 0; col < 4; col++) {
       var pixelID = "pixel-" + row + "x" + col;
@@ -345,7 +386,9 @@ function shiftLeft () {
 }
 
 function shiftRight () {
-  /* Shift every pixel rightwards */
+  /**
+    Shift every pixel in editor rightwards
+  */
   for (var row = 0; row < 8; row++) {
     for (var col = 4; col > 0; col--) {
       var pixelID = "pixel-" + row + "x" + col;
@@ -371,7 +414,9 @@ function shiftRight () {
 var selectedLCD = document.getElementById("lcd-0x0");
 
 function updateLCD () {
-  /* Updates all editor pixels states to selected LCD */
+  /**
+    * Updates all editor pixels states to selected LCD
+  */
   for (var row = 0; row < 8; row++) {
     for (var col = 0; col < 5; col++) {
       var pixelID = "pixel-" + row + "x" + col;
@@ -386,7 +431,10 @@ function updateLCD () {
 }
 
 function toggleLCDPixel (pixel) {
-  /* Toggles state of specified LCD pixel */
+  /**
+    * Toggles state of specified LCD pixel
+    * @param {string} pixel
+  */
   var LCDpixelID = selectedLCD.id + pixel.id.substr(-4);
   var LCDpixel = document.getElementById(LCDpixelID);
   
@@ -395,9 +443,11 @@ function toggleLCDPixel (pixel) {
 }
 
 function selectLCD (lcdpixel) {
-  /* Selects specified LCD and updates Editor and Code */
+  /**
+    * Selects specified LCD and updates Editor and Code
+    * @param {Object} lcdpixel
+  */
   unselectLCD(selectedLCD); // Unselect previous	LCD
-
   lcdpixel.className = "lcd-pixel__selected";
   selectedLCD = lcdpixel;
   loadLCDtoEditor(lcdpixel);
@@ -405,12 +455,18 @@ function selectLCD (lcdpixel) {
 }
 
 function unselectLCD (lcd) {
-  /* Removes selection of the specified LCD */
+  /**
+    * Removes selection of the specified LCD
+    * @param {Object} lcd
+  */
   lcd.className = "lcd-pixel";
 }
 
 function loadLCDtoEditor (lcd) {
-  /* Loads specified LCD pixel to editor */
+  /**
+    * Loads specified LCD pixel to editor
+    * @param {Object} lcd
+  */
   for (var row = 0; row < 8; row++) {
     for (var col = 0; col < 5; col++) {
       var lcdpixelID = lcd.id + "-" + row + "x" + col;
@@ -428,31 +484,36 @@ function loadLCDtoEditor (lcd) {
 
 /* OPTIONS functions */
 function isCheckboxChecked (checkboxID) {
-  /* Checks if the checkbox is checked or not, returns boolean accordingly */
-  var thischeckbox = document.getElementById(checkboxID);
-  var checkedValue = thischeckbox.checked;
+  /**
+    * Checks if the checkbox is checked or not
+    * @returns {boolean} according to the checkbox checked property
+  */
+  var thisCheckbox = document.getElementById(checkboxID);
+  var checkedValue = thisCheckbox.checked;
   return checkedValue;
 }
 
 function copyToClipboard () {
-  /* Copies content of code text area to clipboard */
+  /**
+    * Copies content of code text area to clipboard
+  */
   var copyText = document.getElementById("code-box__code");
   
   copyText.select();
   copyText.setSelectionRange(0, 99999);  // Select all text
   document.execCommand("copy");
   
-  copyText.setSelectionRange(0, 0);  // Unselect all text
+  copyText.setSelectionRange(0, 0);  // Deselects all text
 };
 
 
-/**
-  * Function to get the co-ordinates of the selected character
-*/ 
-function getSelectedChar () {
-  // Gets the currently selected character on the LCD screen
-  // returns: integer list of coordinates
+function getSelectedCharCoords () {
+  /**
+    * Function to get the co-ordinates of the selected character
+    * @returns {Array<integer>} of coordinates
+  */
 
+  // Gets the currently selected character on the LCD screen
   var selChar = document.getElementsByClassName("lcd-pixel__selected")[0].id;
   var row = Number(selChar.substring(selChar.indexOf("-") + 1, selChar.indexOf("x")));
   var column = Number(selChar.substring(selChar.indexOf("x") + 1));
@@ -461,18 +522,19 @@ function getSelectedChar () {
 }
 
 
-/**
+
+function shiftChar (shiftRowBy, shiftColumnBy) {
+ /**
     * Shifts the selected character on the LCD screen by parameters provided.
-    * @param shiftRowBy Integer to shift the row index
-    * @param shiftColumnBy Integer to shift the column index
+    * @param {integer} shiftRowBy to shift the row index
+    * @param {integer} shiftColumnBy to shift the column index
     * Negative integers are accepted and will decrease the index.
     * If a shift will result in out of bounds selection, the shift is aborted.
   */
-function shiftChar (shiftRowBy, shiftColumnBy) {
-  
+
   // retrieves
-  var row = getSelectedChar()[0];
-  var column = getSelectedChar()[1];
+  var row = getSelectedCharCoords()[0];
+  var column = getSelectedCharCoords()[1];
 
   try {
     var id = "lcd-" + (row + shiftRowBy) + "x" + (column + shiftColumnBy);
