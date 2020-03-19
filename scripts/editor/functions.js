@@ -121,9 +121,14 @@ function updateCode (){
     code_header = addDefineCode(charname) + "\r\n" + code_header;
   }
   
-  var full_code = code_header + "\r\n" +
-                  code_body + "\r\n" +
-                  code_footer;
+  if (isCheckboxChecked("single-line-code")){
+    full_code = code_header + code_body + code_footer
+  }
+  else {
+    full_code = code_header + "\r\n" + code_body + "\r\n" + code_footer
+  }
+
+
   document.getElementById("code-box__code").value = full_code;
   
   if (isCheckboxChecked("autocopy")) copyToClipboard();
@@ -136,7 +141,10 @@ function getBinaryCode () {
   */
   var code_body = "";
   for (var row = 0; row < 8; row++) {
-    code_body += "    B";
+
+    if (isCheckboxChecked("single-line-code") ) code_body += "B";
+    else code_body += "    B";
+
     for (var col = 0; col < 5; col++) {
       var pixelID = "pixel-" + row + "x" + col;
       var pixel_state = document.getElementById(pixelID).className;
@@ -144,9 +152,12 @@ function getBinaryCode () {
       if (pixel_state === "pixel-off") code_body += "0";
       else code_body += "1";
     }
-    code_body += ",\r\n";
+    if (isCheckboxChecked("single-line-code")) code_body += ", ";
+    else code_body += ",\r\n";
   }
-  code_body = code_body.substring(0, code_body.length - 3);
+
+  if (isCheckboxChecked("single-line-code")) code_body = code_body.substring(0, code_body.length - 2);
+  else code_body = code_body.substring(0, code_body.length - 3);
   
   return code_body
 }
@@ -158,7 +169,10 @@ function getHexCode () {
   */
   var code_body = "";
   for (var row = 0; row < 8; row++) {
-    code_body += "    0x";
+
+    if (isCheckboxChecked("single-line-code") ) code_body += "x";
+    else code_body += "    0x";
+
     var thisLineBinary = "";
     for (var col = 0; col < 5; col++) {
       var pixelID = "pixel-" + row + "x" + col;
@@ -169,11 +183,14 @@ function getHexCode () {
     }
     var thisLineHex = parseInt(thisLineBinary, 2).toString(16);
     thisLineHex = thisLineHex.toUpperCase();
-    if (thisLineHex.length < 2) thisLineHex = "0" + thisLineHex;  //Todo: modify this
-    
-    code_body += thisLineHex + ",\r\n";
+    if (thisLineHex.length < 2) thisLineHex = "0" + thisLineHex;
+
+    if (isCheckboxChecked("single-line-code") )code_body += thisLineHex + ", ";
+    else code_body += thisLineHex + ",\r\n";
   }
-  code_body = code_body.substring(0, code_body.length - 3);
+
+  if (isCheckboxChecked("single-line-code")) code_body = code_body.substring(0, code_body.length - 2);
+  else code_body = code_body.substring(0, code_body.length - 3);
   
   return code_body
 }
