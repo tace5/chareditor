@@ -327,6 +327,15 @@ function pasteToPixelEditor () {
   updateLCD();
 }
 
+function cutPixelEditor () {
+  /**
+    * Pastes and delete current pixel editor
+  */
+
+  copyToPixelClipboard();
+  clearPixels();
+}
+
 function shiftUp () {
   /**
     * Shifts every pixel upwards
@@ -621,6 +630,9 @@ document.addEventListener("keydown", function (event) {
           break;
         case "v":
           pasteToPixelEditor();
+          break;
+        case "x":
+          cutPixelEditor();
           break;
         case "s":
           saveProgress();
