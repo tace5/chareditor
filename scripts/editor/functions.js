@@ -27,9 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 /* Functions for saving and loading app state */
 function loadSavedData() {
-  /**
-    * Loads data stored in the browser memory
-  */
+  /** Loads data stored in the browser memory */
   var elements = document.querySelectorAll('[data-saveable]');
 
   for (var i = 0; i < elements.length; i++) {
@@ -54,9 +52,7 @@ function loadSavedData() {
 }
 
 function saveProgress() {
-  /**
-    * Saves the current app state to browser memory
-  */
+  /** Saves the current app state to browser memory */
   var elements = document.querySelectorAll('[data-saveable]');
 
   for (var i = 0; i < elements.length; i++) {
@@ -96,18 +92,14 @@ function addStatusMsg(msg) {
 }
 
 function onBodyLoad() {
-  /**
-    * Handler for when page has loaded
-  */
+  /** Handler for when page has loaded */
   updateCode();
   loadSavedData();
 }
 
 /* CODE Functions */
 function updateCode (){
-  /**
-    * Updates the code according to editor
-  */
+  /** Updates the code according to editor */
   var charname = document.getElementById("pixel-editor__charname").value;
   var code_header = "byte " + charname + "[] = {";
   var code_body;
@@ -205,9 +197,7 @@ function addDefineCode(charName){
 
 /* PIXEL EDITOR functions */
 function togglePixel (pixel) {
-  /**
-    * Toggles state of specified pixel
-  */
+  /** Toggles state of specified pixel */
   if (pixel.className === "pixel-off") pixel.className = "pixel-on";
   else pixel.className = "pixel-off";
   updateCode();
@@ -215,9 +205,7 @@ function togglePixel (pixel) {
 }
 
 function clearPixels () {
-  /**
-    * Sets off all pixels' state of selected LCD
-  */
+  /** Sets off all pixels' state of selected LCD */
   for (var row = 0; row < 8; row++) {
     for (var col = 0; col < 5; col++) {
       var pixelID = "pixel-" + row + "x" + col;
@@ -230,9 +218,7 @@ function clearPixels () {
 }
 
 function invertPixels () {
-  /**
-    * Inverts all pixels' state of selected LCD
-  */
+  /** Inverts all pixels' state of selected LCD */
   for (var row = 0; row < 8; row++) {
     for (var col = 0; col < 5; col++) {
       var pixelID = "pixel-" + row + "x" + col;
@@ -243,9 +229,7 @@ function invertPixels () {
 }
 
 function mirrorVertPixels () {
-  /**
-    * Mirrors vertically all pixels' state
-  */
+  /** Mirrors vertically all pixels' state */
   for (var row = 0; row < 8; row++) {
     for (var col = 0; col < 2; col++) {
       var leftPixelID = "pixel-" + row + "x" + col;
@@ -266,9 +250,7 @@ function mirrorVertPixels () {
 }
 
 function mirrorHoriPixels () {
-  /**
-    * Mirrors horizontally all pixels' state
-  */
+  /** Mirrors horizontally all pixels' state */
   for (var col = 0; col < 5; col++) {
     for (var row = 0; row < 4; row++) {
       var upperPixelID = "pixel-" + row + "x" + col;
@@ -289,9 +271,7 @@ function mirrorHoriPixels () {
 }
 
 function copyToPixelClipboard () {
-  /**
-    * Copies current state of editor to the clipboard
-  */
+  /** Copies current state of editor to the clipboard */
   for (var row = 0; row < 8; row++) {
     for (var col = 0; col < 5; col++) {
       var pixelID = "pixel-" + row + "x" + col;
@@ -307,9 +287,7 @@ function copyToPixelClipboard () {
 }
 
 function pasteToPixelEditor () {
-  /**
-    * Paste current state of clipboard to editor
-  */
+  /** Paste current state of clipboard to editor */
   for (var row = 0; row < 8; row++) {
     for (var col = 0; col < 5; col++) {
       var clipboardPixelID = "clipboard-" + row + "x" + col;
@@ -326,18 +304,13 @@ function pasteToPixelEditor () {
 }
 
 function cutPixelEditor () {
-  /**
-    * Pastes and delete current pixel editor
-  */
-
+  /** Pastes and delete current pixel editor */
   copyToPixelClipboard();
   clearPixels();
 }
 
 function shiftUp () {
-  /**
-    * Shifts every pixel upwards
-  */
+  /** Shifts every pixel upwards */
   for (var row = 0; row < 7; row++) {
     for (var col = 0; col < 5; col++) {
       var pixelID = "pixel-" + row + "x" + col;
@@ -360,9 +333,7 @@ function shiftUp () {
 }
 
 function shiftDown () {
-  /**
-    * Shift every pixel in editor downwards
-  */
+  /** Shift every pixel in editor downwards */
   for (var row = 7; row > 0; row--) {
     for (var col = 0; col < 5; col++) {
       var pixelID = "pixel-" + row + "x" + col;
@@ -385,9 +356,7 @@ function shiftDown () {
 }
 
 function shiftLeft () {
-  /**
-    * Shifts every pixel in editor leftwards
-  */
+  /** Shifts every pixel in editor leftwards */
   for (var row = 0; row < 8; row++) {
     for (var col = 0; col < 4; col++) {
       var pixelID = "pixel-" + row + "x" + col;
@@ -410,9 +379,7 @@ function shiftLeft () {
 }
 
 function shiftRight () {
-  /**
-    Shift every pixel in editor rightwards
-  */
+  /** Shift every pixel in editor rightwards */
   for (var row = 0; row < 8; row++) {
     for (var col = 4; col > 0; col--) {
       var pixelID = "pixel-" + row + "x" + col;
@@ -447,9 +414,7 @@ function getSelectedLCD () {
 }
 
 function updateLCD () {
-  /**
-    * Updates all editor pixels states to selected LCD
-  */
+  /** Updates all editor pixels states to selected LCD */
   for (var row = 0; row < 8; row++) {
     for (var col = 0; col < 5; col++) {
       var pixelID = "pixel-" + row + "x" + col;
@@ -526,9 +491,7 @@ function isCheckboxChecked (checkboxID) {
 }
 
 function copyToClipboard () {
-  /**
-    * Copies content of code text area to clipboard
-  */
+  /** Copies content of code text area to clipboard */
   var copyText = document.getElementById("code-box__code");
   
   copyText.select();
