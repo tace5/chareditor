@@ -24,8 +24,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * @author Alejandro Santiago (@alestiago)
  * @license GPL-3.0
  */
- 
-/* global selectedLCD */
 
 /* Functions for saving and loading app state */
 function loadSavedData() {
@@ -437,7 +435,16 @@ function shiftRight () {
 }
 
 /* PREVIEW Functions */
-var selectedLCD = document.getElementById("lcd-0x0");
+
+function getSelectedLCD () {
+  /**
+    * Returns the current selected LCD:
+    * @returns {HTMLobject} selectedLCD
+  */
+  var selectedLCD = document.getElementsByClassName("lcd-pixel__selected")[0];
+  return selectedLCD;
+
+}
 
 function updateLCD () {
   /**
@@ -447,7 +454,7 @@ function updateLCD () {
     for (var col = 0; col < 5; col++) {
       var pixelID = "pixel-" + row + "x" + col;
       var pixelState = document.getElementById(pixelID).className;
-      var lcdpixelID = selectedLCD.id + "-" + row + "x" + col;
+      var lcdpixelID = getSelectedLCD().id + "-" + row + "x" + col;
       var lcdpixel = document.getElementById(lcdpixelID);
  
       if (pixelState === "pixel-off") lcdpixel.className = null;
@@ -461,7 +468,7 @@ function toggleLCDPixel (pixel) {
     * Toggles state of specified LCD pixel
     * @param {string} pixel
   */
-  var LCDpixelID = selectedLCD.id + pixel.id.substr(-4);
+  var LCDpixelID = getSelectedLCD().id + pixel.id.substr(-4);
   var LCDpixel = document.getElementById(LCDpixelID);
   
   if (LCDpixel.className === "lcd-pixel__on") LCDpixel.className = null;
@@ -473,9 +480,8 @@ function selectLCD (lcdpixel) {
     * Selects specified LCD and updates Editor and Code
     * @param {Object} lcdpixel
   */
-  unselectLCD(selectedLCD); // Unselect previous	LCD
+  unselectLCD(getSelectedLCD()); // Unselect previous	LCD
   lcdpixel.className = "lcd-pixel__selected";
-  selectedLCD = lcdpixel;
   loadLCDtoEditor(lcdpixel);
   updateCode();
 }
@@ -540,7 +546,7 @@ function getSelectedCharCoords () {
   */
 
   // Gets the currently selected character on the LCD screen
-  var selChar = document.getElementsByClassName("lcd-pixel__selected")[0].id;
+  var selChar = getSelectedLCD().id;
   var row = Number(selChar.substring(selChar.indexOf("-") + 1, selChar.indexOf("x")));
   var column = Number(selChar.substring(selChar.indexOf("x") + 1));
   
