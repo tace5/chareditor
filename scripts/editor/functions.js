@@ -78,9 +78,9 @@ function saveProgress() {
 
 function addStatusMsg(msg) {
   /**
-    * Function to display status messages in the top left corner
-    * @param {string} message to be displayed inside box
-  */
+   * Function to display status messages in the top left corner
+   * @param {string} message to be displayed inside box
+   */
   $("#status-msg-box").append('<div class="status-msg">' + msg + '</div>');
 
   var statusMsgs = $(".status-msg").filter(function () {
@@ -126,9 +126,9 @@ function updateCode (){
 
 function getBinaryCode () {
   /**
-    * Returns binary code according to pixels state
-    * @returns {string} code in binary
-  */
+   * Returns binary code according to pixels state
+   * @returns {string} code in binary
+   */
   var code_body = "";
   for (var row = 0; row < 8; row++) {
 
@@ -154,9 +154,9 @@ function getBinaryCode () {
 
 function getHexCode () {
   /**
-    * Returns hexadecimal code according to pixels state
-    * @returns {string} code in hexadecimal
-  */
+   * Returns hexadecimal code according to pixels state
+   * @returns {string} code in hexadecimal
+   */
   var code_body = "";
   for (var row = 0; row < 8; row++) {
 
@@ -187,9 +187,9 @@ function getHexCode () {
 
 function addDefineCode(charName){
   /**
-    * Returns a #define text according to the name
-    * @param {string} charName
-    * @returns {string} #define text for the given character name
+   * Returns a #define text according to the name
+   * @param {string} charName
+   * @returns {string} #define text for the given character name
    */
   var defineCode = "#define " + charName.toUpperCase() + "_CHAR 0";
   return defineCode;
@@ -405,9 +405,9 @@ function shiftRight () {
 
 function getSelectedLCD () {
   /**
-    * Returns the current selected LCD:
-    * @returns {HTMLobject} selectedLCD
-  */
+   * Returns the current selected LCD:
+   * @returns {HTMLobject} selectedLCD
+   */
   var selectedLCD = document.getElementsByClassName("lcd-pixel__selected")[0];
   return selectedLCD;
 
@@ -430,9 +430,9 @@ function updateLCD () {
 
 function toggleLCDPixel (pixel) {
   /**
-    * Toggles state of specified LCD pixel
-    * @param {string} pixel
-  */
+   * Toggles state of specified LCD pixel
+   * @param {string} pixel
+   */
   var LCDpixelID = getSelectedLCD().id + pixel.id.substr(-4);
   var LCDpixel = document.getElementById(LCDpixelID);
   
@@ -442,9 +442,9 @@ function toggleLCDPixel (pixel) {
 
 function selectLCD (lcdpixel) {
   /**
-    * Selects specified LCD and updates Editor and Code
-    * @param {Object} lcdpixel
-  */
+   * Selects specified LCD and updates Editor and Code
+   * @param {Object} lcdpixel
+   */
   unselectLCD(getSelectedLCD()); // Unselect previous	LCD
   lcdpixel.className = "lcd-pixel__selected";
   loadLCDtoEditor(lcdpixel);
@@ -461,9 +461,9 @@ function unselectLCD (lcd) {
 
 function loadLCDtoEditor (lcd) {
   /**
-    * Loads specified LCD pixel to editor
-    * @param {Object} lcd
-  */
+   * Loads specified LCD pixel to editor
+   * @param {Object} lcd
+   */
   for (var row = 0; row < 8; row++) {
     for (var col = 0; col < 5; col++) {
       var lcdpixelID = lcd.id + "-" + row + "x" + col;
@@ -482,9 +482,9 @@ function loadLCDtoEditor (lcd) {
 /* OPTIONS functions */
 function isCheckboxChecked (checkboxID) {
   /**
-    * Checks if the checkbox is checked or not
-    * @returns {boolean} according to the checkbox checked property
-  */
+   * Checks if the checkbox is checked or not
+   * @returns {boolean} according to the checkbox checked property
+   */
   var thisCheckbox = document.getElementById(checkboxID);
   var checkedValue = thisCheckbox.checked;
   return checkedValue;
@@ -504,9 +504,9 @@ function copyToClipboard () {
 
 function getSelectedCharCoords () {
   /**
-    * Function to get the co-ordinates of the selected character
-    * @returns {Array<integer>} of coordinates
-  */
+   * Function to get the co-ordinates of the selected character
+   * @returns {Array<integer>} of coordinates
+   */
 
   // Gets the currently selected character on the LCD screen
   var selChar = getSelectedLCD().id;
@@ -520,11 +520,11 @@ function getSelectedCharCoords () {
 
 function shiftChar (shiftRowBy, shiftColumnBy) {
  /**
-    * Shifts the selected character on the LCD screen by parameters provided.
-    * @param {integer} shiftRowBy to shift the row index
-    * @param {integer} shiftColumnBy to shift the column index
-    * Negative integers are accepted and will decrease the index.
-    * If a shift will result in out of bounds selection, the shift is aborted.
+  * Shifts the selected character on the LCD screen by parameters provided.
+  * @param {integer} shiftRowBy to shift the row index
+  * @param {integer} shiftColumnBy to shift the column index
+  * Negative integers are accepted and will decrease the index.
+  * If a shift will result in out of bounds selection, the shift is aborted.
   */
 
   // retrieves
