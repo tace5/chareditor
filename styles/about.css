@@ -52,14 +52,16 @@ header {
 *******************************/
 #page-description {
   width: 100%;
-  text-align: center;
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   color: white;
 }
 
   #page-description__title {
     font-family: 'Open Sans', 'Arial';
     font-size: 30px;
+    text-align: center;
   }
 
   #page-description__subtitle {

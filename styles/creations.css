@@ -52,8 +52,9 @@ header {
 *******************************/
 #page-description {
   width: 100%;
-  text-align: center;
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   color: white;
 }
 
