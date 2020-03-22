@@ -13,9 +13,8 @@ If you find a line of code that does not follow these guidelines feel free to su
 
 ### Pull Request naming
 When creating a pull request you should include a prefix which describes the purpose of it.
-The format should be the following:
-<br>prefix/name-of-pull-request
+The format should be the following: prefix/name-of-pull-request
   
 Some common prefixes are:
-+ feat/
-+ bug/
+- feat/
+- bug/
